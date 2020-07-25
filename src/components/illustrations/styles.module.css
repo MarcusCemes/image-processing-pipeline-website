@@ -1,0 +1,27 @@
+.fillCurrent {
+  fill: currentColor;
+}
+
+.fill3f3d56 {
+  fill: #3f3d56;
+}
+
+.fille6e6e6 {
+  fill: #e6e6e6;
+}
+
+.fillfff {
+  fill: #fff;
+}
+
+html[data-theme="dark"] .fill3f3d56 {
+  fill: #efefef;
+}
+
+html[data-theme="dark"] .fille6e6e6 {
+  fill: #555;
+}
+
+html[data-theme="dark"] .fillfff {
+  fill: #333;
+}

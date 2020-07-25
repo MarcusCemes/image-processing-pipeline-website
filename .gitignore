@@ -86,3 +86,10 @@ typings/
 
 # DynamoDB Local files
 .dynamodb/
+
+# Static build
+/build
+
+# Docusaurus files
+.docusaurus
+.cache-loader
