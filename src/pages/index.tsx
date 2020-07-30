@@ -50,18 +50,13 @@ const features: Feature[] = [
 ];
 
 const Hero: React.FC<{ title: string; subtitle: string }> = ({ title, subtitle }) => (
-  <header className={styles.heroBanner}>
-    <div className={"container"}>
-      <h1 className={styles.heroTitle}>{title}</h1>
-      <p className={styles.heroSubtitle}>{subtitle}</p>
-      <div className={styles.buttons}>
-        <Link
-          className={clsx("button button--outline button--secondary button--lg", styles.getStarted)}
-          to={useBaseUrl("docs/")}
-        >
-          Get Started
-        </Link>
-      </div>
+  <header className={clsx(styles.heroBanner, "shadow--lw")}>
+    <h1 className={styles.heroTitle}>{title}</h1>
+    <p className={styles.heroSubtitle}>{subtitle}</p>
+    <div className={styles.buttons}>
+      <Link className={styles.button} to={useBaseUrl("guide/")}>
+        Get started
+      </Link>
     </div>
   </header>
 );

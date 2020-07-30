@@ -1,7 +1,7 @@
 module.exports = {
   title: "Image Processing Pipeline",
   tagline: "A modern image build orchestrator",
-  url: "https://ipp.now.sh",
+  url: "https://ipp.vercel.app",
   baseUrl: "/",
   onBrokenLinks: "throw",
   favicon: "img/favicon.ico",
@@ -9,6 +9,13 @@ module.exports = {
   projectName: "image-processing-pipeline", // Usually your repo name.
   themeConfig: {
     image: "src/social_preview.png",
+    announcementBar: {
+      id: "unreleased_notice",
+      content:
+        'This is for an unreleased version of IPP, for the current docs, visit <a href="https://ipp.mastermovies.uk" target="_blank" rel="noopener noreferrer" >ipp.mastermovies.uk</a>',
+      backgroundColor: "#111",
+      textColor: "#fff",
+    },
     navbar: {
       title: "Image Processing Pipeline",
       logo: {
@@ -16,6 +23,12 @@ module.exports = {
         src: "img/logo.svg",
       },
       items: [
+        {
+          to: "guide/",
+          activeBasePath: "guide",
+          label: "Guide",
+          position: "left",
+        },
         {
           to: "docs/",
           activeBasePath: "docs",
@@ -34,10 +47,14 @@ module.exports = {
       style: "light",
       links: [
         {
-          title: "Documentation",
+          title: "Navigation",
           items: [
             {
-              label: "Getting started",
+              label: "Guide",
+              to: "guide/",
+            },
+            {
+              label: "Docs",
               to: "docs/",
             },
           ],
@@ -60,20 +77,29 @@ module.exports = {
       "@docusaurus/preset-classic",
       {
         docs: {
-          // It is recommended to set document id as docs home page (`docs/` path).
           homePageId: "intro",
-          sidebarPath: require.resolve("./sidebars.js"),
-          // Please change this to your repo.
-          editUrl: "https://github.com/MarcusCemes/image-processing-pipeline/edit/master/website/",
-        },
-        blog: {
-          showReadingTime: true,
-          // Please change this to your repo.
-          editUrl: "https://github.com/MarcusCemes/image-processing-pipeline/edit/master/website/blog/",
+          sidebarPath: require.resolve("./sidebar-docs.js"),
+          editUrl: "https://github.com/MarcusCemes/image-processing-pipeline-website/edit/master/",
+          showLastUpdateTime: true,
+          showLastUpdateAuthor: true,
         },
         theme: {
           customCss: require.resolve("./src/css/global.css"),
         },
+      },
+    ],
+  ],
+  plugins: [
+    [
+      "@docusaurus/plugin-content-docs",
+      {
+        id: "guide",
+        /** The filesystem path */
+        path: "guide",
+        /** The URL path */
+        routeBasePath: "guide",
+        homePageId: "prerequisites",
+        sidebarPath: require.resolve("./sidebar-guide.js"),
       },
     ],
   ],

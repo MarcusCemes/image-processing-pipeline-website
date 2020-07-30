@@ -1,0 +1,49 @@
+---
+id: prerequisites
+title: Prerequisites
+sidebar_label: Prerequisites
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+Image Processing Pipeline uses [Node.js](https://nodejs.org/). If you're a web developer then you're probably using it already! If not, the installation is simple and it will give you access to a large number of other web development tools.
+
+If you already have Node.js, you may continue to the next page.
+
+## First steps
+
+### Installing Node.js
+
+Installing Node.js is a simple as a few clicks and it comes with npm (Node Package Manager), the largest package registry in the world and also the best way to install IPP.
+
+<Tabs
+  groupId="os"
+  defaultValue="win"
+  values={[
+    {label: 'Windows', value: 'win'},
+    {label: 'macOS', value: 'mac'},
+    {label: 'Linux', value: 'linux'},
+  ]
+}>
+<TabItem value="win">
+
+
+#### Easy
+
+There is an installer available at https://nodejs.org/. This will install a recent version of Node.js and the accompanying Node Package Manager (npm).
+
+#### Hard
+
+Download and install nvm, a port of the popular nvm (Node Version Manager) on Linux that easily lets you install, upgrade and remove different versions of Node.js. You may then do:
+
+```
+$ nvm install latest
+$ nvm use latest
+```
+
+
+</TabItem>
+<TabItem value="mac">Use Command + C to copy.</TabItem>
+<TabItem value="linux">Use Command + C to copy.</TabItem>
+</Tabs>

@@ -16,10 +16,10 @@
     "react-dom": "^16.13.1"
   },
   "devDependencies": {
-    "@docusaurus/core": "^2.0.0-alpha.59",
-    "@docusaurus/module-type-aliases": "^2.0.0-alpha.51",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.59",
-    "@mdx-js/react": "^1.6.14",
+    "@docusaurus/core": "^2.0.0-alpha.60",
+    "@docusaurus/module-type-aliases": "^2.0.0-alpha.60",
+    "@docusaurus/preset-classic": "^2.0.0-alpha.60",
+    "@mdx-js/react": "^1.6.16",
     "@types/react": "^16.9.43",
     "typescript": "^3.9.7"
   },
