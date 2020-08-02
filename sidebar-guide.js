@@ -1,3 +1,3 @@
 module.exports = {
-  guide: ["prerequisites"],
+  guide: ["prerequisites", "installation", "usage", "pipeline", "manifest"],
 };

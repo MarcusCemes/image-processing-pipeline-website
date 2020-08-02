@@ -1,0 +1,122 @@
+---
+id: pipeline
+title: Pipeline
+sidebar_label: Pipeline
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+## Understanding the image pipeline
+
+The processing pipeline as at the heart of IPP. It provides a flexible way to configure the image treatment process to your particular needs, whether you only wish to compress images or make a full set of breakpoint-resized images.
+
+To understand the pipeline, think of it as a set of interconnected pipes. Every pipe serves a different purpose, and can modify the flow in some way. In IPP, the source image flows into the start of the pipeline, passing in order through connected pipes as quickly as possible. Each pipe can apply a transformation to the image, such as resizing it. The next pipe will then receive this new image buffer.
+
+:::info
+Each pipe can only have one input, but multiple outputs. A copy of the image will be sent to each output. Therefore the network looks more like tree than a pipeline.
+:::
+
+At different points you can tap into the pipeline to "leak out" a copy of the image buffer, and save it to a file. This lets you save the result of a pipe and is generally what you would want to do at the very end of the pipeline.
+
+### Image metadata
+
+As well as the image buffer that contains the binary image data, pipes can also receive and return _metadata_, which is stored in a key-value object.
+
+The metadata object is passed from one pipe to the next, allowing each pipe to read important information such as the image buffer's dimensions, and write additional information that gets passed on.
+
+Metadata can then be referenced when saving images or when adding metadata fields to the manifest file. This allows you to name the output formats based on parameters such as the breakpoints or image hash, and map specific values to the manifest.
+
+## An example pipeline
+
+The pipeline is defined in the configuration file under the pipeline property. Here's an example of how you might define one:
+
+<Tabs
+  groupId="config_format"
+  defaultValue="yaml"
+  values={[
+    {label: 'YAML', value: 'yaml'},
+    {label: 'JSON', value: 'json'},
+  ]
+}>
+<TabItem value="yaml">
+
+```yaml title=".ipprc.yml"
+pipeline:
+  - pipe: resize
+    options:
+      resizeOptions:
+        height: 1280
+    save: "{{originalName}}-{{width}}{{ext}}"
+    then:
+      - pipe: convert
+        options:
+          format: webp
+        save: "{{originalName}}-{{width}}{{ext}}"
+```
+
+</TabItem>
+<TabItem value="json">
+
+```json title=".ipprc.json"
+{
+  "pipeline": [
+    {
+      "pipe": "resize",
+      "options": {
+        "resizeOptions": {
+          "height": 1280
+        }
+      },
+      "save": "{{originalName}}-{{width}}{{ext}}",
+      "then": [
+        {
+          "pipe": "convert",
+          "options": {
+            "format": "webp"
+          },
+          "save": "{{originalName}}-{{width}}{{ext}}"
+        }
+      ]
+    }
+  ]
+}
+```
+
+</TabItem>
+</Tabs>
+
+:::tip
+Both YAML and JSON formats are supported, we recommend using YAML, as it has a more concise and easier to read syntax.
+:::
+
+If we provide a sufficiently large image file called parrot.jpg to the above pipeline, this process should yield two outputs, parrot-1280.jpg and parrot-1280.webp.
+
+Every **pipeline chunk** is an array of pipes. The root pipeline property defines the entry point, or the very first pipes to send the source image to. Every pipe may then specify another pipeline chunk under the then property.This allows you to chain pipes together to do really useful transformations.
+
+Here, each source image will flow into the resize pipe, where it gets reduced to 1280 pixels in width. This gets immediately saved to a file, called `{{originalName}}{{ext}}`, before flowing into a convert pipe that creates a WebP format and also saves it to a file with the same name.
+
+:::note
+This is a basic setup, where we create a WebP image from an "inferior" JPEG image. For a better and more complete example, see the configuration documentation.
+:::
+
+### Metadata expansions
+
+To be able to dynamically create file names, IPP supports a **metadata expansions**. Depending on the environment you come from, you may also know them as template literals or template expansions.
+
+The double braces notation tells IPP to replace that value at the very end, when all metadata such as the resulting image's dimensions are known. The text inside of the braces is used as the **key** for the metadata object. It may also contain a selector such as `:8` at the end, to limit the length of the metadata object's value. This is especially useful for hashes, which can be over 256 characters long!
+
+For example, `{{originalName}}` would be replaced by the item `originalName` in the metadata object. This particular value is always set at the start, containing the filename (without the extension) of the original source image.
+
+```text title="Example save string"
+# Example resulting filename: parrot-7a45ba26.jpg
+{{originalName}}-{{hash:8}}{{ext}}
+```
+
+To learn more about the metadata object, visit the architecture documentation.
+
+### Connecting more pipes
+
+As shown in the above example, the output from a pipe may be chained to another pipe using the `then` property. Image buffers and metadata will keep flowing asynchronously until all available pipes have been used. The pipeline is a repeated nested structure, each then property is like starting a new pipeline.
+
+To find out what other pipes are available, visit the pipe documentation.

@@ -4,8 +4,8 @@ title: Prerequisites
 sidebar_label: Prerequisites
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
 Image Processing Pipeline uses [Node.js](https://nodejs.org/). If you're a web developer then you're probably using it already! If not, the installation is simple and it will give you access to a large number of other web development tools.
 
@@ -28,22 +28,60 @@ Installing Node.js is a simple as a few clicks and it comes with npm (Node Packa
 }>
 <TabItem value="win">
 
-
 #### Easy
 
-There is an installer available at https://nodejs.org/. This will install a recent version of Node.js and the accompanying Node Package Manager (npm).
+There is an installer available at [https://nodejs.org/](https://nodejs.org/). This will install a recent version of Node.js and the accompanying Node Package Manager (npm).
 
 #### Hard
 
-Download and install nvm, a port of the popular nvm (Node Version Manager) on Linux that easily lets you install, upgrade and remove different versions of Node.js. You may then do:
+Download and install [nvm-windows](https://github.com/coreybutler/nvm-windows), a port of the popular nvm (Node Version Manager) on Linux that easily lets you install, upgrade and remove different versions of Node.js. You may then do:
 
-```
+```bash
 $ nvm install latest
 $ nvm use latest
 ```
 
+</TabItem>
+<TabItem value="mac">
+
+#### Easy
+
+There is an installer available at [https://nodejs.org/](https://nodejs.org/). This will install a recent version of Node.js and the accompanying Node Package Manager (npm).
+
+You may also try installing using [Homebrew](https://brew.sh/) if you wish to avoid using sudo.
+
+#### Hard
+
+Download and install [nvm](https://github.com/nvm-sh/nvm) (Node Version Manager), a popular tool that easily lets you install, upgrade and remove different versions of Node.js. You may then do:
+
+```bash
+$ nvm install node
+$ nvm use node
+```
 
 </TabItem>
-<TabItem value="mac">Use Command + C to copy.</TabItem>
-<TabItem value="linux">Use Command + C to copy.</TabItem>
+<TabItem value="linux">
+
+#### Easy
+
+The recommended approach is to use ready made binaries provided by your system's package manager.
+For example, on Ubuntu:
+
+```bash
+$ sudo apt update
+$ sudo apt install nodejs npm
+```
+
+This will install a recent version of Node.js and the accompanying Node Package Manager (npm).
+
+#### Hard
+
+Download and install [nvm](https://github.com/nvm-sh/nvm) (Node Version Manager), a popular tool that easily lets you install, upgrade and remove different versions of Node.js. You may then do:
+
+```bash
+$ nvm install node
+$ nvm use node
+```
+
+</TabItem>
 </Tabs>

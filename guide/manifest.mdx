@@ -1,0 +1,91 @@
+---
+id: manifest
+title: Manifest
+sidebar_label: Manifest
+---
+
+## The manifest
+
+The image manifest file is like a flight manifest onboard an aircraft, it contains a list of source images that were processed, the image formats that were generated using the pipeline and the resulting metadata object at the time that the image was saved. As the pipeline is a completely dynamic, the resulting formats from an image may vary greatly in type and in number.
+
+A bare-bones manifest contains a list of source images and it's **relative path** to the input directory, and its resulting formats with their **relative paths** to the output directory.
+
+```json title="manifest.json"
+[
+  {
+    "p": "parrot.jpg",
+    "f": [{ "p": "parrot-sm-1154f78a.jpg" }, { "p": "parrot-lg-d761caa4.jpg" }]
+  }
+]
+```
+
+:::tip
+Manifest files are minimal, and use short property **keys** to minimise their size.
+_p_ stands for path, _f_ stands for formats and _m_ stands for metadata.
+:::
+
+### Adding metadata
+
+To extend the manifest with more information,we can **map** certain **keys** to metadata **values**.
+
+:::info
+A map is a key/value object. Think of it as a function, that transforms an input value to a certain output value.
+:::
+
+This allows us to select different metadata keys, include them in the manifest, and even modify them.
+
+```yaml title=".ipprc.yml"
+manifest:
+  image:
+    x: hash:8
+  format:
+    w: width
+    h: height
+```
+
+:::tip
+Notice that we can use the same limit selector ":" that we used in the `save` property. This will shorten the value to the specified length.
+:::
+
+The above manifest configuration will produce something like this:
+
+```json title="manifest.json"
+[
+  {
+    "p": "parrot.jpg",
+    "m": {
+      "x": "05b43a84"
+    },
+    "f": [
+      { "p": "parrot-sm-1154f78a.jpg", "m": { "w": 1280, "h": 720 } },
+      { "p": "parrot-lg-d761caa4.jpg", "m": { "w": 1280, "h": 720 } }
+    ]
+  }
+]
+```
+
+Fantastic! We now know the size of each file, and the hash of the original source image.
+
+### Use cases
+
+How you want to exploit the manifest file is up to you. You can:
+
+- Read it in your build process and move your images accordingly
+- Serve images from an endpoint, using it to select the best format
+- Let the client download the entire list and choose the best image
+- Let the client request an image and get a list of formats
+- ⭐ Inline relevant images into the web page to avoid round-trips
+
+#### Download the entire manifest on the client
+
+This is not the most elegant solution, but still works well. Give the manifest file a really large cache header, and the browser won't have to download it again, for any webpage!
+
+#### ⭐ Inlining the relevant manifest images
+
+This is my favourite solution, but requires a little build-time magic. It allows you to bundle the relevant manifest entries along with your Javascript or HTML bundle. The implementation depends greatly on the platform, but could even be achieved with PHP.
+
+A fantastic example of this would be with [Gatsby](https://www.gatsbyjs.org/). Pages are rendered at build time, and any GraphQL queries that they make are are saved along with the static build. You simply request the name or hash of the image, and all the manifest entries will be hard-coded into the page's JavaScript bundle.
+
+This is essentially what the `gatsby-image` plugin does. You request the image, it will generate breakpoints and return a tiny object with paths, aspect ratios, etc. The same could be achieved with IPP, although you may have to implement a plugin using some of IPPs lower-level modules, such as `@ipp/core`.
+
+This is the best of both worlds, as there are no wasted round-trips or redundant data.
