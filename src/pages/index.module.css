@@ -1,55 +1,33 @@
-.heroBanner {
-  position: relative;
-  padding: 4rem 0;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-
-  user-select: none;
-
-  background: var(--ifm-color-primary-darker);
-  background: linear-gradient(to right, var(--ifm-color-primary-darker), var(--ifm-color-primary));
-}
-
-@media screen and (max-width: 966px) {
-  .heroBanner {
-    padding: 2rem;
-  }
-}
-
-.heroTitle,
-.heroSubtitle {
-  color: #fff;
-}
-
-.buttons {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.button {
-  margin-top: 0.2em;
-  padding: 0.5em 1.25em;
-
-  color: #fff;
-  border: 1px solid #fff;
-  border-radius: 0.25em;
-
-  font-weight: 600;
-  font-size: 1.1em;
-
-  transition: all 250ms;
-}
-
-.button:hover {
-  color: var(--ifm-color-primary);
-  background-color: #fff;
-  text-decoration: none;
-}
-
 .main {
   margin-bottom: 4em;
+}
+
+.descriptionWrapper {
+  margin-bottom: 2em;
+
+  display: flex;
+  justify-content: center;
+}
+.description {
+  position: relative;
+  max-width: 40em;
+  opacity: 0.6;
+  text-align: center;
+}
+
+.features {
+  display: flex;
+  align-items: center;
+  padding: 2rem 0;
+  width: 100%;
+}
+
+.featureImage {
+  color: var(--ifm-color-primary);
+  height: 200px;
+  width: 200px;
+  pointer-events: none;
+  user-select: none;
 }
 
 .textSectionLeft,
@@ -82,19 +60,14 @@
   max-width: 48em;
 }
 
-.features {
+.titleWithIcon {
   display: flex;
   align-items: center;
-  padding: 2rem 0;
-  width: 100%;
 }
 
-.featureImage {
-  color: var(--ifm-color-primary);
-  height: 200px;
-  width: 200px;
-  pointer-events: none;
-  user-select: none;
+.titleIcon {
+  opacity: 0.8;
+  margin-right: 0.6em;
 }
 
 /* Tablet */

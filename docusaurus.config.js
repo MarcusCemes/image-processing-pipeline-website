@@ -1,6 +1,6 @@
 module.exports = {
   title: "Image Processing Pipeline",
-  tagline: "A modern image build orchestrator",
+  tagline: "An image build orchestrator for the modern web",
   url: "https://ipp.vercel.app",
   baseUrl: "/",
   onBrokenLinks: "throw",
@@ -8,7 +8,7 @@ module.exports = {
   organizationName: "MarcusCemes", // Usually your GitHub org/user name.
   projectName: "image-processing-pipeline", // Usually your repo name.
   themeConfig: {
-    image: "src/social_preview.png",
+    image: "img/social_preview.png",
     announcementBar: {
       id: "unreleased_notice",
       content:
@@ -18,6 +18,7 @@ module.exports = {
     },
     navbar: {
       title: "Image Processing Pipeline",
+      hideOnScroll: true,
       logo: {
         alt: "Image Processing Pipeline logo",
         src: "img/logo.svg",
@@ -43,6 +44,10 @@ module.exports = {
         },
       ],
     },
+    algolia: {
+      apiKey: "912e77f3afa7a4189802586da8f1922e",
+      indexName: "marcuscemes_image-processing-pipeline",
+    },
     footer: {
       style: "light",
       links: [
@@ -54,17 +59,25 @@ module.exports = {
               to: "guide/",
             },
             {
-              label: "Docs",
+              label: "Documentation",
               to: "docs/",
             },
           ],
         },
         {
-          title: "Links",
+          title: "GitHub",
           items: [
             {
-              label: "GitHub",
+              label: "Repository",
               to: "https://github.com/MarcusCemes/image-processing-pipeline",
+            },
+            {
+              label: "Issues",
+              to: "https://github.com/MarcusCemes/image-processing-pipeline/issues",
+            },
+            {
+              label: "Contributing",
+              to: "https://github.com/MarcusCemes/image-processing-pipeline/#contributing",
             },
           ],
         },

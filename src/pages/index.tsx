@@ -1,12 +1,16 @@
 import Link from "@docusaurus/Link";
-import useBaseUrl from "@docusaurus/useBaseUrl";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import clsx from "clsx";
 import React, { ReactNode } from "react";
+import { AiOutlineFileText } from "react-icons/ai";
+import { GiWarpPipe } from "react-icons/gi";
+import { GrTree } from "react-icons/gr";
 import { FileAnalysis } from "../components/illustrations/FileAnalysis";
 import { NatureOnScreen } from "../components/illustrations/NatureOnScreen";
 import { OnlineConnection } from "../components/illustrations/OnlineConnection";
+import { Hero } from "../components/landing/Hero";
+import { WIP } from "../components/wip/WIP";
 import styles from "./index.module.css";
 
 type Feature = {
@@ -49,43 +53,63 @@ const features: Feature[] = [
   },
 ];
 
-const Hero: React.FC<{ title: string; subtitle: string }> = ({ title, subtitle }) => (
-  <header className={clsx(styles.heroBanner, "shadow--lw")}>
-    <h1 className={styles.heroTitle}>{title}</h1>
-    <p className={styles.heroSubtitle}>{subtitle}</p>
-    <div className={styles.buttons}>
-      <Link className={styles.button} to={useBaseUrl("guide/")}>
-        Get started
-      </Link>
+const Description: React.FC = () => (
+  <div className={styles.descriptionWrapper}>
+    <div className={styles.description}>
+      Image Processing Pipeline is a <strong>platform-agnostic modular</strong> collection of packages that aims to glue
+      together various image libraries into and configurable automated pipeline.
     </div>
-  </header>
+  </div>
 );
 
-const About: React.FC = () => (
+const Philosophy: React.FC = () => (
   <div className={styles.textSectionLeft}>
     <div className={styles.textSectionContents}>
-      <h1 className={styles.textSectionTitle}>What is it?</h1>
+      <h1 className={styles.textSectionTitle}>Philosophy</h1>
       <p>
-        Image Processing Pipeline is a collection of packages that work together to make the image side of web
-        development a little easier.
+        Images make your websites pop, but they are also the largest asset that you serve to your client. Correctly
+        optimising images provides a much better experience, by not wasting your visitors' bandwidth, battery and making
+        the navigation of your website smoother.
       </p>
       <p>
-        On a high level, IPP aims to make it as easy as possible to transform source images in non-destructive way. For
-        example, you may choose to create a set of different sized images, suited for various screen sizes, create a
-        WebP copy and generate a tiny SVG placeholder, <i>all at once</i>.
+        At its highest level, Image Processing Pipeline is a command line tool that helps you <strong>automate</strong>{" "}
+        your website's image build process in a <strong>non-destructive</strong> way, with <strong>speed</strong> and{" "}
+        <strong>quality</strong> in mind. At a lower level, it is a modular set of functions that can be integrated into
+        any existing backend service.
       </p>
     </div>
   </div>
 );
 
-const Why: React.FC = () => (
+const How: React.FC = () => (
   <div className={styles.textSectionRight}>
     <div className={styles.textSectionContents}>
-      <h1 className={styles.textSectionTitle}>Why?</h1>
+      <h1 className={styles.textSectionTitle}>How it works</h1>
+      <h3 className={styles.titleWithIcon}>
+        <GrTree className={styles.titleIcon} /> Pipeline
+      </h3>
       <p>
-        Binary assets are enormous in comparison to the rest of your webpage. They take time to load, slow down mobile
-        devices that must perform complex calculations on large images, and users will thank you for not eating up their
-        mobile bandwidth. Properly sizes images are now more important than ever.
+        At the heart is a user-defined pipeline. A <strong>pipeline</strong> is a collection of <strong>pipes</strong>{" "}
+        that can be assembled in any tree-like pattern, along with any additional options and an optional{" "}
+        <strong>save key</strong> that will mark the pipe's output for export.
+      </p>
+
+      <h3 className={styles.titleWithIcon}>
+        <GiWarpPipe className={styles.titleIcon} /> Pipe
+      </h3>
+      <p>
+        Pipes are <strong>simple asynchronous functions</strong> that take a source image and output any number of{" "}
+        <strong>formats</strong>. Pipes can apply any transformation to the source image, such as resizing, compressing
+        or converting the image.
+      </p>
+
+      <h3 className={styles.titleWithIcon}>
+        <AiOutlineFileText className={styles.titleIcon} /> Metadata
+      </h3>
+      <p>
+        Every image is accompanied by a <strong>metadata</strong> object, which is a collection of key-value pairs that
+        describe the image. Pipes may modify an image's metadata object, which can later be used to customise the output
+        filename or to create an image <strong>manifest</strong> file.
       </p>
     </div>
   </div>
@@ -119,9 +143,11 @@ const Home: React.FC = () => {
     <Layout title="Home" description={siteConfig.tagline}>
       <Hero title={siteConfig.title} subtitle={siteConfig.tagline} />
       <main className={styles.main}>
+        <Description />
         <Features />
-        <About />
-        <Why />
+        <Philosophy />
+        <How />
+        <WIP centre />
       </main>
     </Layout>
   );
