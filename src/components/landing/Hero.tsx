@@ -18,7 +18,7 @@ export const Hero: React.FC<{ title: string; subtitle: string }> = ({ title, sub
     <span className={styles.subtitle}>{subtitle}</span>
 
     <div className={styles.buttons}>
-      <Button primary href="/guide">
+      <Button primary href="/docs/guide/prerequisites">
         Guide
       </Button>
       <Button href="/docs">Documentation</Button>

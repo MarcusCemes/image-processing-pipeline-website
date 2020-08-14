@@ -25,12 +25,6 @@ module.exports = {
       },
       items: [
         {
-          to: "guide/",
-          activeBasePath: "guide",
-          label: "Guide",
-          position: "left",
-        },
-        {
           to: "docs/",
           activeBasePath: "docs",
           label: "Documentation",
@@ -56,7 +50,7 @@ module.exports = {
           items: [
             {
               label: "Guide",
-              to: "guide/",
+              to: "docs/guide/prerequisites",
             },
             {
               label: "Documentation",
@@ -90,7 +84,7 @@ module.exports = {
       "@docusaurus/preset-classic",
       {
         docs: {
-          homePageId: "intro",
+          homePageId: "where_to_start",
           sidebarPath: require.resolve("./sidebar-docs.js"),
           editUrl: "https://github.com/MarcusCemes/image-processing-pipeline-website/edit/master/",
           showLastUpdateTime: true,
@@ -99,20 +93,6 @@ module.exports = {
         theme: {
           customCss: require.resolve("./src/css/global.css"),
         },
-      },
-    ],
-  ],
-  plugins: [
-    [
-      "@docusaurus/plugin-content-docs",
-      {
-        id: "guide",
-        /** The filesystem path */
-        path: "guide",
-        /** The URL path */
-        routeBasePath: "guide",
-        homePageId: "prerequisites",
-        sidebarPath: require.resolve("./sidebar-guide.js"),
       },
     ],
   ],

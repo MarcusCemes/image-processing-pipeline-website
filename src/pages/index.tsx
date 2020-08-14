@@ -147,7 +147,7 @@ const Home: React.FC = () => {
         <Features />
         <Philosophy />
         <How />
-        <WIP centre />
+        <WIP centre spacing="8" />
       </main>
     </Layout>
   );
