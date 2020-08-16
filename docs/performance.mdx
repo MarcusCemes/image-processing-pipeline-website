@@ -1,0 +1,52 @@
+---
+id: performance
+title: Performance
+---
+
+import { CentredTable } from "../src/components/utility/Table";
+
+> Most heavy duty operations are done using compiled native executables, IPP is the organisation
+> glue that holds everything together.
+
+## Implementation decisions
+
+Excellent performance is one of the main goals of IPP. To achieve this, the project has undertaken careful consideration regarding the choice of compiled/runtime languages and third-party libraries.
+
+All of the orchestration logic, such as deciding which pipes to execute, is written in **JavaScript** (technically TypeScript) which runs on Node.js, using the same [V8][v8] runtime as the Chrome and Edge browsers. Despite its excellent single-threaded performance, being able to hold its own even against some of the best, it is still not ideal for computationally and memory intensive tasks.
+
+This is why more computationally intensive operations are done using **bundled compiled binaries**. For example, image resize operations are done using [libvips][libvips], an amazingly efficient and fast image manipulation library.
+
+Another factor in the decision to use Node.js and its tight integration with npm was the ability to universally bundle compiled binaries, whether they are written in C++ or in Go, with the use of a lightweight JavaScript wrapper.
+
+### Future improvements
+
+At the moment, pipes use pre-compiled binaries for the three major operating systems (Windows, macOS and Linux).
+
+In the future, pipes may bundle a universal [WebAssembly][webassembly] module that would work cross-platform, and even in the browser. The technology is not fully matured, however, and would require a certain amount of work to compile C++/Go source into a WebAssembly target.
+
+## Optimising performance
+
+The biggest factor that determines performance is the choice of pipes in your pipeline.
+
+Resizing images is relatively cheap, however dedicated compression libraries (such as those provided by `@ipp/compress`) whilst providing superior image quality must sacrifice in speed.
+
+Another example of an computationally intensive task is generating SVG placeholders using the `@ipp/primitive` pipe. The algorithm generates an arbitrary (based on the given options) number of test images in order to determine the best fit for the original image.
+
+If performance is a major concern for your implementation, it may be best to stick to "cheap" pipes such as resizing and converting.
+
+To get a general idea of relative pipe performance, here's a generalised table of official pipes:
+
+<CentredTable label="Approximated relative pipe speeds">
+
+|   Pipe    | Speed  | Language |                   Description                    |
+| :-------: | :----: | :------: | :----------------------------------------------: |
+|  resize   |  Fast  |    C     |     Resizes images using the libvips library     |
+|  convert  |  Fast  |    C     | Converts image formats using the libvips library |
+| compress  | Medium |  C, C++  | Compresses images using various implementations  |
+| primitive |  Slow  |    Go    |       Generates primitive SVG placeholders       |
+
+</CentredTable>
+
+[v8]: https://v8.dev
+[libvips]: https://github.com/libvips/libvips
+[webassembly]: https://webassembly.org

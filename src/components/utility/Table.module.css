@@ -1,0 +1,9 @@
+.centreTable {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.centreTable > table {
+  width: initial;
+}

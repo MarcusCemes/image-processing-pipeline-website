@@ -53,8 +53,16 @@ module.exports = {
               to: "docs/guide/prerequisites",
             },
             {
-              label: "Documentation",
-              to: "docs/",
+              label: "CLI",
+              to: "docs/cli/installation",
+            },
+            {
+              label: "Webpack",
+              to: "docs/webpack/installation",
+            },
+            {
+              label: "Reference",
+              to: "docs/reference/cli",
             },
           ],
         },

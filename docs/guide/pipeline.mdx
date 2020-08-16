@@ -50,12 +50,12 @@ pipeline:
     options:
       resizeOptions:
         height: 1280
-    save: "{{originalName}}-{{width}}{{ext}}"
+    save: "[source.name]-[width][ext]"
     then:
       - pipe: convert
         options:
           format: webp
-        save: "{{originalName}}-{{width}}{{ext}}"
+        save: "[source.name]-[width][ext]"
 ```
 
 </TabItem>
@@ -71,14 +71,14 @@ pipeline:
           "height": 1280
         }
       },
-      "save": "{{originalName}}-{{width}}{{ext}}",
+      "save": "[source.name][width][ext]",
       "then": [
         {
           "pipe": "convert",
           "options": {
             "format": "webp"
           },
-          "save": "{{originalName}}-{{width}}{{ext}}"
+          "save": "[source.name][width][ext]"
         }
       ]
     }
@@ -97,7 +97,7 @@ If we provide a sufficiently large image file called parrot.jpg to the above pip
 
 Every **pipeline chunk** is an array of pipes. The root pipeline property defines the entry point, or the very first pipes to send the source image to. Every pipe may then specify another pipeline chunk under the then property.This allows you to chain pipes together to do really useful transformations.
 
-Here, each source image will flow into the resize pipe, where it gets reduced to 1280 pixels in width. This gets immediately saved to a file, called `{{originalName}}{{ext}}`, before flowing into a convert pipe that creates a WebP format and also saves it to a file with the same name.
+Here, each source image will flow into the resize pipe, where it gets reduced to 1280 pixels in width. This gets immediately saved to a file, called `[originalName][ext]`, before flowing into a convert pipe that creates a WebP format and also saves it to a file with the same name.
 
 :::note
 This is a basic setup, where we create a WebP image from an "inferior" JPEG image. For a better and more complete example, see the configuration documentation.
@@ -107,13 +107,19 @@ This is a basic setup, where we create a WebP image from an "inferior" JPEG imag
 
 To be able to dynamically create file names, IPP supports a **metadata expansions**. Depending on the environment you come from, you may also know them as template literals or template expansions.
 
-The double braces notation tells IPP to replace that value at the very end, when all metadata such as the resulting image's dimensions are known. The text inside of the braces is used as the **key** for the metadata object. It may also contain a selector such as `:8` at the end, to limit the length of the metadata object's value. This is especially useful for hashes, which can be over 256 characters long!
+The square bracket notation tells IPP to replace that value at the very end, when all metadata such as the resulting image's dimensions are known. The text inside of the brackets is used as the **key** for the metadata object. It may also contain a selector such as `:8` at the end, to limit the length of the metadata object's value. This is especially useful for hashes, which can be over 256 characters long!
 
-For example, `{{originalName}}` would be replaced by the item `originalName` in the metadata object. This particular value is always set at the start, containing the filename (without the extension) of the original source image.
+For example, `[source.name]` would be replaced by the item `source.name` in the metadata object. This particular value is always set at the start, containing the filename (without the extension) of the original source image.
+
+The metadata object is split up into different "categories", like folders on a disk. A **selector**
+may be used to select the category to extract the metadata value from. In the example above, the
+name is given the `source` selector. The `source` selector is special, as it contains metadata that
+was copied over from the source image at the very beginning of the pipeline, such as the source
+width, height, name, ...
 
 ```text title="Example save string"
 # Example resulting filename: parrot-7a45ba26.jpg
-{{originalName}}-{{hash:8}}{{ext}}
+[source.name]-[hash:8][ext]
 ```
 
 To learn more about the metadata object, visit the architecture documentation.
