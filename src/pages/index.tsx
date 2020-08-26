@@ -25,8 +25,9 @@ const features: Feature[] = [
     image: OnlineConnection,
     description: (
       <>
-        IPP was designed from the ground up to be used by anyone. Its modularity lets you choose whether you want a
-        quick and easy command-line tool, or a deeper integration with an existing build process.
+        IPP was designed from the ground up to be used by anyone. Its modularity lets you choose
+        whether you want a quick and easy command-line tool, or a deeper integration with an
+        existing build process.
       </>
     ),
   },
@@ -35,9 +36,10 @@ const features: Feature[] = [
     image: NatureOnScreen,
     description: (
       <>
-        Whether you want to keep it simple for your end-users, or get fancy with placeholders, we've got you covered!
-        IPP supports <Link href="https://github.com/fogleman/primitive">geometric primitive tracing</Link> out of the
-        box.
+        Whether you want to keep it simple for your end-users, or get fancy with placeholders, we've
+        got you covered! IPP supports{" "}
+        <Link href="https://github.com/fogleman/primitive">geometric primitive tracing</Link> out of
+        the box.
       </>
     ),
   },
@@ -46,8 +48,8 @@ const features: Feature[] = [
     image: FileAnalysis,
     description: (
       <>
-        Customize your pipeline, or even make your own pipes! Choose how you want your images to turn out whilst
-        maximising parallelism and quality.
+        Customize your pipeline, or even make your own pipes! Choose how you want your images to
+        turn out whilst maximising parallelism and quality.
       </>
     ),
   },
@@ -56,8 +58,9 @@ const features: Feature[] = [
 const Description: React.FC = () => (
   <div className={styles.descriptionWrapper}>
     <div className={styles.description}>
-      Image Processing Pipeline is a <strong>platform-agnostic modular</strong> collection of packages that aims to glue
-      together various image libraries into and configurable automated pipeline.
+      Image Processing Pipeline is a <strong>platform-agnostic modular</strong> collection of
+      packages that aims to glue together various image libraries into and configurable automated
+      pipeline.
     </div>
   </div>
 );
@@ -67,15 +70,16 @@ const Philosophy: React.FC = () => (
     <div className={styles.textSectionContents}>
       <h1 className={styles.textSectionTitle}>Philosophy</h1>
       <p>
-        Images make your websites pop, but they are also the largest asset that you serve to your client. Correctly
-        optimising images provides a much better experience, by not wasting your visitors' bandwidth, battery and making
-        the navigation of your website smoother.
+        Images make your websites pop, but they are also the largest asset that you serve to your
+        client. Correctly optimising images provides a much better experience, by not wasting your
+        visitors' bandwidth, battery and making the navigation of your website smoother.
       </p>
       <p>
-        At its highest level, Image Processing Pipeline is a command line tool that helps you <strong>automate</strong>{" "}
-        your website's image build process in a <strong>non-destructive</strong> way, with <strong>speed</strong> and{" "}
-        <strong>quality</strong> in mind. At a lower level, it is a modular set of functions that can be integrated into
-        any existing backend service.
+        At its highest level, Image Processing Pipeline is a command line tool that helps you{" "}
+        <strong>automate</strong> your website's image build process in a{" "}
+        <strong>non-destructive</strong> way, with <strong>speed</strong> and{" "}
+        <strong>quality</strong> in mind. At a lower level, it is a modular set of functions that
+        can be integrated into any existing backend service.
       </p>
     </div>
   </div>
@@ -89,27 +93,29 @@ const How: React.FC = () => (
         <GrTree className={styles.titleIcon} /> Pipeline
       </h3>
       <p>
-        At the heart is a user-defined pipeline. A <strong>pipeline</strong> is a collection of <strong>pipes</strong>{" "}
-        that can be assembled in any tree-like pattern, along with any additional options and an optional{" "}
-        <strong>save key</strong> that will mark the pipe's output for export.
+        At the heart is a user-defined pipeline. A <strong>pipeline</strong> is a collection of{" "}
+        <strong>pipes</strong> that can be assembled in any tree-like pattern, along with any
+        additional options and an optional <strong>save key</strong> that will mark the pipe's
+        output for export.
       </p>
 
       <h3 className={styles.titleWithIcon}>
         <GiWarpPipe className={styles.titleIcon} /> Pipe
       </h3>
       <p>
-        Pipes are <strong>simple asynchronous functions</strong> that take a source image and output any number of{" "}
-        <strong>formats</strong>. Pipes can apply any transformation to the source image, such as resizing, compressing
-        or converting the image.
+        Pipes are <strong>simple asynchronous functions</strong> that take a source image and output
+        any number of <strong>formats</strong>. Pipes can apply any transformation to the source
+        image, such as resizing, compressing or converting the image.
       </p>
 
       <h3 className={styles.titleWithIcon}>
         <AiOutlineFileText className={styles.titleIcon} /> Metadata
       </h3>
       <p>
-        Every image is accompanied by a <strong>metadata</strong> object, which is a collection of key-value pairs that
-        describe the image. Pipes may modify an image's metadata object, which can later be used to customise the output
-        filename or to create an image <strong>manifest</strong> file.
+        Every image is accompanied by a <strong>metadata</strong> object, which is a collection of
+        key-value pairs that describe the image. Pipes may modify an image's metadata object, which
+        can later be used to customise the output filename or to create an image{" "}
+        <strong>manifest</strong> file.
       </p>
     </div>
   </div>

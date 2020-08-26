@@ -3,15 +3,21 @@ id: installation
 title: Installation
 ---
 
+<!-- prettier-ignore-start -->
 :::caution
 This section has been moved from the old documentation and may not be up to date.
 :::
+<!-- prettier-ignore-end -->
 
-This page will explain how to download Image Processing Pipeline using the Node Package Manager (npm for short).
+This page will explain how to download Image Processing Pipeline using the Node Package Manager (npm
+for short).
 
-Once you have downloaded and installed Node.js and npm (which comes as part of Node.js), it's as easy as typing one line into the terminal.
+Once you have downloaded and installed Node.js and npm (which comes as part of Node.js), it's as
+easy as typing one line into the terminal.
 
-You can choose to install globally or per-project. If you don't need to use to use IPP from the command line, it's better to install it on a per-project basis, as it allows you to have more control over the tool's version.
+You can choose to install globally or per-project. If you don't need to use to use IPP from the
+command line, it's better to install it on a per-project basis, as it allows you to have more
+control over the tool's version.
 
 ## 🌍 Global installation
 
@@ -27,23 +33,29 @@ Once installed, you can use it by typing into the terminal:
 $ ipp
 ```
 
-Bear in mind, you will still need to configure the tool, explicitly or by creating a configuration file in the in or above the working directory.
+Bear in mind, you will still need to configure the tool, explicitly or by creating a configuration
+file in the in or above the working directory.
 
 ## 📦 Per-project installation
 
 ### Adding the dependency
 
-If you have a project set up using npm (with a valid `package.json` file), you may add IPP to the list of your project dependencies.
+If you have a project set up using npm (with a valid `package.json` file), you may add IPP to the
+list of your project dependencies.
 
+<!-- prettier-ignore-start -->
 :::tip
 If you don't have a package.json file, you can create one by running `npm init -y`.
 :::
+<!-- prettier-ignore-end -->
 
 ```bash
 $ npm install --save-dev @ipp/cli
 ```
 
-This will add IPP to your projects development dependencies and will install it under the `node_modules` folder. If you look inside of your `package.json` file, you should see something along the lines of:
+This will add IPP to your projects development dependencies and will install it under the
+`node_modules` folder. If you look inside of your `package.json` file, you should see something
+along the lines of:
 
 ```json
 {
@@ -58,7 +70,8 @@ Whenever you run `npm install`, the most recent compatible version (semver) will
 
 ### Creating an npm script
 
-To make it easier to run IPP, it may be added to your package.json's script property. This lets you start the tool using npm.
+To make it easier to run IPP, it may be added to your package.json's script property. This lets you
+start the tool using npm.
 
 ```json
 {

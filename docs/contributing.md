@@ -20,8 +20,18 @@ Any contributions you make will benefit everybody else and are greatly appreciat
 
 ### Unit tests
 
-The Image Processing Pipeline uses Jest for unit testing. This ensures that the code functions correctly and prevent regression. Unit tests should *describe* the desired code's behaviour with clear and understandable language. Contributions that modify the behaviour of the code in any way should update the associated unit tests.
+The Image Processing Pipeline uses Jest for unit testing. This ensures that the code functions
+correctly and prevent regression. Unit tests should _describe_ the desired code's behaviour with
+clear and understandable language. Contributions that modify the behaviour of the code in any way
+should update the associated unit tests.
 
 If you have added/modified/removed a feature, you may need to add or remove tests accordingly.
 
 If you have fixed a bug, it may be beneficial to add a test that demonstrates the fixed behaviour.
+
+<!-- TODO
+- How to contribute to main repository
+  - How to manage mono-repository, how to build,...
+- How to contribute to website docs
+  - How to escape admonitions
+-->

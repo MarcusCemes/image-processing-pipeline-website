@@ -6,7 +6,13 @@ import styles from "./Hero.module.css";
 
 const Button: React.FC<{ primary?: boolean; href: string }> = ({ children, primary, href }) => (
   <Link to={href}>
-    <button className={clsx("button button--lg", primary ? "button--primary" : "button--secondary", styles.button)}>
+    <button
+      className={clsx(
+        "button button--lg",
+        primary ? "button--primary" : "button--secondary",
+        styles.button
+      )}
+    >
       {children} <FiChevronsRight className={styles.buttonIcon} />
     </button>
   </Link>

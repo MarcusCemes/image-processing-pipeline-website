@@ -19,7 +19,7 @@ module.exports = {
         "concept/core",
       ],
     },
-    { "[WIP] Command line": ["cli/overview", "cli/installation"] },
+    { "[WIP] Command line": ["cli/overview", "cli/installation", "cli/configuration"] },
     { "[WIP] Webpack": ["webpack/overview", "webpack/installation", "webpack/frontend"] },
     { "[WIP] Advanced usage": ["advanced/overview", "advanced/installation"] },
     {

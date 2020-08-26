@@ -3,9 +3,11 @@ id: usage
 title: Usage
 ---
 
+<!-- prettier-ignore-start -->
 :::caution
 This section has been moved from the old documentation and may not be up to date.
 :::
+<!-- prettier-ignore-end -->
 
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
@@ -24,6 +26,7 @@ Fantastic! Let's try it and see what happens!
 }>
 <TabItem value="global">
 
+
 ```bash
 $ ipp
 ```
@@ -31,18 +34,26 @@ $ ipp
 </TabItem>
 <TabItem value="project">
 
+
 ```bash
 $ npm run <script_name>    # where <script_name> is the name of the npm script
 ```
 
+<!-- </script_name></script_name> -->
+
 </TabItem>
 </Tabs>
 
-If everything is set up right, you should get a bunch of text come up on screen, including the program's banner, and some red text complaining about a configuration error. Well, you haven't told IPP what to do!
+
+If everything is set up right, you should get a bunch of text come up on screen, including the
+program's banner, and some red text complaining about a configuration error. Well, you haven't told
+IPP what to do!
 
 ### Breaking it down
 
-The CLI package provides an optional sane-default config, creating 8 formats for every image, at 4 different sizes and two codecs (original + WebP). It will also export a very simple manifest file (more on this later).
+The CLI package provides an optional sane-default config, creating 8 formats for every image, at 4
+different sizes and two codecs (original + WebP). It will also export a very simple manifest file
+(more on this later).
 
 <Tabs
   groupId="install_type"
@@ -54,12 +65,14 @@ The CLI package provides an optional sane-default config, creating 8 formats for
 }>
 <TabItem value="global">
 
+
 ```bash
 $ ipp --input images_folder --output assets_folder --default
 ```
 
 </TabItem>
 <TabItem value="project">
+
 
 ```json title="package.json"
 "scripts": {
@@ -70,11 +83,16 @@ $ ipp --input images_folder --output assets_folder --default
 </TabItem>
 </Tabs>
 
-If you provided some images, the output folder should now have some generated formats, along with a manifest file. For very simple use-cases, the default configuration may even be sufficient, although it purposely does not use any external pipes that provide more interesting possibilities.
+
+If you provided some images, the output folder should now have some generated formats, along with a
+manifest file. For very simple use-cases, the default configuration may even be sufficient, although
+it purposely does not use any external pipes that provide more interesting possibilities.
 
 ### Configuration
 
-Image Processing Pipeline supports a few different configuration file formats and location, anything supported by the cosmiconfig library. We recommend using the YAML format, as it makes it a lot easier to read and write your image pipeline. Lets make a quick configuration file now:
+Image Processing Pipeline supports a few different configuration file formats and location, anything
+supported by the cosmiconfig library. We recommend using the YAML format, as it makes it a lot
+easier to read and write your image pipeline. Lets make a quick configuration file now:
 
 ```yaml title=".ipprc.yml"
 input: images
@@ -87,7 +105,8 @@ pipeline:
     save: "{{originalName}}.webp"
 ```
 
-Once you have created that file inside of your project folder, add some images to a folder called images create a build folder, and try running IPP again.
+Once you have created that file inside of your project folder, add some images to a folder called
+images create a build folder, and try running IPP again.
 
 <Tabs
   groupId="install_type"
@@ -99,6 +118,7 @@ Once you have created that file inside of your project folder, add some images t
 }>
 <TabItem value="global">
 
+
 ```bash
 $ ipp
 ```
@@ -106,19 +126,28 @@ $ ipp
 </TabItem>
 <TabItem value="project">
 
+
 ```bash
 $ npm run <script_name>    # where <script_name> is the name of the npm script
 ```
 
+<!-- </script_name></script_name> -->
+
 </TabItem>
 </Tabs>
 
-That's better! If you look inside your build folder, you will find that every source image was converted to the WebP image format, a superior, if somewhat less supported image format. This is why you should also created a JPEG variant, and give the browser the option to use both according to it's preference.
-To see a complete example of a useful configuration file, visiting the configuration documentation.
+
+That's better! If you look inside your build folder, you will find that every source image was
+converted to the WebP image format, a superior, if somewhat less supported image format. This is why
+you should also created a JPEG variant, and give the browser the option to use both according to
+it's preference. To see a complete example of a useful configuration file, visiting the
+configuration documentation.
 
 ### Flags
 
-There are a few basic CLI flags that allow you to override the input directory, output directory and configuration file to load. Most of the time, it's best to set these values in the config file and put it in one of the well-known locations.
+There are a few basic CLI flags that allow you to override the input directory, output directory and
+configuration file to load. Most of the time, it's best to set these values in the config file and
+put it in one of the well-known locations.
 
 ```bash
 $ ipp -i images -o build/images -c ipp-config.json

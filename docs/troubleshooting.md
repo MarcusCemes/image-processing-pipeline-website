@@ -14,10 +14,9 @@ Compilation is not easy. sharp and `@ipp/primitive` do their best to provide pre
 however if you are using a brand-new Node.js release or are on a less-widely used CPU architecture,
 you may need to compile the libraries yourself.
 
-For sharp, take a look at [node-gyp][node-gyp], you may need to install
-Python. For `@ipp/primitive`, you can compile the module yourself by simply installing
-[Go][go] on your system, removing the vendor directory from the package and then
-running the `prepack` npm script.
+For sharp, take a look at [node-gyp][node-gyp], you may need to install Python. For
+`@ipp/primitive`, you can compile the module yourself by simply installing [Go][go] on your system,
+removing the vendor directory from the package and then running the `prepack` npm script.
 
 ## Runtime problems
 
