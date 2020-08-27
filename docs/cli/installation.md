@@ -50,10 +50,12 @@ This will download and add the package to the adjacent `node_modules` folder.
 
 Once IPP has been added, you may create an npm script just as you would with any other command:
 
-```json title="package.json"
+```json title="package.json" {3}
+...
 "scripts": {
   "build-images": "ipp"
 }
+...
 ```
 
 This script may then be run using the `npm run` command:

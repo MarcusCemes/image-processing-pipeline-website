@@ -57,7 +57,7 @@ This will add IPP to your projects development dependencies and will install it 
 `node_modules` folder. If you look inside of your `package.json` file, you should see something
 along the lines of:
 
-```json
+```json {4}
 {
   ...
   "devDependencies": {
@@ -73,7 +73,7 @@ Whenever you run `npm install`, the most recent compatible version (semver) will
 To make it easier to run IPP, it may be added to your package.json's script property. This lets you
 start the tool using npm.
 
-```json
+```json {3}
 {
     "scripts": {
         "build-images": "ipp"

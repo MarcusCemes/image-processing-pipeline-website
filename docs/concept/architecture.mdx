@@ -5,4 +5,98 @@ title: Architecture
 
 import { WIP } from "../../src/components/wip/WIP";
 
+## A quick summary
+
+Image Processing Pipeline is split into several reusable modules, each providing a different layer
+of abstraction. At the top, there is a user-friendly interface that automates the process. Once you
+reach the broker, you have a reusable job server that could be built into a backend for
+multi-threaded image processing.
+
+One of the challenges of IPP was overcoming Node.js thread pool size limit, which must be set before
+starting the Node.js runtime. Libraries such as sharp rely on the thread pool to carry out their
+operations in a non-blocking manner. To overcome this, with minimal overhead for the end user, a
+second process needs to be spawned with [libuv][libuv]'s `UV_THREADPOOL_SIZE` set to the concurrency
+option.
+
+## The parts
+
+Image Processing Pipeline is built around some modern parts of the Node.js environment, such as the
+`async/await` syntax. Most functions are asynchronous, and return promises that resolve or reject.
+
+<!-- prettier-ignore-start -->
+:::tip
+Once all tasks have been completed and the broker has been shutdown, all blocking event handlers are
+cleanly unregistered. The main Node.js process may exit gracefully by exhausting the event-loop of
+any useful work, and therefore `process.exit` is unnecessary.
+:::
+<!-- prettier-ignore-end -->
+
+##Command Line Interface
+
+The CLI is responsible for searching and validating program configuration, passing the list of
+images to the broker for processing, and reporting back to the user with a progress report. It is
+also responsible for generating additional reports, such as the manifest file.
+
+This is a high level program interface, and may be replaced with a different variant, such as we web
+interface.
+
+### Core
+
+The processing core is a simple asynchronous function that will create a metadata object, and
+recursively pass the image buffer and metadata through a given processing pipeline. It will then
+resolve a Promise with the resulting formats and associated metadata.
+
+### Pipes
+
+Like the core, pipes are also asynchronous functions that receive a single image buffer and metadata
+object, and return a promise resolving into a one or multiple image buffers and associated metadata
+objects.
+
+A pipe may modify the image in any way, receiving and returning a binary buffer, whilst also being
+able to modify the returned metadata object in any way.
+
+The metadata object is **immutable**, and should not be modified. Only a copy with modified values
+is to be returned. The function should also be kept as **pure** as possible.
+
+### Common elements
+
+Some elements are common to multiple IPP modules. They are usually a part of the shared
+`@ipp/common` package.
+
+#### Metadata
+
+The metadata object is generated at the core, and returned all the way up to the CLI, where it is
+used to create the manifest file, for example. It is a simple indexed object that maps strings to
+any values.
+
+## Exception
+
+A common Exception class is extended by most parts of the program, as a better extension to the
+JavaScript Error class. Different modules can extend the Exception to create their own unique
+detectable error boundaries.
+
+## Error handling
+
+Pipes may throw errors (or reject with an error) at any point. This error bubbles up to the chain
+until it can be dealt with by a capable consumer, such as the CLI. If an error occurs in a pipe, it
+will fail the entire image job.
+
+The CLI, for example, will serialise and write any pipeline errors into a `errors.json` file in the
+root of the output folder.
+
+## Deprecated parts
+
+### Broker
+
+The broker was the initial solution to overcome the issue of the limited threadpool size in the main
+Node.js process. The broker was responsible for spawning a new child process and handling messaging
+between the processes over an Inter-Process Communication channel, distributing jobs via a queue.
+The down side of this is an additional time overhead when creating or destroying the broker.
+
+It was replaced in favour of an initialisation script that attempts to elevate the current process'
+threadpool as effeciently as possible based on the OS. This feature was implemented in CLI version
+`1.1.0`.
+
 <WIP centre spacing="12" />
+
+[libuv]: https://libuv.org

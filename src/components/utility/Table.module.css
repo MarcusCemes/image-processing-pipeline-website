@@ -1,9 +1,17 @@
-.centreTable {
+.centre {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.centreTable > table {
+.expand > table td:last-child {
+  width: 100%;
+}
+
+.fullWidth > table {
   width: initial;
+}
+
+.label {
+  margin-bottom: 2em;
 }

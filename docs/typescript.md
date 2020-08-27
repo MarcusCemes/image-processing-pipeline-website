@@ -11,11 +11,17 @@ the package registry, giving you immediate IDE feedback and autocomplete functio
 additional configuration.
 
 <!-- prettier-ignore-start -->
-:::info
+:::tip
 IPP's shared types, such as the pipeline interfaces, have been grouped and exported from the
 `@ipp/common` package. You may add this package to your dependencies to explicitly import these
 types into your code.
 :::
 <!-- prettier-ignore-end -->
+
+<!-- TODO
+- Provide an example
+- Discourage new users of adopting due to initial friction/development
+- VSCode provides assistance even in plain JS
+-->
 
 [typescript]: https://www.typescriptlang.org/

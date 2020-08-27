@@ -3,6 +3,447 @@ id: configuration
 title: Configuration
 ---
 
-import { WIP } from "../../src/components/wip/WIP";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
-<WIP centre spacing="12" />
+import { FormatTable } from "../../src/components/utility/Table";
+
+Image Processing Pipeline may be configured by using any of the file naming schemes supported by
+[cosmiconfig][cosmiconfig]. A custom configuration file may also be specified using the `--config`
+flag, this will override the default searching behaviour. We recommend using the YAML format as it
+results in an easier to read pipeline.
+
+When IPP is loaded, it will search for and load configuration, validating it based on a JSON schema.
+If there is an inconsistency, it will do it's best to tell you where the problem lies.
+
+<!-- prettier-ignore-start -->
+:::info
+Configuration files are read and validated by the @ipp/cli package. Lower-level modules receive the
+pipeline and related options directory as function parameters.
+:::
+<!-- prettier-ignore-end -->
+
+## Searching
+
+If no configuration is explicitly specified via the `--config` flag, IPP will attempt to search the
+current working directory and parent directories for a recognised configuration file. Any file
+supported by [cosmiconfig][cosmiconfig] will be correctly understood by IPP.
+
+For example, you may define one of the following files (in order of priority):
+
+- an `ipp` property in your `package.json`
+- a JSON or YAML `.ipprc` file
+- a JSON `.ipprc.json`, YAML `.ipprc.yml` or JavaScript `.js` file
+- a JavaScript `.config.js` file
+
+<!-- prettier-ignore-start -->
+:::tip
+It is recommended using the YAML syntax. It is more human readable and more concise than the
+JavaScript related syntaxes. However, function pipes are only supported by the JavaScript format.
+:::
+<!-- prettier-ignore-end -->
+
+#### Programatic invocation
+
+If you are starting the CLI programmatically, you are calling the CLI function directly, bypassing
+the initialisation stage. No validation or searching will occur. The function is strongly typed,
+however, so you may still rely on the config parameter's TypeScript typings.
+
+### Validation
+
+Regardless of how the configuration was loaded, the configuration will be validated using [this JSON
+schema][config-schema]. This strict behaviour ensures that there are no misspelt property names or
+deprecated keys.
+
+<!-- prettier-ignore-start -->
+:::tip
+If you save your configuration in the JSON format, you may benefit from intelligent JSON Schema
+features offered by your IDE by specifying a root `$schema` property that points to the permanant
+[schema URL][config-schema].
+:::
+<!-- prettier-ignore-end -->
+
+## Example configuration
+
+Below is a **good starting point** for building a set of responsive website images. It is
+recommended using this to start with, and then adjusting it to suit your needs.
+
+<Tabs
+  groupId="config_format"
+  defaultValue="yaml"
+  values={[
+    {label: 'YAML', value: 'yaml'},
+    {label: 'JSON', value: 'json'},
+  ]
+}>
+<TabItem value="yaml">
+
+
+```yaml title="ipprc.yml"
+input: images/
+output: build/static
+
+manifest:
+  source:
+    x: source.hash:8
+  format:
+    w: width
+    h: height
+
+pipeline:
+  - pipe:
+      resolve: "@ipp/primitive"
+      module: PrimitivePipe
+    save: "[source.name]-ptv-[hash:8][ext]"
+
+  - pipe: convert
+    options:
+      format: raw
+    then:
+      - pipe: resize
+        options:
+          breakpoints:
+            - name: sm
+              resizeOptions:
+                width: 640
+            - name: md
+              resizeOptions:
+                width: 1280
+            - name: lg
+              resizeOptions:
+                width: 1920
+            - name: xl
+              resizeOptions:
+                width: 3840
+        then:
+          - pipe: convert
+            options:
+              format: original
+              convertOptions:
+                quality: 100
+            then:
+              - pipe:
+                  resolve: "@ipp/compress"
+                  module: CompressPipe
+                options:
+                  softFail: true
+                save: "[source.name]-[breakpoint]-[hash:8][ext]"
+          - pipe: convert
+            options:
+              format: webp
+            save: "[source.name]-[breakpoint]-[hash:8][ext]"
+```
+
+</TabItem>
+<TabItem value="json">
+
+
+```json title="ipprc.json"
+{
+  "input": "images/",
+  "output": "build/static",
+  "manifest": {
+    "source": {
+      "x": "source.hash:8"
+    },
+    "format": {
+      "w": "width",
+      "h": "height"
+    }
+  },
+  "pipeline": [
+    {
+      "pipe": {
+        "resolve": "@ipp/primitive",
+        "module": "PrimitivePipe"
+      },
+      "save": "[source.name]-ptv-[hash:8][ext]"
+    },
+    {
+      "pipe": "convert",
+      "options": {
+        "format": "raw"
+      },
+      "then": [
+        {
+          "pipe": "resize",
+          "options": {
+            "breakpoints": [
+              {
+                "name": "sm",
+                "resizeOptions": {
+                  "width": 640
+                }
+              },
+              {
+                "name": "md",
+                "resizeOptions": {
+                  "width": 1280
+                }
+              },
+              {
+                "name": "lg",
+                "resizeOptions": {
+                  "width": 1920
+                }
+              },
+              {
+                "name": "xl",
+                "resizeOptions": {
+                  "width": 3840
+                }
+              }
+            ]
+          },
+          "then": [
+            {
+              "pipe": "convert",
+              "options": {
+                "format": "original",
+                "convertOptions": {
+                  "quality": 100
+                }
+              },
+              "then": [
+                {
+                  "pipe": {
+                    "resolve": "@ipp/compress",
+                    "module": "CompressPipe"
+                  },
+                  "options": {
+                    "softFail": true
+                  },
+                  "save": "[source.name]-[breakpoint]-[hash:8][ext]"
+                }
+              ]
+            },
+            {
+              "pipe": "convert",
+              "options": {
+                "format": "webp"
+              },
+              "save": "[source.name]-[breakpoint]-[hash:8][ext]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+</TabItem>
+</Tabs>
+
+
+<!-- prettier-ignore-start -->
+:::caution
+The above configuration also needs the packages `@ipp/primitive` and `@ipp/compress` to be
+installed.
+:::
+<!-- prettier-ignore-end -->
+
+### Breaking it down
+
+This configuration will do things. Firstly, it will generate four different sizes, labelled _sm_,
+_md_, _lg_ and _xl_, saving them in the original format and as a WebP image, and secondly, create an
+SVG placeholder using the primitive pipe.
+
+Every exported format is then saved to the manifest with the original image's hash for easy lookup,
+and the exported format's image dimensions.
+
+### Processing in raw pixel data
+
+In this example, we first convert the image to raw pixel data and use that to resize the image and
+convert back to lossy formats, such as JPEG and WebP.
+
+This will yield slightly better results (especially for the WebP image, as it has a better source),
+at the cost of using more memory during image processing. If your system doesn't have enough RAM,
+consider lowering the concurrency or skipping the first convert pipe.
+
+<!-- prettier-ignore-start -->
+:::tip
+All of IPP's built-in and official pipes support raw pixel data.
+:::
+<!-- prettier-ignore-end -->
+
+## API reference
+
+To get a more standardised and always up-to-date API reference, check out the configuration [JSON
+schema][config-schema] or [TypeScript interfaces][config-typings].
+
+<Tabs
+  groupId="interfaces"
+  defaultValue="table"
+  values={[
+    {label: 'Table', value: 'table'},
+    {label: 'TypeScript', value: 'typescript'},
+  ]
+}>
+<TabItem value="table">
+<FormatTable centre fullWidth label="The Configuration object" top="2em">
+
+
+| key         | type              | description                                                      |
+| :---------- | :---------------- | :--------------------------------------------------------------- |
+| input       | string _or_ array | The path to an image, or a folder containing images _(required)_ |
+| output      | string            | The path to the directory to output images to _(required)_       |
+| pipeline    | array             | See the [pipeline](#pipeline) _(required)_                       |
+| concurrency | number            | Allows for more fine-grain control of the program options        |
+| flat        | boolean           | Whether to flatten the output directory structure                |
+| manifest    | object            | See the [manifest](#manifest)                                    |
+
+</FormatTable>
+</TabItem>
+<TabItem value="typescript">
+
+
+```typescript
+interface Config {
+  input: string | string[];
+  output: string;
+  pipeline: Pipeline;
+
+  concurrency: number;
+  flat?: boolean;
+  manifest?: ManifestMappings;
+}
+```
+
+<!-- prettier-ignore-start -->
+:::note
+`concurrency` is not actually required as it is populated by the inititialisation script by default.
+:::
+<!-- prettier-ignore-end -->
+
+</TabItem>
+</Tabs>
+
+
+## Manifest
+
+<Tabs
+  groupId="interfaces"
+  defaultValue="table"
+  values={[
+    {label: 'Table', value: 'table'},
+    {label: 'TypeScript', value: 'typescript'},
+  ]
+}>
+<TabItem value="table">
+<FormatTable centre fullWidth label="The Manifest object" top="2em">
+
+
+| key    | type   | description                       |
+| :----- | :----- | :-------------------------------- |
+| source | object | Per-image exported metadata keys  |
+| format | object | Per-format exported metadata keys |
+
+</FormatTable>
+</TabItem>
+<TabItem value="typescript">
+
+
+```typescript
+interface ManifestMappings {
+  source?: Record<string, string>;
+  format?: Record<string, string>;
+}
+```
+
+</TabItem>
+</Tabs>
+
+
+The manifest property lets you select which metadata values you would like to include in the
+manifest file, essentially mapping metadata to new property names in the manifest.
+
+There are two sub-properties, `source`, which lets you include metadata that is relevant to the
+source image, and `format` which is exported separately for every format.
+
+The **key is used as the new name** of the metadata value, while the **value is the name of the
+metadata key**. The length selector "`:`" may also be used to limit the size of the metadata value.
+
+## Pipeline
+
+```typescript
+type Pipeline = PipelineBranch[];
+```
+
+The pipeline is an **array of pipeline branches**. It is a recursive structure, as each pipeline
+branch may additionally define _another pipeline_ that receives its output. It is best to imagine it
+like a tree, where each branch is a pipe that can split into more branches.
+
+### Pipeline branch
+
+A pipeline is just a collection of ordered pipeline branches. A pipeline branch **defines a single
+pipe** that the image will be processed by, along with additional options and whether or not to save
+the exported formats.
+
+It may also additionally define an ensuing pipeline that will receive the output of the pipe.
+Branches may only split, but not rejoin. This is to keep the pipeline schema as simple as possible.
+
+Take a look at the above [configuration example](#example-configuration) to try and get a feel for
+how to define a pipeline. To get a better understanding of how the pipeline works, you can learn
+more about the [architecture](../concept/architecture.mdx).
+
+<Tabs
+  groupId="interfaces"
+  defaultValue="table"
+  values={[
+    {label: 'Table', value: 'table'},
+    {label: 'TypeScript', value: 'typescript'},
+  ]
+}>
+<TabItem value="table">
+<FormatTable centre fullWidth label="The Pipe object" top="2em">
+
+
+| key     | type                             | description                                   |
+| :------ | :------------------------------- | :-------------------------------------------- |
+| pipe    | string _or_ object _or_ function | Per-image exported metadata keys _(required)_ |
+| options | object                           | Per-format exported metadata keys             |
+| save    | string _or_ `true`               | Per-format exported metadata keys             |
+| then    | object                           | Per-format exported metadata keys             |
+
+</FormatTable>
+</TabItem>
+<TabItem value="typescript">
+
+
+```typescript
+interface PipelineBranch<O = any> {
+  pipe: string | { resolve: string; module?: string } | Pipe;
+  options?: O;
+  save?: PrimitiveValue;
+  then?: Pipeline;
+}
+```
+
+</TabItem>
+</Tabs>
+
+
+### The pipe property
+
+This property tells IPP how to find the pipe. It can be:
+
+- a **string** for a built-in pipe
+- an **object** to resolve a pipe from an npm package
+- a **function** (advanced usage)
+
+When resolving using an object, you may define a **resolve** property which is the npm package name,
+and optionally a **module** property that lets you choose the module export (see ES Modules). See
+the example above for the primitive pipe.
+
+<!-- prettier-ignore-start -->
+:::note
+It is not possible to define JavaScript functions in YAML or JSON configuration files. For this, you
+must use a JavaScript configuration file.
+:::
+<!-- prettier-ignore-end -->
+
+[cosmiconfig]: https://github.com/davidtheclark/cosmiconfig
+[config-schema]: https://ipp.vercel.app/schema/config.json
+[config-typings]:
+  https://github.com/MarcusCemes/image-processing-pipeline/blob/master/packages/cli/src/init/config.ts

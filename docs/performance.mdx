@@ -3,7 +3,7 @@ id: performance
 title: Performance
 ---
 
-import { CentredTable } from "../src/components/utility/Table";
+import { FormatTable } from "../src/components/utility/Table";
 
 > Most heavy duty operations are done using compiled native executables, IPP is the organisation
 > glue that holds everything together.
@@ -38,7 +38,9 @@ require a certain amount of work to compile C++/Go source into a WebAssembly tar
 
 ## Optimising performance
 
-The biggest factor that determines performance is the choice of pipes in your pipeline.
+The biggest factor that determines performance is the choice of pipes in your pipeline. One of IPP's
+directives is speed, by using native binaries from performant image libraries. Speed is therefore
+not determined by the compiled language used, but rather by the _nature_ of the pipe.
 
 Resizing images is relatively cheap, however dedicated compression libraries (such as those provided
 by `@ipp/compress`) whilst providing superior image quality must sacrifice in speed.
@@ -50,19 +52,18 @@ test images in order to determine the best fit for the original image.
 If performance is a major concern for your implementation, it may be best to stick to "cheap" pipes
 such as resizing and converting.
 
-To get a general idea of relative pipe performance, here's a generalised table of official pipes:
-
-<CentredTable label="Approximated relative pipe speeds">
+<FormatTable centre fullWidth top="2em" label="Approximated relative pipe speeds, from fast to slow: 🟢🟠🔴">
 
 
-|   Pipe    | Speed  | Language |                   Description                    |
-| :-------: | :----: | :------: | :----------------------------------------------: |
-|  resize   |  Fast  |    C     |     Resizes images using the libvips library     |
-|  convert  |  Fast  |    C     | Converts image formats using the libvips library |
-| compress  | Medium |  C, C++  | Compresses images using various implementations  |
-| primitive |  Slow  |    Go    |       Generates primitive SVG placeholders       |
+|   Pipe    | Speed |  Language  | Description                                      |
+| :-------: | :---: | :--------: | :----------------------------------------------- |
+|  resize   |  🟢   |     C      | Resizes images using the libvips library         |
+|  convert  |  🟢   |     C      | Converts image formats using the libvips library |
+| compress  |  🟠   |   C, C++   | Compresses images using various implementations  |
+|  potrace  |  🟠   | JavaScript | Generates traced SVG placeholders                |
+| primitive |  🔴   |     Go     | Generates primitive SVG placeholders             |
 
-</CentredTable>
+</FormatTable>
 
 
 [v8]: https://v8.dev

@@ -1,0 +1,14 @@
+{
+  "Docusaurus Admonition": {
+    "scope": "markdown, mdx",
+    "prefix": "ad",
+    "body": [
+      "<!-- prettier-ignore-start -->",
+      ":::$1",
+      "$2",
+      ":::",
+      "<!-- prettier-ignore-end -->"
+    ],
+    "description": "Creates a Docusaurus markdown-style admonition with prettier formatting disabled"
+  }
+}
