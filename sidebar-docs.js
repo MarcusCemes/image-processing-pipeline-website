@@ -27,7 +27,14 @@ module.exports = {
         "cli/manifest",
       ],
     },
-    { "[WIP] Webpack": ["webpack/overview", "webpack/installation", "webpack/frontend"] },
+    {
+      "[WIP] Webpack": [
+        "webpack/overview",
+        "webpack/installation",
+        "webpack/usage",
+        "webpack/frontend",
+      ],
+    },
     { "[WIP] Advanced usage": ["advanced/overview", "advanced/installation"] },
     {
       "[WIP] Reference": [

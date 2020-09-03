@@ -6,12 +6,11 @@ title: Configuration
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
-import { FormatTable } from "../../src/components/utility/Table";
+import { FormatTable } from "@site/src/components/utility/Table";
 
 Image Processing Pipeline may be configured by using any of the file naming schemes supported by
 [cosmiconfig][cosmiconfig]. A custom configuration file may also be specified using the `--config`
-flag, this will override the default searching behaviour. We recommend using the YAML format as it
-results in an easier to read pipeline.
+flag, this will override the default searching behaviour.
 
 When IPP is loaded, it will search for and load configuration, validating it based on a JSON schema.
 If there is an inconsistency, it will do it's best to tell you where the problem lies.
@@ -38,7 +37,7 @@ For example, you may define one of the following files (in order of priority):
 
 <!-- prettier-ignore-start -->
 :::tip
-It is recommended using the YAML syntax. It is more human readable and more concise than the
+It is recommended to use the YAML syntax. It is more human readable and more concise than the
 JavaScript related syntaxes. However, function pipes are only supported by the JavaScript format.
 :::
 <!-- prettier-ignore-end -->
@@ -65,8 +64,8 @@ features offered by your IDE by specifying a root `$schema` property that points
 
 ## Example configuration
 
-Below is a **good starting point** for building a set of responsive website images. It is
-recommended using this to start with, and then adjusting it to suit your needs.
+Below is a **good starting point** for building a set of responsive website images. Give it a try
+and then adjust it to suit your needs.
 
 <Tabs
   groupId="config_format"
@@ -259,7 +258,8 @@ convert back to lossy formats, such as JPEG and WebP.
 
 This will yield slightly better results (especially for the WebP image, as it has a better source),
 at the cost of using more memory during image processing. If your system doesn't have enough RAM,
-consider lowering the concurrency or skipping the first convert pipe.
+consider lowering the concurrency or removing the _raw_ and _original_ convert pipes and removing
+the resize pipe's `quality: 100` option.
 
 <!-- prettier-ignore-start -->
 :::tip

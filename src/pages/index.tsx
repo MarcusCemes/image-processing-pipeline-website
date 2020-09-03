@@ -11,12 +11,13 @@ import { NatureOnScreen } from "../components/illustrations/NatureOnScreen";
 import { OnlineConnection } from "../components/illustrations/OnlineConnection";
 import { Hero } from "../components/landing/Hero";
 import { WIP } from "../components/wip/WIP";
+import { Demo } from "../containers/demo";
 import styles from "./index.module.css";
 
 type Feature = {
   title: string;
   description: ReactNode;
-  image: React.FC<{ className: string }>;
+  image: React.FC<{ className?: string }>;
 };
 
 const features: Feature[] = [
@@ -151,6 +152,7 @@ const Home: React.FC = () => {
       <main className={styles.main}>
         <Description />
         <Features />
+        <Demo />
         <Philosophy />
         <How />
         <WIP centre spacing="8" />

@@ -1,6 +1,7 @@
 ---
 id: overview
 title: Overview
+slug: /cli
 ---
 
 The command line interface is the easiest way to get started with IPP. It provides a wrapper around

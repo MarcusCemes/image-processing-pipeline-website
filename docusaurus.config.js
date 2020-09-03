@@ -87,12 +87,12 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} Marcus Cemes - MIT License`,
     },
   },
+  plugins: ["demo-plugin"],
   presets: [
     [
       "@docusaurus/preset-classic",
       {
         docs: {
-          homePageId: "where_to_start",
           sidebarPath: require.resolve("./sidebar-docs.js"),
           editUrl: "https://github.com/MarcusCemes/image-processing-pipeline-website/edit/master/",
           showLastUpdateTime: true,

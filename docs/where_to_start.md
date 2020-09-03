@@ -1,6 +1,7 @@
 ---
 id: where_to_start
 title: Where To Start
+slug: /
 ---
 
 <!-- prettier-ignore-start -->
