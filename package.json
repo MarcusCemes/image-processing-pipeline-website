@@ -16,14 +16,14 @@
     "react-dom": "^16.13.1",
     "react-icons": "^3.11.0",
     "react-transition-group": "^4.4.1",
-    "styled-components": "^5.1.1"
+    "styled-components": "^5.2.0"
   },
   "devDependencies": {
     "@docusaurus/core": "^2.0.0-alpha.63",
     "@docusaurus/module-type-aliases": "^2.0.0-alpha.63",
     "@docusaurus/preset-classic": "^2.0.0-alpha.63",
     "@ipp/compress": "^1.1.0",
-    "@ipp/primitive": "^1.1.0",
+    "@ipp/primitive": "^1.1.1",
     "@ipp/trace": "^1.0.0",
     "@ipp/webpack": "^1.1.0",
     "@mdx-js/react": "^1.6.16",

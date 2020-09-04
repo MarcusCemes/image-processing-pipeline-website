@@ -14,21 +14,21 @@ const manifest = {
 
 const pipeline = [
   { pipe: "passthrough", save: "Original" },
-  // {
-  //   pipe: {
-  //     resolve: "@ipp/primitive",
-  //     module: "PrimitivePipe",
-  //   },
-  //   then: [
-  //     {
-  //       pipe: {
-  //         resolve: "@ipp/compress",
-  //         module: "CompressPipe",
-  //       },
-  //       save: "Primitive SVG",
-  //     },
-  //   ],
-  // },
+  {
+    pipe: {
+      resolve: "@ipp/primitive",
+      module: "PrimitivePipe",
+    },
+    then: [
+      {
+        pipe: {
+          resolve: "@ipp/compress",
+          module: "CompressPipe",
+        },
+        save: "Primitive SVG",
+      },
+    ],
+  },
   {
     pipe: {
       resolve: "@ipp/trace",
