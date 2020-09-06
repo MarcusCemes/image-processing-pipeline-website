@@ -5,4 +5,68 @@ title: Installation
 
 import { WIP } from "@site/src/components/wip/WIP";
 
+## Installing the package
+
+The webpack loader must be added as an npm project dependency:
+
+```bash
+$ npm install @ipp/webpack
+```
+
+Any additional pipes that you wish to use that are not part of `@ipp/core` must also be installed
+seperatly. This lets you explicitly choose features that you would like to enable and reduce the
+installation size.
+
+```bash
+$ npm install @ipp/compress @ipp/primitive
+```
+
+## Configuring webpack
+
+Next, you must configure webpack to use the `@ipp/webpack` loader. Depending on your toolchain
+(create-react-app, next.js, vue-cli, parcel, custom, ...), the method to manually configure the
+webpack configuration will vary. Refer to the documentation of your chosen tool.
+
+Once you have a way to modify your webpack configuration, you may configure configure new rules to
+process certain images. Webpack is as flexible as you like, you could for example different IPP
+pipelines for different folders of images.
+
+```js title="webpack.config.js" {4-12}
+module.exports = {
+  ...
+  rules: [
+    {
+      loader: require.resolve("@ipp/webpack"),
+      test: /.(png|jpg|jpeg|webp)$/,
+      options: {
+        pipeline: [
+          ...
+        ]
+      }
+    },
+    ...
+  ]
+...
+}
+```
+
+The above regular expression test will match _any_ file with the above extensions, and use the
+`@ipp/webpack` loader with a given pipelne.
+
+<!-- prettier-ignore-start -->
+:::caution
+If you already have a generated webpack configuration, such as the one that comes with the
+create-react-app, it may _already_ have loaders that handle images. You must find a way to
+**disable** those loaders, otherwise all loaders that test for the file will be **chained**
+together in series.
+
+In order for IPP to work correctly, it requires raw access to the original image and no other loader
+will understand its JSON export format. To see an example, see the [workaround][workaround] that was
+used for this website.
+:::
+<!-- prettier-ignore-end -->
+
+[workaround]:
+  https://github.com/MarcusCemes/image-processing-pipeline-website/blob/master/plugins/demo/index.js
+
 <WIP centre spacing="12" />

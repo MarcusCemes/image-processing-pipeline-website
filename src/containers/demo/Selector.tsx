@@ -31,6 +31,9 @@ const DropdownItem = styled.span`
   cursor: pointer;
 `;
 
+const pipelineLink =
+  "https://github.com/MarcusCemes/image-processing-pipeline-website/blob/master/plugins/demo/index.js";
+
 const Header: React.FC = () => (
   <>
     <h1>Interactive Demo</h1>
@@ -43,7 +46,10 @@ const Header: React.FC = () => (
 );
 
 const Footer: React.FC = () => (
-  <p>These images were generated using a custom pipeline and the IPP webpack loader.</p>
+  <p>
+    These images were generated using a <a href={pipelineLink}>custom pipeline</a> and the IPP
+    webpack loader.
+  </p>
 );
 
 const DropdownButton: React.FC<{

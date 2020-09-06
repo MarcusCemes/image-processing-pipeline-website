@@ -3,7 +3,100 @@ id: usage
 title: Usage
 ---
 
+## Importing the image
+
 import { WIP } from "@site/src/components/wip/WIP";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+Processing images is just as easy as importing the image into your Javascript file:
+
+<Tabs
+groupId="js-syntax"
+defaultValue="es"
+values={[
+  { label: "ES Module", value: "es" },
+  { label: "CommonJS", value: "cjs" },
+]}
+>
+<TabItem value="es">
+
+
+```js
+import image from "path/to/image.jpg";
+```
+
+</TabItem>
+<TabItem value="cjs">
+
+
+```js
+const image = require("path/to/image.jpg");
+```
+
+</TabItem>
+</Tabs>
+
+
+If the image path matches the webpack rule, it will be imported and processed by webpack on import.
+All generated formats will be automatically handled, split and bundled by webpack, you will only
+recieve the URL to the image via the import.
+
+## Import mode
+
+There are two import modes available. They are functionaly equivilent, but provide varying amounts
+of information about the processed formats.
+
+### Simple modes
+
+Simple mode will give you a `src` property to the _most appropriate fallback image_, width and
+height dimensions of the original image and _srcset_ strings that are grouped by MIME types. For
+most use cases, this is perfectly sufficient for a responsive `<picture>` element.
+
+```js title="Example simple export"
+import image from "path/to/image.jpg";
+
+// image is an object
+{
+  src: "f8c1421b4334c1c9.jpg",
+  width: 1920,
+  height: 1080,
+  srcset: {
+    "image/jpeg": "46de0d3babc16786.jpg 720w, 885001be48ef4667.jpg 1920w",
+    "image/webp": "f876c5d47c6c0866.webp 720w, 5eb716978a1b5a09.webp 1920w"
+  }
+}
+```
+
+### Manifest mode
+
+Manifest mode allows you to explictly specify via the manifest object (see the CLI) what information
+you would like to save about the source image and for each format.
+
+```js title="Example manifest export"
+import image from "path/to/image.jpg";
+
+// image is an object
+{
+  s: {
+    w: 1920,
+    h: 1080,
+  },
+  f: [
+    {
+      w: 720,
+      f: "jpeg",
+      p: "46de0d3babc16786.jpg"
+    },
+    {
+      w: 720,
+      f: "webp",
+      p: "f876c5d47c6c0866.webp"
+    },
+    ...
+  ]
+}
+```
 
 <WIP centre spacing="12" />
 

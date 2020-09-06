@@ -1,3 +1,6 @@
+/**
+ * @type {import("@ipp/common").ManifestMappings}
+ */
 const manifest = {
   source: {
     x: "hash",
@@ -12,6 +15,9 @@ const manifest = {
   },
 };
 
+/**
+ * @type {import("@ipp/common").Pipeline}
+ */
 const pipeline = [
   { pipe: "passthrough", save: "Original" },
   {
@@ -30,17 +36,27 @@ const pipeline = [
     ],
   },
   {
-    pipe: {
-      resolve: "@ipp/trace",
-      module: "TracePipe",
+    pipe: "resize",
+    options: {
+      resizeOptions: {
+        width: 640,
+      },
     },
     then: [
       {
         pipe: {
-          resolve: "@ipp/compress",
-          module: "CompressPipe",
+          resolve: "@ipp/trace",
+          module: "TracePipe",
         },
-        save: "Traced SVG",
+        then: [
+          {
+            pipe: {
+              resolve: "@ipp/compress",
+              module: "CompressPipe",
+            },
+            save: "Traced SVG",
+          },
+        ],
       },
     ],
   },
@@ -121,10 +137,12 @@ module.exports = function (_context, _options) {
     name: "demo-loader",
     configureWebpack(config, _isServer) {
       // Exclude the demo folder for any image loaders
-      const image_loader = config.module.rules.find((item) => /jpg/.test(String(item.test)));
-      if (image_loader) {
-        image_loader.exclude = /demo/;
-      }
+
+      config.module.rules
+        .filter((rule) => /jpg/.test(String(rule.test)))
+        .forEach((rule) => {
+          rule.exclude = /demo/;
+        });
 
       // Add the IPP loader
       config.module.rules.push({
