@@ -9,13 +9,6 @@ module.exports = {
   projectName: "image-processing-pipeline", // Usually your repo name.
   themeConfig: {
     image: "img/social_preview.png",
-    announcementBar: {
-      id: "unreleased_notice",
-      content:
-        'This is for an unreleased version of IPP, for the current docs, visit <a href="https://ipp.mastermovies.uk" target="_blank" rel="noopener noreferrer" >ipp.mastermovies.uk</a>',
-      backgroundColor: "#111",
-      textColor: "#fff",
-    },
     navbar: {
       title: "Image Processing Pipeline",
       hideOnScroll: true,
@@ -28,6 +21,12 @@ module.exports = {
           to: "docs/",
           activeBasePath: "docs",
           label: "Documentation",
+          position: "left",
+        },
+        {
+          to: "blog/",
+          activeBasePath: "blog",
+          label: "Blog",
           position: "left",
         },
         {

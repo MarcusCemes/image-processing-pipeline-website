@@ -1,6 +1,6 @@
 module.exports = {
   docs: [
-    { "Getting started": ["where_to_start", "performance", "typescript", "troubleshooting"] },
+    { "Getting started": ["introduction", "performance", "typescript", "troubleshooting"] },
     {
       Guide: [
         "guide/prerequisites",
@@ -13,19 +13,18 @@ module.exports = {
     },
     {
       "[WIP] Conceptual overview": [
-        "concept/motivation",
+        {
+          type: "link",
+          label: "Motivation",
+          href: "/blog/2020/09/06/motivation",
+        },
         "concept/architecture",
         "concept/pipes",
         "concept/core",
       ],
     },
     {
-      "[WIP] Command line": [
-        "cli/overview",
-        "cli/installation",
-        "cli/configuration",
-        "cli/manifest",
-      ],
+      "Command line": ["cli/overview", "cli/installation", "cli/configuration", "cli/manifest"],
     },
     {
       "[WIP] Webpack": [

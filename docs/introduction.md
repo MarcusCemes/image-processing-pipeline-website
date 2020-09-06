@@ -1,6 +1,6 @@
 ---
-id: where_to_start
-title: Where To Start
+id: introduction
+title: Introduction
 slug: /
 ---
 

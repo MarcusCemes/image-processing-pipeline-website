@@ -6,21 +6,17 @@ title: Configuration
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
+import { WIP } from "@site/src/components/wip/WIP";
 import { FormatTable } from "@site/src/components/utility/Table";
 
 Image Processing Pipeline may be configured by using any of the file naming schemes supported by
-[cosmiconfig][cosmiconfig]. A custom configuration file may also be specified using the `--config`
-flag, this will override the default searching behaviour.
+[cosmiconfig][cosmiconfig].
 
-When IPP is loaded, it will search for and load configuration, validating it based on a JSON schema.
-If there is an inconsistency, it will do it's best to tell you where the problem lies.
+A custom configuration file may also be specified using the `--config` flag, which will override the
+default searching behaviour and instead exclusivly attempt to use the provided config path.
 
-<!-- prettier-ignore-start -->
-:::info
-Configuration files are read and validated by the @ipp/cli package. Lower-level modules receive the
-pipeline and related options directory as function parameters.
-:::
-<!-- prettier-ignore-end -->
+The loaded configuration will be validated using a JSON schema to check for inconsistencies and warn
+you of any problems.
 
 ## Searching
 
@@ -30,35 +26,48 @@ supported by [cosmiconfig][cosmiconfig] will be correctly understood by IPP.
 
 For example, you may define one of the following files (in order of priority):
 
-- an `ipp` property in your `package.json`
-- a JSON or YAML `.ipprc` file
-- a JSON `.ipprc.json`, YAML `.ipprc.yml` or JavaScript `.js` file
-- a JavaScript `.config.js` file
+- an **ipp** property in your **package.json**
+- a JSON or YAML **.ipprc** file
+- a JSON **.ipprc.json**, YAML **.ipprc.yml** or JavaScript **ipprc.js** file
+- a JavaScript **.config.js** file
 
-<!-- prettier-ignore-start -->
-:::tip
-It is recommended to use the YAML syntax. It is more human readable and more concise than the
-JavaScript related syntaxes. However, function pipes are only supported by the JavaScript format.
-:::
-<!-- prettier-ignore-end -->
+### Choosing a format
 
-#### Programatic invocation
+IPP eventually converts configuations to JS, but understands several base formats. Each have slight
+differences, with more abstraction towards the top of the list.
 
-If you are starting the CLI programmatically, you are calling the CLI function directly, bypassing
-the initialisation stage. No validation or searching will occur. The function is strongly typed,
-however, so you may still rely on the config parameter's TypeScript typings.
+- **YAML** is the most human-friendly and compact **(recommended for most users)**
+- **JSON** is a widely recognised universal format, similar to JS
+- **JS** allows for dynamic configs and lambda pipe functions
 
-### Validation
+### Programatic invocation
 
-Regardless of how the configuration was loaded, the configuration will be validated using [this JSON
+Calling the CLI's `startCLI()` function programatically **bypasses any configuration searching or
+validation**. Instead, the configuration is passed as a function parameter.
+
+Due to the dynamic nature of JavaScript, it is your responsiblity to ensure that the configuration
+is correct, an incorrect configuration could cause undetermined execution behaviour.
+
+If you are using TypeScript, you can rest easy knowing that the function is strongly typed,
+providing the same level of safety against faulty configuration, if not better.
+
+## Validation
+
+Upon loading a configuration, it is converted to JavaScript and validated against [this JSON
 schema][config-schema]. This strict behaviour ensures that there are no misspelt property names or
 deprecated keys.
 
 <!-- prettier-ignore-start -->
 :::tip
 If you save your configuration in the JSON format, you may benefit from intelligent JSON Schema
-features offered by your IDE by specifying a root `$schema` property that points to the permanant
-[schema URL][config-schema].
+features offered by your IDE by specifying a root `$schema` property that points to [this permanant
+schema URL][config-schema].
+```json
+{
+  "$schema": "https://ipp.vercel.app/schema/config.json",
+  ...
+}
+```
 :::
 <!-- prettier-ignore-end -->
 
@@ -66,6 +75,13 @@ features offered by your IDE by specifying a root `$schema` property that points
 
 Below is a **good starting point** for building a set of responsive website images. Give it a try
 and then adjust it to suit your needs.
+
+In order to use the following configuration, you will also need to install the @ipp/compress and
+@ipp/primitive packages.
+
+```bash
+$ npm install --save-dev @ipp/compress @ipp/primitive
+```
 
 <Tabs
   groupId="config_format"
@@ -235,13 +251,6 @@ pipeline:
 </Tabs>
 
 
-<!-- prettier-ignore-start -->
-:::caution
-The above configuration also needs the packages `@ipp/primitive` and `@ipp/compress` to be
-installed.
-:::
-<!-- prettier-ignore-end -->
-
 ### Breaking it down
 
 This configuration will do things. Firstly, it will generate four different sizes, labelled _sm_,
@@ -264,6 +273,13 @@ the resize pipe's `quality: 100` option.
 <!-- prettier-ignore-start -->
 :::tip
 All of IPP's built-in and official pipes support raw pixel data.
+:::
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+:::tip
+The WebP export does not need a compression pipe, there aren't any good compression algorithms that
+beat the reference codec encoder.
 :::
 <!-- prettier-ignore-end -->
 
@@ -298,7 +314,7 @@ schema][config-schema] or [TypeScript interfaces][config-typings].
 <TabItem value="typescript">
 
 
-```typescript
+```typescript title="Config interface"
 interface Config {
   input: string | string[];
   output: string;
@@ -344,7 +360,7 @@ interface Config {
 <TabItem value="typescript">
 
 
-```typescript
+```typescript title="Manifest interface"
 interface ManifestMappings {
   source?: Record<string, string>;
   format?: Record<string, string>;
@@ -363,6 +379,8 @@ source image, and `format` which is exported separately for every format.
 
 The **key is used as the new name** of the metadata value, while the **value is the name of the
 metadata key**. The length selector "`:`" may also be used to limit the size of the metadata value.
+
+To learn more about the manifest, see this [dedicated page](./manifest.mdx).
 
 ## Pipeline
 
@@ -442,6 +460,20 @@ It is not possible to define JavaScript functions in YAML or JSON configuration 
 must use a JavaScript configuration file.
 :::
 <!-- prettier-ignore-end -->
+
+## Saving images
+
+To mark an image format for export, it must have a `save` key. This key must be a string and is used
+to determine the format's filename. The save key can contain template literals using square brackets
+that are substituted with values from the metadata.
+
+```text
+"[name]-[hash:8][ext]" → "image-89f25685.jpg"
+```
+
+<WIP centre spacing="12" />
+
+<!-- TODO save key, manifest -->
 
 [cosmiconfig]: https://github.com/davidtheclark/cosmiconfig
 [config-schema]: https://ipp.vercel.app/schema/config.json
