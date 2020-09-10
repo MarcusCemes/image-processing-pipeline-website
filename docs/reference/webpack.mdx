@@ -1,0 +1,155 @@
+---
+id: webpack
+title: Webpack
+sidebar_label: "@ipp/webpack"
+---
+
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+import { FormatTable } from "@site/src/components/utility/Table";
+
+> Contains the official webpack loader that allows direct importing of images that resolves into a
+> manifest object. Intended for **end users**.
+
+## Loader options
+
+<Tabs
+  groupId="interfaces"
+  defaultValue="table"
+  values={[
+    {label: 'Table', value: 'table'},
+    {label: 'TypeScript', value: 'typescript'},
+  ]
+}>
+<TabItem value="table">
+<FormatTable centre fullWidth label="Available loader options" top="2em">
+
+
+| key        | type    | description                                                                 |
+| :--------- | :------ | :-------------------------------------------------------------------------- |
+| pipeline   | object  | The pipeline to use to process images (must be in JS syntax) **(required)** |
+| devBuild   | boolean | Whether to also build images when not in production                         |
+| manifest   | object  | If present, enables manifest mode and acts as the manifest mappings         |
+| esModule   | boolean | Provide the import using the ES import syntax instead of CommonJS           |
+| outputPath | string  | The output path where webpack assets are emitted to                         |
+
+</FormatTable>
+</TabItem>
+<TabItem value="typescript">
+
+
+```typescript title="Config interface"
+interface Options {
+  devBuild: boolean;
+  manifest?: ManifestMappings;
+  esModule: boolean;
+  outputPath: string;
+  pipeline: Pipeline;
+}
+```
+
+<!-- prettier-ignore-start -->
+:::note
+`devBuild`, `esModule` and `outputPath` are populated with default values. Only the `pipeline` is
+required.
+:::
+<!-- prettier-ignore-end -->
+
+</TabItem>
+</Tabs>
+
+
+## Development builds
+
+By default, images are only processed using the provided pipeline if the environmental variable
+`NODE_ENV` is set to `production` in your terminal. This is usually automatically set by webpack
+when creating the build. Otherwise, the source image is passed through to avoid unnecessary work.
+
+If you would like to also preview the generated formats when not running in production, such as when
+running a development server, you may set the `devBuild` loader option to `true`.
+
+## Simple / Manifest mode
+
+The import mode is determined by the presence of the `manifest` option. If it is present, the loader
+will use _manifest mode_, otherwise it defaults to _simple mode_.
+
+### Simple mode
+
+This mode provides only basic information about the source image dimensions, and attempts to
+construct `srcset` strings for each MIME based on the format file extension. It also provides a
+`src` fallback image for older devices, which is determined as the "most relevant fallback image",
+prefereably a JPEG closed to having dimensions of `1920×1080`.
+
+```js title="image_import.ts"
+import image from "path/to/image.jpg";
+
+// image is an object
+{
+  src: "f8c1421b4334c1c9.jpg",
+  width: 1920,
+  height: 1080,
+  srcset: {
+    "image/jpeg": "46de0d3babc16786.jpg 720w, 885001be48ef4667.jpg 1920w",
+    "image/webp": "f876c5d47c6c0866.webp 720w, 5eb716978a1b5a09.webp 1920w"
+  }
+}
+```
+
+## Manifest mode
+
+This mode gives you full control over exported metadata information for each format and the source
+image, very similar to the the manifest generation of the CLI.
+
+The loader adds some extra metadata information to each format. The `path` key corresponds to the
+exported image's path, and the `save` key correponds to the save key used to mark the format for
+export.
+
+<!-- prettier-ignore-start -->
+:::tip
+Any template literals present in the save key are also processed and replaced by their corresponding
+metadata values, similar to the way filenames are generated from the save key in the CLI.
+
+A save key of `[width]` will be replaced with the resulting format's horizontal dimension.
+:::
+<!-- prettier-ignore-end -->
+
+### Example
+
+An example speaks a thousant words.
+
+```js title="webpack.config.js"
+...
+options: {
+  manifest: {
+    source: {
+      x: "hash:8"
+    },
+    format: {
+      w: width,
+      p: path,
+      s: save,
+    }
+  },
+  pipeline: [{
+    pipe: resize,
+    save: "resized-[width][ext]"
+  }]
+}
+...
+```
+
+```ts title="image_import.ts"
+import image from "path/to/image.jpg";
+
+// image is an object
+{
+  s: {
+    x: "7fd315fd"
+  },
+  f: [{
+    w: 1920,
+    p: "img/9035d003",
+    s: "resized-1920.jpg"
+  }]
+}
+```

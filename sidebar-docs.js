@@ -43,6 +43,7 @@ module.exports = {
         "reference/core",
         "reference/primitive",
         "reference/testing",
+        "reference/webpack",
       ],
     },
     "contributing",

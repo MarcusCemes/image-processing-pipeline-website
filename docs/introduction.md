@@ -29,7 +29,7 @@ If you are **familiar with web-development tools and workflows**, there is a con
 experienced with the npm ecosystem of tools.
 
 If you are **integrating IPP into a front-end project**, we recommend taking a look at the official
-[webpack loader](webpack/overview.mdx). This allows images to be generated automatically at build
+[webpack loader](webpack/overview.md). This allows images to be generated automatically at build
 time, without the need to commit or pre-run the tool yourself.
 
 If you would like to **integrate IPP programmatically into your own codebase**, check out the

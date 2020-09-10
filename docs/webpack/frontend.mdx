@@ -3,6 +3,81 @@ id: frontend
 title: Frontend integration
 ---
 
-import { WIP } from "@site/src/components/wip/WIP";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
 
-<WIP centre spacing="12" />
+The data object provided from the image import is perfect for generating a responsive image. At the
+moment, there are no official front-end integrations for the IPP webpack loader, however, here are
+some framework-specific examples on how to approach a responsive image component.
+
+## React
+
+Here is an example of a re-usable image component that accepts a SimpleExport object.
+
+<Tabs
+  groupId="typescript"
+  defaultValue="ts"
+  values={[
+    {label: "JavaScript", value: "js"},
+    {label: "TypeScript", value: "ts"},
+  ]
+}>
+<TabItem value="js">
+
+
+```tsx title="image.js"
+import React from "react";
+
+/**
+ * A re-usable image component.
+ * @type {React.FC<{ image: import("@ipp/webpack").SimpleExport; alt: string } & JSX.IntrinsicElements["picture"]>}
+ */
+export const Image = ({ alt, image, className, ...rest }) => (
+  <picture {...rest}>
+    {Object.entries(image.srcset).map(([mime, srcSet]) => (
+      <source key={mime} type={mime} srcSet={srcSet} />
+    ))}
+    <img alt={alt} className={className} src={image.src} />
+  </picture>
+);
+```
+
+```ts title="page.js"
+import { Image } from "image.tsx";
+import image from "path/to/image.jpg";
+
+export default () => <Image data={image} alt="Some mountains" />;
+```
+
+</TabItem>
+<TabItem value="ts">
+
+
+```tsx title="image.tsx"
+import React from "react";
+import { SimpleExport } from "@ipp/webpack";
+
+/** A re-usable image component */
+export const Image: React.FC<
+  { image: SimpleExport; alt: string } & JSX.IntrinsicElements["picture"]
+> = ({ alt, image, className, ...rest }) => (
+  <picture {...rest}>
+    {Object.entries(image.srcset).map(([mime, srcSet]) => (
+      <source key={mime} type={mime} srcSet={srcSet} />
+    ))}
+    <img alt={alt} className={className} src={image.src} />
+  </picture>
+);
+```
+
+```tsx title="page.tsx"
+import { Image } from "image.tsx";
+import image from "path/to/image.jpg";
+
+const Page: React.FC = () => <Image data={image} alt="Some mountains" />;
+export default Page;
+```
+
+</TabItem>
+</Tabs>
+

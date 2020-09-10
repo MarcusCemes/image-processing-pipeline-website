@@ -4,6 +4,7 @@ author: Marcus Cemes
 author_title: Project Founder & Lead Maintainer
 author_url: https://github.com/MarcusCemes
 author_image_url: https://graph.facebook.com/100000504161392/picture/?height=200&width=200
+description: A short piece on the motivation for creating IPP
 tags: [motivation, history]
 ---
 
