@@ -3,13 +3,14 @@ import { breakpoints, Container } from "../../components/layout";
 
 export const DemoContainer = styled(Container)`
   margin-top: 4em;
-  margin-bottom: 4em;
+  margin-bottom: 8em;
 
   display: flex;
   flex-direction: column;
 
-  @media screen and (min-width: ${breakpoints.md}px) {
+  @media screen and (min-width: ${breakpoints.lg}) {
     flex-direction: row;
+    margin-bottom: 4em;
   }
 `;
 

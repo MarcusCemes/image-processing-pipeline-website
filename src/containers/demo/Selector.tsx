@@ -2,27 +2,37 @@ import clsx from "clsx";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { BiChevronRight } from "react-icons/bi";
 import styled from "styled-components";
+import { breakpoints } from "../../components/layout";
 import { Image } from "./image";
 import { DemoItem } from "./Layout";
 import { PreviewData } from "./Preview";
 
 const ButtonWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 
   margin-bottom: 2em;
+
+  @media screen and (min-width: ${breakpoints.md}) {
+    flex-direction: row;
+  }
 `;
 
 const CaretSpacer = styled(BiChevronRight)`
-  margin: 0 1em;
+  margin: 1em;
+  transform: rotate(90deg);
+
+  @media screen and (min-width: ${breakpoints.md}) {
+    transform: none;
+  }
 `;
 
 const Button = styled.button`
   width: 12em;
   max-width: 100%;
 
-  margin: 0 2em;
   text-overflow: ellipsis;
   overflow: hidden;
 `;
@@ -30,9 +40,6 @@ const Button = styled.button`
 const DropdownItem = styled.span`
   cursor: pointer;
 `;
-
-const pipelineLink =
-  "https://github.com/MarcusCemes/image-processing-pipeline-website/blob/master/plugins/demo/index.js";
 
 const Header: React.FC = () => (
   <>
@@ -47,7 +54,7 @@ const Header: React.FC = () => (
 
 const Footer: React.FC = () => (
   <p>
-    These images were generated using a <a href={pipelineLink}>custom pipeline</a> and the IPP
+    These images were generated using a custom pipeline (that you may inspect below) and the IPP
     webpack loader.
   </p>
 );

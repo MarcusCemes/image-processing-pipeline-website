@@ -6,19 +6,19 @@ export const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
 
-  @media screen and (min-width: ${breakpoints.sm}px) {
+  @media screen and (min-width: ${breakpoints.sm}) {
     max-width: 640px;
   }
 
-  @media screen and (min-width: ${breakpoints.md}px) {
+  @media screen and (min-width: ${breakpoints.md}) {
     max-width: 768px;
   }
 
-  @media screen and (min-width: ${breakpoints.lg}px) {
+  @media screen and (min-width: ${breakpoints.lg}) {
     max-width: 1024px;
   }
 
-  @media screen and (min-width: ${breakpoints.xl}px) {
+  @media screen and (min-width: ${breakpoints.xl}) {
     max-width: 1280px;
   }
 `;

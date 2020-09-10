@@ -62,8 +62,8 @@ const ImageText = styled.div`
 const PreviewContainer = styled.div`
   position: relative;
 
-  width: calc(100vw - 2em);
-  max-width: 600px;
+  width: 100%;
+  /* max-width: 600px; */
   padding-top: 60%;
 `;
 

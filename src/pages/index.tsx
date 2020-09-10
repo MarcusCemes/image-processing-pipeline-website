@@ -1,4 +1,3 @@
-import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import clsx from "clsx";
@@ -22,25 +21,12 @@ type Feature = {
 
 const features: Feature[] = [
   {
-    title: "Easy to use",
+    title: "Easy",
     image: OnlineConnection,
     description: (
       <>
-        IPP was designed from the ground up to be used by anyone. Its modularity lets you choose
-        whether you want a quick and easy command-line tool, or a deeper integration with an
-        existing build process.
-      </>
-    ),
-  },
-  {
-    title: "Flexible",
-    image: NatureOnScreen,
-    description: (
-      <>
-        Whether you want to keep it simple for your end-users, or get fancy with placeholders, we've
-        got you covered! IPP supports{" "}
-        <Link href="https://github.com/fogleman/primitive">geometric primitive tracing</Link> out of
-        the box.
+        Designed to by usable by anyone. It's modularity makes it possible to be used as a simple
+        command-line tool or with deeper integration with an existing build process.
       </>
     ),
   },
@@ -49,8 +35,19 @@ const features: Feature[] = [
     image: FileAnalysis,
     description: (
       <>
-        Customize your pipeline, or even make your own pipes! Choose how you want your images to
-        turn out whilst maximising parallelism and quality.
+        Fast, efficient and extensible. Different levels of modular abstraction allow for varying
+        levels of control. There's something there for everyone
+      </>
+    ),
+  },
+  {
+    title: "Open Source",
+    image: NatureOnScreen,
+    description: (
+      <>
+        Image Processing Pipeline is released under the permissive open-source{" "}
+        <a href="https://opensource.org/licenses/MIT">MIT license</a>. You can inspect the code,
+        modify it and use it commercially, for free!
       </>
     ),
   },
@@ -59,9 +56,9 @@ const features: Feature[] = [
 const Description: React.FC = () => (
   <div className={styles.descriptionWrapper}>
     <div className={styles.description}>
-      Image Processing Pipeline is a <strong>platform-agnostic modular</strong> collection of
-      packages that aims to glue together various image libraries into and configurable automated
-      pipeline.
+      Image Processing Pipeline is a <strong>platform agnostic</strong> modular collection of
+      packages that glues together some of the best image libraries using an easily configurable
+      pipeline
     </div>
   </div>
 );
