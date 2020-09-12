@@ -19,9 +19,9 @@
     "styled-components": "^5.2.0"
   },
   "devDependencies": {
-    "@docusaurus/core": "^2.0.0-alpha.63",
-    "@docusaurus/module-type-aliases": "^2.0.0-alpha.63",
-    "@docusaurus/preset-classic": "^2.0.0-alpha.63",
+    "@docusaurus/core": "^2.0.0-alpha.64",
+    "@docusaurus/module-type-aliases": "^2.0.0-alpha.64",
+    "@docusaurus/preset-classic": "^2.0.0-alpha.64",
     "@ipp/compress": "^1.1.0",
     "@ipp/primitive": "^1.1.1",
     "@ipp/trace": "^1.0.0",

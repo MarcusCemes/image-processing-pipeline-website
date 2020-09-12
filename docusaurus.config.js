@@ -43,21 +43,35 @@ module.exports = {
     },
     footer: {
       style: "light",
+      logo: {
+        alt: "Image Processing Pipeline Logo",
+        src: "img/logo_footer.svg",
+        href: "https://ipp.vercel.app",
+      },
       links: [
         {
           title: "Navigation",
           items: [
             {
-              label: "Guide",
-              to: "docs/guide/prerequisites",
+              label: "Blog",
+              to: "blog",
             },
             {
+              label: "Guide",
+              to: "docs/guide",
+            },
+          ],
+        },
+        {
+          title: "Documentation",
+          items: [
+            {
               label: "CLI",
-              to: "docs/cli/installation",
+              to: "docs/cli",
             },
             {
               label: "Webpack",
-              to: "docs/webpack/installation",
+              to: "docs/webpack",
             },
             {
               label: "Reference",
@@ -78,7 +92,7 @@ module.exports = {
             },
             {
               label: "Contributing",
-              to: "https://github.com/MarcusCemes/image-processing-pipeline/#contributing",
+              to: "docs/contributing",
             },
           ],
         },

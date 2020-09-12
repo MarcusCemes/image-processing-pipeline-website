@@ -73,6 +73,8 @@ const CentredContainer = styled(Container)`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  padding-bottom: 8em;
 `;
 
 const ControlContainer = styled.div`
@@ -91,6 +93,10 @@ const Control = styled.div<Collapsed>`
 
   opacity: ${({ collapsed }) => (collapsed ? 0.5 : 1)};
   transition: all 0.5s linear;
+
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 const SpacedIcon = styled.svg`
@@ -106,7 +112,7 @@ const CodeContainer = styled.div`
 const Collapser: React.FC<Collapsed & CollapseDispatch> = ({ collapsed, setCollapsed }) => (
   <ControlContainer>
     <Control collapsed={collapsed} onClick={() => setCollapsed(!collapsed)}>
-      {collapsed ? "Show" : "Hide"} pipeline
+      {collapsed ? "Show" : "Hide"} the pipeline configuration
       <SpacedIcon as={collapsed ? AiOutlineRight : AiOutlineDown} />
     </Control>
   </ControlContainer>

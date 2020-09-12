@@ -45,26 +45,35 @@ const Header: React.FC = () => (
   <>
     <h1>Interactive Demo</h1>
     <p>
-      Select an image and then one of the available generated formats to see the results for
-      yourself. Some basic information is shown, such as the resolution and file-size reduction
-      compared to the original.
+      Play around with the buttons below to see some examples of generated images. Each image is
+      from a high-quality source generously provided by{" "}
+      <a target="_blank" href="https://unsplash.com/">
+        Unsplash
+      </a>
+      . You can see the untouched original using the <i>Original</i> selector.
     </p>
   </>
 );
 
 const Footer: React.FC = () => (
   <p>
-    These images were generated using a custom pipeline (that you may inspect below) and the IPP
-    webpack loader.
+    An ideal pattern would be to <strong>embed a tiny SVG preview to act as a placeholder</strong>{" "}
+    until the higher-quality device-optimised image has been loaded. The preview can then be{" "}
+    <strong>faded out</strong> and replaced. WebP is a superior web image codec, but is not
+    supported by all browsers. That is why a fallback JPEG is also generated.
   </p>
 );
 
 const DropdownButton: React.FC<{
   disabled?: boolean;
   items: Array<{ text: string; key: string; onClick: () => void; selected?: boolean }>;
-}> = ({ children, disabled, items }) => (
+  primary?: boolean;
+}> = ({ children, disabled, items, primary = false }) => (
   <div className={clsx("dropdown", { "dropdown--hoverable": !disabled })}>
-    <Button className={clsx("button button--secondary", { disabled })} data-toggle="dropdown">
+    <Button
+      className={clsx("button", primary ? "button--primary" : "button--secondary", { disabled })}
+      data-toggle="dropdown"
+    >
       {children}
     </Button>
 
@@ -103,6 +112,7 @@ export const Selector: React.FC<{
             },
             selected: image.name === selectedImage?.name,
           }))}
+          primary={!selectedImage?.name}
         >
           {selectedImage?.name || "Select image"}
         </DropdownButton>
@@ -126,6 +136,7 @@ export const Selector: React.FC<{
               selected: preview?.src === format.p,
             })) || []
           }
+          primary={selectedImage && (!preview || !findPreviewName(selectedImage, preview.src))}
         >
           {(preview && selectedImage && findPreviewName(selectedImage, preview.src)) ||
             "Select format"}

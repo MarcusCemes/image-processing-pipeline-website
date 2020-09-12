@@ -2,8 +2,7 @@ import styled from "styled-components";
 import { breakpoints, Container } from "../../components/layout";
 
 export const DemoContainer = styled(Container)`
-  margin-top: 4em;
-  margin-bottom: 8em;
+  margin-top: 4em 0;
 
   display: flex;
   flex-direction: column;

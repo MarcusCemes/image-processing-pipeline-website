@@ -16,7 +16,7 @@ module.exports = {
         {
           type: "link",
           label: "Motivation",
-          href: "/blog/2020/09/06/motivation",
+          href: "/blog/2020/09/12/motivation",
         },
         "concept/architecture",
         "concept/pipes",

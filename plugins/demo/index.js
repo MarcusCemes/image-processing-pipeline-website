@@ -149,7 +149,7 @@ module.exports = function (_context, _options) {
         loader: require.resolve("@ipp/webpack"),
         test: /.(png|jpg|jpeg)$/,
         options: {
-          devBuild: true,
+          devBuild: false,
           manifest,
           pipeline,
         },

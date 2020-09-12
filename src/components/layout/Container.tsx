@@ -6,6 +6,9 @@ export const Container = styled.div`
   margin-left: auto;
   margin-right: auto;
 
+  padding-left: 1em;
+  padding-right: 1em;
+
   @media screen and (min-width: ${breakpoints.sm}) {
     max-width: 640px;
   }
