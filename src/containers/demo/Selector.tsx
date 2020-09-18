@@ -123,7 +123,7 @@ export const Selector: React.FC<{
           disabled={!selectedImage}
           items={
             selectedImage?.data.f?.map((format) => ({
-              text: format.s as string,
+              text: format.s === true || format.s === "true" ? "Original" : (format.s as string),
               key: format.x as string,
               onClick: () =>
                 setPreview({
@@ -156,5 +156,9 @@ function findOriginal(image: Image): string | undefined {
 }
 
 function findPreviewName(image: Image, src: string): string | undefined {
-  return (image.data.f?.find((format) => format.p === src)?.s as string | undefined) || void 0;
+  const format = image.data.f?.find((format) => format.p === src);
+
+  if (!format) return void 0;
+  if (format.s === true || format.s === "true") return "Original";
+  return format.s as string;
 }

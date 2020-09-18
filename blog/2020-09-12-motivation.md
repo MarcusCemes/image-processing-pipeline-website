@@ -3,7 +3,7 @@ title: Project motivation
 author: Marcus Cemes
 author_title: Project Founder & Lead Maintainer
 author_url: https://github.com/MarcusCemes
-author_image_url: https://graph.facebook.com/100000504161392/picture/?height=200&width=200
+author_image_url: https://gravatar.com/avatar/b024613447b5c4d7df9cd977a3f17b47?s=200
 description: A short article that goes into the motivation for creating Image Processing Pipeline
 tags: [motivation, history]
 ---
