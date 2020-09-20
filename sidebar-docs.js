@@ -34,7 +34,7 @@ module.exports = {
         "webpack/frontend",
       ],
     },
-    { "[WIP] Advanced usage": ["advanced/overview", "advanced/installation"] },
+    { "[WIP] Advanced usage": ["advanced/overview", "advanced/installation", "advanced/usage"] },
     {
       "[WIP] Reference": [
         "reference/cli",

@@ -1,0 +1,37 @@
+---
+id: usage
+title: Usage
+---
+
+import { WIP } from "@site/src/components/wip/WIP";
+import Tabs from "@theme/Tabs";
+import TabItem from "@theme/TabItem";
+
+<Tabs
+  groupId="typescript"
+  defaultValue="ts"
+  values={[
+    {label: "TypeScript", value: "ts"},
+  ]
+}>
+<TabItem value="ts">
+
+
+```ts title="adapter.ts"
+import { executePipeline } from "@ipp/core";
+import { Metadata, Pipeline } fro "@ipp/common";
+
+const concurrency = 4;
+
+const pipeline: Pipeline = { ... };
+const image: Buffer = ...;
+const additionalMetadata: Metadata = { ... };
+
+const result = await processPipeline(pipeline, image, initialMetadata, concurrency);
+```
+
+</TabItem>
+</Tabs>
+
+
+<WIP centre spacing="12" />

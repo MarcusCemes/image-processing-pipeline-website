@@ -60,6 +60,10 @@ module.exports = {
               label: "Guide",
               to: "docs/guide",
             },
+            {
+              label: "Privacy",
+              to: "privacy",
+            },
           ],
         },
         {
