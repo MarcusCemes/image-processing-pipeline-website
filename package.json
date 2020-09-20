@@ -31,9 +31,10 @@
     "@types/react": "^16.9.49",
     "@types/react-transition-group": "^4.4.0",
     "@types/styled-components": "^5.1.3",
-    "demo-plugin": "file:plugins/demo",
+    "plugin-analytics": "file:plugins/analytics",
+    "plugin-demo": "file:plugins/demo",
     "prettier": "^2.1.2",
-    "typescript": "^4.0.2"
+    "typescript": "^4.0.3"
   },
   "browserslist": {
     "production": [

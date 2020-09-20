@@ -100,7 +100,7 @@ module.exports = {
       copyright: `Copyright © ${new Date().getFullYear()} Marcus Cemes - MIT License`,
     },
   },
-  plugins: ["demo-plugin"],
+  plugins: ["plugin-analytics", "plugin-demo"],
   presets: [
     [
       "@docusaurus/preset-classic",

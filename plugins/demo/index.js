@@ -134,7 +134,7 @@ const pipeline = [
 // Extends the webpack config to support demo image generation
 module.exports = function (_context, _options) {
   return {
-    name: "demo-loader",
+    name: "plugin-demo",
     configureWebpack(config, _isServer) {
       // Exclude the demo folder for any image loaders
 
