@@ -148,11 +148,16 @@ export const Selector: React.FC<{
   );
 };
 
-function findOriginal(image: Image): string | undefined {
-  return (
-    (image.data.f?.find((format) => (format.s as string | undefined)?.indexOf("Original") !== -1)
-      ?.p as string | undefined) || void 0
-  );
+function findOriginal(image: Image): string | null {
+  if (!image.data.f) return null;
+
+  for (const format of image.data.f) {
+    if (typeof format.s === "string" && format.s.indexOf("Original") !== -1) {
+      return format.p as string;
+    }
+  }
+
+  return null;
 }
 
 function findPreviewName(image: Image, src: string): string | undefined {

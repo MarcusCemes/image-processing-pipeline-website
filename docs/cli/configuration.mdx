@@ -306,6 +306,7 @@ schema][config-schema] or [TypeScript interfaces][config-typings].
 | output      | string            | The path to the directory to output images to _(required)_       |
 | pipeline    | array             | See the [pipeline](#pipeline) _(required)_                       |
 | concurrency | number            | Allows for more fine-grain control of the program options        |
+| clean       | boolean           | Delete the output directory before processing (dangerous!)       |
 | flat        | boolean           | Whether to flatten the output directory structure                |
 | manifest    | object            | See the [manifest](#manifest)                                    |
 
@@ -321,6 +322,7 @@ interface Config {
   pipeline: Pipeline;
 
   concurrency: number;
+  clean?: boolean;
   flat?: boolean;
   manifest?: ManifestMappings;
 }
@@ -329,6 +331,13 @@ interface Config {
 <!-- prettier-ignore-start -->
 :::note
 `concurrency` is not actually required as it is populated by the inititialisation script by default.
+:::
+<!-- prettier-ignore-end -->
+
+<!-- prettier-ignore-start -->
+:::danger
+When the `clean` option is enabled, the path specified as the output folder will be unrecoverably
+deleted with no additional checks in place. Use with care.
 :::
 <!-- prettier-ignore-end -->
 
