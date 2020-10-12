@@ -81,3 +81,60 @@ export default Page;
 </TabItem>
 </Tabs>
 
+
+## Vue
+
+Here is an example of a basic Vue picture component for SimpleExport (rough example).
+
+```html title="Picture.vue"
+<template>
+  <picture>
+    <source
+      v-for="[mime, srcset] in sources"
+      :key="mime"
+      v-bind:type="mime"
+      v-bind:srcset="srcset"
+    />
+    <img v-bind:alt="alt" v-bind:src="src" />
+  </picture>
+</template>
+
+<script>
+  export default {
+    props: {
+      alt: String,
+      image: Object,
+    },
+    computed: {
+      src() {
+        return this.image?.src || "";
+      },
+      sources() {
+        return this.image ? Object.entries(this.image.srcset) : [];
+      },
+    },
+  };
+</script>
+```
+
+```html title="Page.vue"
+<template>
+  <vue-picture alt="Mountains" v-bind:image="image" />
+</template>
+
+<script>
+  import Picture from "./components/Picture.vue";
+
+  import image from "path/to/image.jpg";
+
+  export default {
+    name: "Page",
+    components: {
+      "vue-picture": Picture,
+    },
+    created() {
+      this.image = image;
+    },
+  };
+</script>
+```

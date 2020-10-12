@@ -3,8 +3,6 @@ id: installation
 title: Installation
 ---
 
-import { WIP } from "@site/src/components/wip/WIP";
-
 ## Installing the package
 
 The webpack loader must be added as an npm project dependency:
@@ -36,8 +34,9 @@ Next, you must configure webpack to use the `@ipp/webpack` loader. Depending on 
 webpack configuration will vary. Refer to the documentation of your chosen tool.
 
 Once you have a way to modify your webpack configuration, you may configure configure new rules to
-process certain images. Webpack is as flexible as you like, you could for example different IPP
-pipelines for different folders of images.
+process certain images. Webpack is as flexible as you like, you could for example use different
+pipelines depending on which folder the image resides in. For this example, we will just attempt to
+load all images with IPP.
 
 ```js title="webpack.config.js" {4-12}
 module.exports = {
@@ -48,7 +47,15 @@ module.exports = {
       test: /.(png|jpg|jpeg|webp)$/,
       options: {
         pipeline: [
-          ...
+          {
+            pipe: "resize",
+            options: {
+              resizeOptions: {
+                width: 1280
+              }
+            },
+            save: "[name]-[hash:8][ext]"
+          }
         ]
       }
     },
@@ -58,8 +65,9 @@ module.exports = {
 }
 ```
 
-The above regular expression test will match _any_ file with the above extensions, and use the
-`@ipp/webpack` loader with a given pipelne.
+The above regular expression test will match _any_ file with a png, jpg, jpeg or webp extension and
+use IPP process the image import. In this example, the image is resized to 1280 pixels wide and
+given a unique file name.
 
 <!-- prettier-ignore-start -->
 :::caution
@@ -76,5 +84,3 @@ used for this website.
 
 [workaround]:
   https://github.com/MarcusCemes/image-processing-pipeline-website/blob/master/plugins/demo/index.js
-
-<WIP centre spacing="12" />

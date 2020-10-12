@@ -9,10 +9,10 @@ ecosystem as grown to support many different types of loaders and plugins. The `
 provides a webpack loader that adds the ability to import images directly into JavaScript.
 
 The imported image will be processed using a configured pipeline and the import will resolve into a
-JavaScript object containg information about the generated formats.
+JavaScript object containing information about the generated formats.
 
-The advantage of using a loader over the CLI is that only images that are explictly imported are
-processed and appropriatly bundled along with other assets.
+The advantage of using a loader over the CLI is that only images that are explicitly imported are
+processed and appropriately bundled along with other assets.
 
 ```js title="Example using simple mode"
 import image from "path/to/image.jpg";
