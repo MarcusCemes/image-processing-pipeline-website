@@ -25,14 +25,12 @@ Here is an example of a re-usable image component that accepts a SimpleExport ob
 <TabItem value="js">
 
 
-```jsx title="image.js"
-import React from "react";
-
+```jsx title="picture.js"
 /**
- * A re-usable image component.
+ * A reusable picture component.
  * @type {React.FC<{ image: import("@ipp/webpack").SimpleExport; alt: string } & JSX.IntrinsicElements["picture"]>}
  */
-export const Image = ({ alt, image, className, ...rest }) => (
+export const Picture = ({ alt, image, className, ...rest }) => (
   <picture {...rest}>
     {Object.entries(image.srcset).map(([mime, srcSet]) => (
       <source key={mime} type={mime} srcSet={srcSet} />
@@ -43,22 +41,21 @@ export const Image = ({ alt, image, className, ...rest }) => (
 ```
 
 ```jsx title="page.js"
-import { Image } from "image.tsx";
+import { Picture } from "image.tsx";
 import image from "path/to/image.jpg";
 
-export default () => <Image data={image} alt="Some mountains" />;
+export default () => <Picture image={image} alt="Some mountains" />;
 ```
 
 </TabItem>
 <TabItem value="ts">
 
 
-```tsx title="image.tsx"
-import React from "react";
+```tsx title="picture.tsx"
 import { SimpleExport } from "@ipp/webpack";
 
-/** A re-usable image component */
-export const Image: React.FC<
+/** A reusable picture component. */
+export const Picture: React.FC<
   { image: SimpleExport; alt: string } & JSX.IntrinsicElements["picture"]
 > = ({ alt, image, className, ...rest }) => (
   <picture {...rest}>
@@ -71,10 +68,10 @@ export const Image: React.FC<
 ```
 
 ```tsx title="page.tsx"
-import { Image } from "image.tsx";
+import { Picture } from "picture.tsx";
 import image from "path/to/image.jpg";
 
-const Page: React.FC = () => <Image data={image} alt="Some mountains" />;
+const Page: React.FC = () => <Picture image={image} alt="Some mountains" />;
 export default Page;
 ```
 
@@ -107,7 +104,7 @@ Here is an example of a basic Vue picture component for SimpleExport (rough exam
     },
     computed: {
       src() {
-        return this.image?.src || "";
+        return this.image ? this.image.src : "";
       },
       sources() {
         return this.image ? Object.entries(this.image.srcset) : [];
@@ -119,18 +116,17 @@ Here is an example of a basic Vue picture component for SimpleExport (rough exam
 
 ```html title="Page.vue"
 <template>
-  <vue-picture alt="Mountains" v-bind:image="image" />
+  <picture alt="Mountains" v-bind:image="image" />
 </template>
 
 <script>
   import Picture from "./components/Picture.vue";
-
   import image from "path/to/image.jpg";
 
   export default {
     name: "Page",
     components: {
-      "vue-picture": Picture,
+      Picture,
     },
     created() {
       this.image = image;
