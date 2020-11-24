@@ -11,11 +11,26 @@ import TabItem from "@theme/TabItem";
   groupId="typescript"
   defaultValue="ts"
   values={[
+    {label: "JavaScript", value: "js"},
     {label: "TypeScript", value: "ts"},
   ]
 }>
-<TabItem value="ts">
+<TabItem value="js">
 
+```ts title="adapter.js"
+import { executePipeline } from "@ipp/core";
+
+const concurrency = 4;
+
+const pipeline = { ... };
+const image = ...;
+const additionalMetadata = { ... };
+
+const result = await processPipeline(pipeline, image, initialMetadata, concurrency);
+```
+
+</TabItem>
+<TabItem value="ts">
 
 ```ts title="adapter.ts"
 import { executePipeline } from "@ipp/core";
@@ -32,6 +47,5 @@ const result = await processPipeline(pipeline, image, initialMetadata, concurren
 
 </TabItem>
 </Tabs>
-
 
 <WIP centre spacing="12" />
