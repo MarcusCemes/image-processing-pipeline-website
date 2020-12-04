@@ -1,3 +1,4 @@
+import { Box, LightMode, theme, ThemeProvider, Tooltip } from "@chakra-ui/core";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import clsx from "clsx";
@@ -100,13 +101,34 @@ const MotivationButton = styled(ButtonLink)`
 `;
 
 const Description: React.FC = () => (
-  <div className={styles.descriptionWrapper}>
-    <div className={styles.description}>
-      Image Processing Pipeline is a <strong>platform agnostic</strong> modular collection of
-      packages that glues together some of the best image libraries using an easily configurable
-      pipeline
+  // Chakra needs the theme provider to display correctly
+  <ThemeProvider theme={theme}>
+    <div className={styles.descriptionWrapper}>
+      <div className={styles.description}>
+        Image Processing Pipeline is a{" "}
+        <Tooltip
+          aria-label="explanation"
+          label="It works on Windows, macOS and Linux"
+          placement="top"
+        >
+          <Box as="span" fontWeight="bold" cursor="help">
+            platform agnostic
+          </Box>
+        </Tooltip>{" "}
+        <Tooltip aria-label="explanation" label="Only import what you need" placement="top">
+          <Box as="span" textDecoration="underline dotted" cursor="help">
+            modular collection
+          </Box>
+        </Tooltip>{" "}
+        of packages that glues together some of the best image libraries using an easily{" "}
+        <Tooltip aria-label="explanation" label="A declarative YAML file, no code needed!">
+          <Box as="span" textDecoration="underline dotted" cursor="help">
+            configurable pipeline
+          </Box>
+        </Tooltip>
+      </div>
     </div>
-  </div>
+  </ThemeProvider>
 );
 
 const About: React.FC = () => (

@@ -3,12 +3,6 @@ id: pipeline
 title: Pipeline
 ---
 
-<!-- prettier-ignore-start -->
-:::caution
-This section has been moved from the old documentation and may not be up to date.
-:::
-<!-- prettier-ignore-end -->
-
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
@@ -18,34 +12,37 @@ The processing pipeline as at the heart of IPP. It provides a flexible way to co
 treatment process to your particular needs, whether you only wish to compress images or make a full
 set of breakpoint-resized images.
 
-To understand the pipeline, think of it as a set of interconnected pipes. Every pipe serves a
-different purpose, and can modify the flow in some way. In IPP, the source image flows into the
-start of the pipeline, passing in order through connected pipes as quickly as possible. Each pipe
-can apply a transformation to the image, such as resizing it. The next pipe will then receive this
-new image buffer.
+To understand the pipeline, think of it as a tree-like structure of interconnetced pipes. Each
+pipeline as an entry point, through which the source image passes through. As it goes through each
+pipe, the image can be transformed in some way, such as being resized or converted into a different
+codec. The next pipe will then recieve a copy of the new image.
 
 <!-- prettier-ignore-start -->
 :::info
-Each pipe can only have one input, but multiple outputs. A copy of the image will be sent to each output. Therefore the network looks more like tree than a pipeline.
+Each pipe can only have one input, but multiple outputs.
 :::
 <!-- prettier-ignore-end -->
 
-At different points you can tap into the pipeline to "leak out" a copy of the image buffer, and save
+At different points you can tap into the pipeline to "leak out" a copy of the image buffer and save
 it to a file. This lets you save the result of a pipe and is generally what you would want to do at
-the very end of the pipeline.
+the very end of the pipeline (otherwise the processing happens for nothing!).
 
 ### Image metadata
 
-As well as the image buffer that contains the binary image data, pipes can also receive and return
-_metadata_, which is stored in a key-value object.
+The actual object that passes through the pipeline is a DataObject. It is an binary image buffer
+accompanied with a _metadata_ object (a key-value map) that contains information about the image,
+such as the dimensions and format.
 
-The metadata object is passed from one pipe to the next, allowing each pipe to read important
-information such as the image buffer's dimensions, and write additional information that gets passed
-on.
+This makes it easy for each pipe to inspect the metadata, and modify it as needed along with the
+image buffer. For example, if the pipe was to convert the image to a different format, it should
+also update the `format` fieldsin the metadata to reflect this change.
 
-Metadata can then be referenced when saving images or when adding metadata fields to the manifest
-file. This allows you to name the output formats based on parameters such as the breakpoints or
-image hash, and map specific values to the manifest.
+Don't worry, this is handled by developer and not the end user. The metadat object _is_ still useful
+for you, however. For example, when saving an image (or generating the manifest), you may use
+metadata values to dynamically generate the file name (or extract useful information about the
+format).
+
+We'll touch more on this later.
 
 ## An example pipeline
 
@@ -61,7 +58,6 @@ how you might define one:
   ]
 }>
 <TabItem value="yaml">
-
 
 ```yaml title=".ipprc.yml"
 pipeline:
@@ -79,7 +75,6 @@ pipeline:
 
 </TabItem>
 <TabItem value="json">
-
 
 ```json title=".ipprc.json"
 {
@@ -109,64 +104,71 @@ pipeline:
 </TabItem>
 </Tabs>
 
-
 <!-- prettier-ignore-start -->
 :::tip
-Both YAML and JSON formats are supported, we recommend using YAML, as it has a more concise and easier to read syntax.
+Both YAML and JSON formats are supported, we recommend using YAML, as it has a more concise and
+easier to read syntax.
 :::
 <!-- prettier-ignore-end -->
 
 If we provide a sufficiently large image file called parrot.jpg to the above pipeline, this process
-should yield two outputs, parrot-1280.jpg and parrot-1280.webp.
-
-Every **pipeline chunk** is an array of pipes. The root pipeline property defines the entry point,
-or the very first pipes to send the source image to. Every pipe may then specify another pipeline
-chunk under the then property.This allows you to chain pipes together to do really useful
-transformations.
-
-Here, each source image will flow into the resize pipe, where it gets reduced to 1280 pixels in
-width. This gets immediately saved to a file, called `[originalName][ext]`, before flowing into a
-convert pipe that creates a WebP format and also saves it to a file with the same name.
+should yield two outputs, parrot-1280.jpg and parrot-1280.webp. Notice that we used _template
+literals_ (using square brackets) to dynamically generate the filename using the metadata.
 
 <!-- prettier-ignore-start -->
-:::note
-This is a basic setup, where we create a WebP image from an "inferior" JPEG image. For a better and more complete example, see the configuration documentation.
+:::info
+It can be hard to see what metadata is available, there is no solution for this yet. Check the
+reference for each pipe to see what metadata it provides. By default, basic properties such as
+`width`, `height`, `format`, `hash`, `ext` and `name` are always available.
 :::
 <!-- prettier-ignore-end -->
 
+Every **pipeline chunk** is an _array of pipes_. The pipeline property of the configuration file
+defines the entry point, the first pipes to receive the source image. Consecutive pipes can then be
+chained after each pipe using the `then` property to cascade transformations.
+
+Here, each source image will flow into the resize pipe, where they get reduced to 1280 pixels in
+width, before being saved to a file called `[originalName][ext]`. As well as the saved file, the
+image object also then is passed to a convert pipe that creates a WebP variant, and saves that using
+the same name. The use of template literals ensures that a unique name is generated for each
+variant, as WebP uses a different file extension (.webp).
+
 ### Metadata expansions
 
-To be able to dynamically create file names, IPP supports a **metadata expansions**. Depending on
-the environment you come from, you may also know them as template literals or template expansions.
+To be able to dynamically create file names, IPP supports a **template literals** (you may also know
+this concept as template expansions). The square bracket notation tells IPP to replace that item
+with its corresponding metadata value when the file is being saved. The text inside of the brackets
+is used as the **key** for the metadata object.
 
-The square bracket notation tells IPP to replace that value at the very end, when all metadata such
-as the resulting image's dimensions are known. The text inside of the brackets is used as the
-**key** for the metadata object. It may also contain a selector such as `:8` at the end, to limit
-the length of the metadata object's value. This is especially useful for hashes, which can be over
-256 characters long!
+Accessing metadata is done in three parts, using a **selector**, a **key** and a **limit**.
 
-For example, `[source.name]` would be replaced by the item `source.name` in the metadata object.
-This particular value is always set at the start, containing the filename (without the extension) of
-the original source image.
+The selector is used to select the context, like a folder. For example, when the image is first
+loaded, most basic metadata (such as the name, size) is saved under the `source` selector, **so that
+it is not overwritten during the pipeline** (as the size may change, for example).
 
-The metadata object is split up into different "categories", like folders on a disk. A **selector**
-may be used to select the category to extract the metadata value from. In the example above, the
-name is given the `source` selector. The `source` selector is special, as it contains metadata that
-was copied over from the source image at the very beginning of the pipeline, such as the source
-width, height, name, ...
+The key is used to select the actual metadata item. `name` usually refers to the filename including
+the extension.
 
-```text title="Example save string"
-# Example resulting filename: parrot-7a45ba26.jpg
-[source.name]-[hash:8][ext]
+The limit it used to limit the length of the replaced value, this is useful for limiting hashes
+which can be over 256 charcaters long!
+
+Let's see a complete example.
+
+```yaml
+pipeline:
+  ...
+  save: "[source.name]-[source.hash:8][ext]""
 ```
 
-To learn more about the metadata object, visit the architecture documentation.
+This could produce a filename such as "parrot-4e9004e6.jpeg", where the original file was called
+"parrot.jpeg" and the MD5 hash of the original file was "4e9004e6fe9d3ffd7933e5e4f9dd534f".
+
+If you wish to learn more about the metadata object, see the
+[architecture](../concept/architecture.mdx) page.
 
 ### Connecting more pipes
 
-As shown in the above example, the output from a pipe may be chained to another pipe using the
-`then` property. Image buffers and metadata will keep flowing asynchronously until all available
-pipes have been used. The pipeline is a repeated nested structure, each then property is like
-starting a new pipeline.
+As touched on in the example, pipes may be chained using the `then` property. IPP will correctly
+orchestrate the process to make sure that each pipe is able to carry out its task correctly.
 
-To find out what other pipes are available, visit the pipe documentation.
+To find out what other pipes are available, visit the [pipe](../concept/pipes.mdx) documentation.

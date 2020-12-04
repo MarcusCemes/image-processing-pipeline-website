@@ -4,13 +4,6 @@ title: Introduction
 slug: /
 ---
 
-<!-- prettier-ignore-start -->
-:::note
-This documentation is an active work in progress. There's some stuff missing. In the meantime, you
-may find what you're looking for at the [old documentation](https://ipp.mastermovies.uk).
-:::
-<!-- prettier-ignore-end -->
-
 Image Processing Pipeline (which will be abbreviated to IPP from here) is a multi-purpose
 platform-agnostic image processing tool. It is flexible enough to be used as a batch-style script to
 resize a set of images, or integrated into a more complex backend system that needs to conduct

@@ -41,9 +41,14 @@ const DropdownItem = styled.span`
   cursor: pointer;
 `;
 
+const Title = styled.h1`
+  font-size: 2.5rem;
+  margin-bottom: 0.8em;
+`;
+
 const Header: React.FC = () => (
   <>
-    <h1>Interactive Demo</h1>
+    <Title>Demo</Title>
     <p>
       Play around with the buttons below to see some examples of generated images. Each image is
       from a high-quality source generously provided by{" "}

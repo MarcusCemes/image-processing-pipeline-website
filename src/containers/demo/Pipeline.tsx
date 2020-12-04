@@ -74,7 +74,7 @@ const CentredContainer = styled(Container)`
   flex-direction: column;
   align-items: center;
 
-  padding-bottom: 8em;
+  margin-bottom: 4em;
 `;
 
 const ControlContainer = styled.div`

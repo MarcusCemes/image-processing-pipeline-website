@@ -100,11 +100,13 @@ const StyledImageInfo = styled.div`
   }
 `;
 
-const ImageInfo: React.FC<{ preview: PreviewData }> = ({ preview }) => {
+const ImageInfo: React.FC<{ preview?: PreviewData }> = ({ preview }) => {
   const [size, setSize] = useState<number>();
   const [originalSize, setOriginalSize] = useState<number>();
 
   useEffect(() => {
+    if (!preview) return;
+
     setSize(void 0);
     setOriginalSize(void 0);
 
@@ -136,12 +138,18 @@ const ImageInfo: React.FC<{ preview: PreviewData }> = ({ preview }) => {
 
   return (
     <StyledImageInfo>
-      <span>{preview.format.toUpperCase()}</span>
-      <span>
-        {preview.width}×{preview.height}
-      </span>
-      {size && <span>{formatBytes(size)}</span>}
-      {reduction && <span>{formattedReduction}</span>}
+      {preview ? (
+        <>
+          <span>{preview.format.toUpperCase()}</span>
+          <span>
+            {preview.width}×{preview.height}
+          </span>
+          {size && <span>{formatBytes(size)}</span>}
+          {reduction && <span>{formattedReduction}</span>}
+        </>
+      ) : (
+        <>Information will be shown here</>
+      )}
     </StyledImageInfo>
   );
 };
@@ -197,7 +205,7 @@ export const Preview: React.FC<{ preview?: PreviewData }> = ({ preview }) => {
             <Spinner />
           </DelayedOverlay>
         </ImageContainer>
-        {typeof data !== "string" && <ImageInfo preview={data} />}
+        <ImageInfo preview={typeof data !== "string" ? data : undefined} />
       </PreviewContainer>
     </DemoItem>
   );

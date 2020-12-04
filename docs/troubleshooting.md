@@ -108,11 +108,22 @@ packageExtensions:
       "@ipp/primitive": "^1.0.0"
 ```
 
+### Invalid hook call. Hooks can only be called inside of the body of a function component.
+
+IPP uses React and Ink to render the terminal view by default. If you're installing IPP in a project
+that already uses a version of React, there may be a dependency version conflict, especially with
+new versions of React. The npm package manager is not able install two different versions of a
+dependency.
+
+Either run IPP using the `--text` flag to use a simple text renderer instead, or try downgrading
+your React version to one that is supported by Ink.
+
 ## Found another problem?
 
-If you think it's a bug, open a new issue at out GitHub repository.
+If you think it's a bug, open a new issue at out [GitHub repository][repo].
 
 [ink]: https://github.com/vadimdemedes/ink
 [python]: https://python.org
 [go]: https://golang.org/
 [node-gyp]: https://github.com/nodejs/node-gyp
+[repo]: https://github.com/MarcusCemes/image-processing-pipeline

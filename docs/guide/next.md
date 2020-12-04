@@ -3,7 +3,7 @@ id: next
 title: What's next
 ---
 
-Congratulations! You have finished the guide!
+🎉 Congratulations! You have finished the guide!
 
 If you are still a little confused by all the IPP terminology, we recommend taking a look at the
 [architecture](../concept/architecture.mdx) to get a better idea of what moving parts there are and
