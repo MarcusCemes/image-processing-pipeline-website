@@ -1,4 +1,4 @@
-import { Box, LightMode, theme, ThemeProvider, Tooltip } from "@chakra-ui/core";
+import { Box, theme, ThemeProvider, Tooltip } from "@chakra-ui/react";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import clsx from "clsx";

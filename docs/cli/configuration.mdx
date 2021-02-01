@@ -93,7 +93,6 @@ $ npm install --save-dev @ipp/compress @ipp/primitive
 }>
 <TabItem value="yaml">
 
-
 ```yaml title="ipprc.yml"
 input: images/
 output: build/static
@@ -151,7 +150,6 @@ pipeline:
 
 </TabItem>
 <TabItem value="json">
-
 
 ```json title="ipprc.json"
 {
@@ -250,7 +248,6 @@ pipeline:
 </TabItem>
 </Tabs>
 
-
 ### Breaking it down
 
 This configuration will do things. Firstly, it will generate four different sizes, labelled _sm_,
@@ -299,7 +296,6 @@ schema][config-schema] or [TypeScript interfaces][config-typings].
 <TabItem value="table">
 <FormatTable centre fullWidth label="The Configuration object" top="2em">
 
-
 | key         | type              | description                                                      |
 | :---------- | :---------------- | :--------------------------------------------------------------- |
 | input       | string _or_ array | The path to an image, or a folder containing images _(required)_ |
@@ -313,7 +309,6 @@ schema][config-schema] or [TypeScript interfaces][config-typings].
 </FormatTable>
 </TabItem>
 <TabItem value="typescript">
-
 
 ```typescript title="Config interface"
 interface Config {
@@ -344,7 +339,6 @@ deleted with no additional checks in place. Use with care.
 </TabItem>
 </Tabs>
 
-
 ## Manifest
 
 <Tabs
@@ -358,7 +352,6 @@ deleted with no additional checks in place. Use with care.
 <TabItem value="table">
 <FormatTable centre fullWidth label="The Manifest object" top="2em">
 
-
 | key    | type   | description                       |
 | :----- | :----- | :-------------------------------- |
 | source | object | Per-image exported metadata keys  |
@@ -367,7 +360,6 @@ deleted with no additional checks in place. Use with care.
 </FormatTable>
 </TabItem>
 <TabItem value="typescript">
-
 
 ```typescript title="Manifest interface"
 interface ManifestMappings {
@@ -378,7 +370,6 @@ interface ManifestMappings {
 
 </TabItem>
 </Tabs>
-
 
 The manifest property lets you select which metadata values you would like to include in the
 manifest file, essentially mapping metadata to new property names in the manifest.
@@ -425,7 +416,6 @@ more about the [architecture](../concept/architecture.mdx).
 <TabItem value="table">
 <FormatTable centre fullWidth label="The Pipe object" top="2em">
 
-
 | key     | type                             | description                                   |
 | :------ | :------------------------------- | :-------------------------------------------- |
 | pipe    | string _or_ object _or_ function | Per-image exported metadata keys _(required)_ |
@@ -436,7 +426,6 @@ more about the [architecture](../concept/architecture.mdx).
 </FormatTable>
 </TabItem>
 <TabItem value="typescript">
-
 
 ```typescript
 interface PipelineBranch<O = any> {
@@ -449,7 +438,6 @@ interface PipelineBranch<O = any> {
 
 </TabItem>
 </Tabs>
-
 
 ### The pipe property
 

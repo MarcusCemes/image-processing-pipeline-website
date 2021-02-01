@@ -24,7 +24,6 @@ values={[
 >
 <TabItem value="es">
 
-
 ```js
 import image from "path/to/image.jpg";
 ```
@@ -32,14 +31,12 @@ import image from "path/to/image.jpg";
 </TabItem>
 <TabItem value="cjs">
 
-
 ```js
 const image = require("path/to/image.jpg");
 ```
 
 </TabItem>
 </Tabs>
-
 
 When you import an image, the loader will transform that image behind the scenes by processing it
 with IPP using the configured pipeline, saving each generated format along with other bundled
@@ -61,7 +58,6 @@ the URL of each format.
 <TabItem value="table">
 <FormatTable centre fullWidth label="The Options object" top="2em">
 
-
 | key        | type    | description                                                                   |
 | :--------- | :------ | :---------------------------------------------------------------------------- |
 | pipeline   | object  | The pipeline used to process images with _(required)_                         |
@@ -73,7 +69,6 @@ the URL of each format.
 </FormatTable>
 </TabItem>
 <TabItem value="typescript">
-
 
 ```typescript title="Loader options"
 interface Options {
@@ -87,7 +82,6 @@ interface Options {
 
 </TabItem>
 </Tabs>
-
 
 ## Import mode
 

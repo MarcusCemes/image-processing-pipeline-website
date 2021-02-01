@@ -1,5 +1,5 @@
+import { AnimatePresence, motion, MotionProps } from "framer-motion";
 import React, { useEffect, useState } from "react";
-import { CSSTransition, TransitionGroup } from "react-transition-group";
 import styled from "styled-components";
 import { DelayedOverlay, Spinner } from "../../components/spinner";
 import { loadImage } from "./image";
@@ -15,7 +15,7 @@ export interface PreviewData {
   format: string;
 }
 
-const Image = styled.img`
+const Image = styled(motion.img)`
   position: absolute;
   top: 0;
   left: 0;
@@ -23,26 +23,9 @@ const Image = styled.img`
   height: 100%;
 
   object-fit: cover;
-  z-index: 2;
-
-  &.fade-enter {
-    opacity: 0;
-  }
-  &.fade-enter-active {
-    opacity: 1;
-    transition: opacity 200ms cubic-bezier(0.61, 1, 0.88, 1);
-  }
-  &.fade-exit {
-    opacity: 1;
-  }
-  &.fade-exit-active {
-    opacity: 0;
-    transition: opacity 200ms cubic-bezier(0.12, 0, 0.39, 0);
-    z-index: 1;
-  }
 `;
 
-const ImageText = styled.div`
+const ImageText = styled(motion.div)`
   position: absolute;
   top: 0;
   left: 0;
@@ -187,19 +170,26 @@ export const Preview: React.FC<{ preview?: PreviewData }> = ({ preview }) => {
     };
   }, [preview]);
 
+  const animateProps: MotionProps = {
+    initial: { opacity: 0 },
+    animate: { opacity: 1 },
+    exit: { opacity: 0, transition: { delay: 0.15 } },
+    transition: { duration: 0.15 },
+  };
+
   return (
     <DemoItem>
       <PreviewContainer>
         <ImageContainer>
-          <TransitionGroup>
-            <CSSTransition
-              key={typeof data === "string" ? data : data.src}
-              timeout={{ appear: 200, enter: 200, exit: 400 }}
-              classNames="fade"
-            >
-              {typeof data === "string" ? <ImageText>{data}</ImageText> : <Image src={data.src} />}
-            </CSSTransition>
-          </TransitionGroup>
+          <AnimatePresence>
+            {typeof data === "string" ? (
+              <ImageText key="no-fmt" {...animateProps}>
+                {data}
+              </ImageText>
+            ) : (
+              <Image key={data.src} src={data.src} {...animateProps} />
+            )}
+          </AnimatePresence>
 
           <DelayedOverlay active={!loaded}>
             <Spinner />

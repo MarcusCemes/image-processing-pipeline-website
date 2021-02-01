@@ -1,12 +1,8 @@
+import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
-import { CSSTransition } from "react-transition-group";
 import styled from "styled-components";
 
-interface RawOverlayProps {
-  zIndex: number;
-}
-
-const RawOverlay = styled.div<RawOverlayProps>`
+const OverlayElement = styled(motion.div)<{ zIndex: number }>`
   position: absolute;
   top: 0;
   left: 0;
@@ -20,23 +16,6 @@ const RawOverlay = styled.div<RawOverlayProps>`
   background: rgba(255, 255, 255, 0.8);
 
   z-index: ${(props) => props.zIndex};
-
-  &.fade-enter {
-    pointer-events: none;
-    opacity: 0;
-  }
-  &.fade-enter-active {
-    opacity: 1;
-    transition: opacity 0.2s cubic-bezier(0.33, 1, 0.68, 1);
-  }
-  &.fade-exit {
-    opacity: 1;
-  }
-  &.fade-exit-active {
-    pointer-events: none;
-    opacity: 0;
-    transition: opacity 0.2s cubic-bezier(0.32, 0, 0.67, 0);
-  }
 `;
 
 export const Overlay: React.FC<{ active?: boolean; zIndex?: number }> = ({
@@ -44,9 +23,23 @@ export const Overlay: React.FC<{ active?: boolean; zIndex?: number }> = ({
   children,
   zIndex = 50,
 }) => (
-  <CSSTransition in={active} timeout={200} classNames="fade" unmountOnExit>
-    <RawOverlay zIndex={zIndex}>{children}</RawOverlay>
-  </CSSTransition>
+  <AnimatePresence>
+    {active && (
+      <OverlayElement
+        initial="hidden"
+        animate="visible"
+        exit="hidden"
+        variants={{
+          hidden: { opacity: 0, pointerEvents: "none" },
+          visible: { opacity: 1, pointerEvents: "initial" },
+        }}
+        transition={{ duration: 0.15 }}
+        zIndex={zIndex}
+      >
+        {children}
+      </OverlayElement>
+    )}
+  </AnimatePresence>
 );
 
 export const DelayedOverlay: React.FC<{ active?: boolean; timeout?: number; zIndex?: number }> = ({

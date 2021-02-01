@@ -4,6 +4,7 @@ module.exports = {
   url: "https://ipp.vercel.app",
   baseUrl: "/",
   onBrokenLinks: "throw",
+  onBrokenMarkdownLinks: "throw",
   favicon: "img/favicon.ico",
   organizationName: "MarcusCemes", // Usually your GitHub org/user name.
   projectName: "image-processing-pipeline", // Usually your repo name.
@@ -13,7 +14,7 @@ module.exports = {
       title: "Image Processing Pipeline",
       hideOnScroll: true,
       logo: {
-        alt: "Image Processing Pipeline logo",
+        alt: "Project logo",
         src: "img/logo.svg",
       },
       items: [
@@ -110,7 +111,7 @@ module.exports = {
       "@docusaurus/preset-classic",
       {
         docs: {
-          sidebarPath: require.resolve("./sidebar-docs.js"),
+          sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/MarcusCemes/image-processing-pipeline-website/edit/master/",
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
