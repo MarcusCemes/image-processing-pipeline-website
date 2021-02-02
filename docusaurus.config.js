@@ -9,7 +9,7 @@ module.exports = {
   organizationName: "MarcusCemes", // Usually your GitHub org/user name.
   projectName: "image-processing-pipeline", // Usually your repo name.
   themeConfig: {
-    image: "img/social_preview.png",
+    image: "img/social_preview.jpg",
     navbar: {
       title: "Image Processing Pipeline",
       hideOnScroll: true,
