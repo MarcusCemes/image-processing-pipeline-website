@@ -1,12 +1,12 @@
-import { Box, theme, ThemeProvider, Tooltip } from "@chakra-ui/react";
+import { Tooltip } from "@chakra-ui/react";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import styled from "@emotion/styled";
 import Layout from "@theme/Layout";
 import clsx from "clsx";
 import React, { ReactNode } from "react";
 import { AiOutlineFileText } from "react-icons/ai";
 import { GiWarpPipe } from "react-icons/gi";
 import { GrTree } from "react-icons/gr";
-import styled from "styled-components";
 import { FileAnalysis } from "../components/illustrations/FileAnalysis";
 import { NatureOnScreen } from "../components/illustrations/NatureOnScreen";
 import { OnlineConnection } from "../components/illustrations/OnlineConnection";
@@ -100,35 +100,30 @@ const MotivationButton = styled(ButtonLink)`
   margin: 2em 0 0;
 `;
 
+// Separated into individual components due to SSR class problems
+const PlatformAgnostic: React.FC = () => (
+  <Tooltip aria-label="explanation" label="It works on Windows, macOS and Linux" placement="top">
+    <span className={styles.helpBold}>platform agnostic</span>
+  </Tooltip>
+);
+const ModularCollection: React.FC = () => (
+  <Tooltip aria-label="explanation" label="Only import what you need" placement="top">
+    <span className={styles.helpUnderlined}>modular collection</span>
+  </Tooltip>
+);
+const ConfigurablePipeline: React.FC = () => (
+  <Tooltip aria-label="explanation" label="A declarative YAML file, no code needed!">
+    <span className={styles.helpUnderlined}>configurable pipeline</span>
+  </Tooltip>
+);
+
 const Description: React.FC = () => (
-  // Chakra needs the theme provider to display correctly
-  <ThemeProvider theme={theme}>
-    <div className={styles.descriptionWrapper}>
-      <div className={styles.description}>
-        Image Processing Pipeline is a{" "}
-        <Tooltip
-          aria-label="explanation"
-          label="It works on Windows, macOS and Linux"
-          placement="top"
-        >
-          <Box as="span" fontWeight="bold" cursor="help">
-            platform agnostic
-          </Box>
-        </Tooltip>{" "}
-        <Tooltip aria-label="explanation" label="Only import what you need" placement="top">
-          <Box as="span" textDecoration="underline dotted" cursor="help">
-            modular collection
-          </Box>
-        </Tooltip>{" "}
-        of packages that glues together some of the best image libraries using an easily{" "}
-        <Tooltip aria-label="explanation" label="A declarative YAML file, no code needed!">
-          <Box as="span" textDecoration="underline dotted" cursor="help">
-            configurable pipeline
-          </Box>
-        </Tooltip>
-      </div>
+  <div className={styles.descriptionWrapper}>
+    <div className={styles.description}>
+      Image Processing Pipeline is a <PlatformAgnostic /> <ModularCollection /> of packages that
+      glues together some of the best image libraries using an easily <ConfigurablePipeline />.
     </div>
-  </ThemeProvider>
+  </div>
 );
 
 const About: React.FC = () => (

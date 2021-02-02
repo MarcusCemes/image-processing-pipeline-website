@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from "@emotion/styled";
 import { breakpoints, Container } from "../../components/layout";
 
 export const DemoContainer = styled(Container)`

@@ -1,6 +1,6 @@
+import styled from "@emotion/styled";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 
 const OverlayElement = styled(motion.div)<{ zIndex: number }>`
   position: absolute;

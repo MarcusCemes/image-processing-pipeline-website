@@ -1,8 +1,8 @@
-import { Container } from "@site/src/components/layout";
+import styled from "@emotion/styled";
 import CodeBlock from "@theme/CodeBlock";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { AiOutlineDown, AiOutlineRight } from "react-icons/ai";
-import styled from "styled-components";
+import { Container } from "../../components/layout/Container";
 
 type Collapsed = { collapsed: boolean };
 type CollapseDispatch = { setCollapsed: Dispatch<SetStateAction<boolean>> };

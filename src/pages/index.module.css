@@ -54,6 +54,16 @@
   margin-right: 0.6em;
 }
 
+.helpBold {
+  font-weight: bold;
+  cursor: help;
+}
+
+.helpUnderlined {
+  text-decoration: underline dotted;
+  cursor: help;
+}
+
 /* Tablet */
 @media (min-width: 640px) {
   .textSectionLeft,

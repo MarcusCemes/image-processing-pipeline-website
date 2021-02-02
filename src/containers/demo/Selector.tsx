@@ -1,7 +1,7 @@
+import styled from "@emotion/styled";
 import clsx from "clsx";
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { BiChevronRight } from "react-icons/bi";
-import styled from "styled-components";
 import { breakpoints } from "../../components/layout";
 import { Image } from "./image";
 import { DemoItem } from "./Layout";

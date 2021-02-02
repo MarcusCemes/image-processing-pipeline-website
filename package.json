@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "docusaurus start",
-    "build": "docusaurus build",
+    "build": "cross-env USE_SIMPLE_CSS_MINIFIER=true docusaurus build",
     "format": "prettier --write docs src",
     "serve": "docusaurus serve",
     "test": "prettier --check blog docs src"
@@ -17,8 +17,7 @@
     "framer-motion": "^3.2.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-icons": "^4.1.0",
-    "styled-components": "^5.2.1"
+    "react-icons": "^4.1.0"
   },
   "devDependencies": {
     "@docusaurus/core": "2.0.0-alpha.70",
@@ -31,7 +30,7 @@
     "@mdx-js/react": "^1.6.22",
     "@tsconfig/docusaurus": "^1.0.2",
     "@types/react": "^17.0.0",
-    "@types/styled-components": "^5.1.7",
+    "cross-env": "^7.0.3",
     "plugin-analytics": "file:plugins/analytics",
     "plugin-demo": "file:plugins/demo",
     "prettier": "^2.2.1",

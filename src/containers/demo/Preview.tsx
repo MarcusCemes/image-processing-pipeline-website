@@ -1,6 +1,6 @@
+import styled from "@emotion/styled";
 import { AnimatePresence, motion, MotionProps } from "framer-motion";
 import React, { useEffect, useState } from "react";
-import styled from "styled-components";
 import { DelayedOverlay, Spinner } from "../../components/spinner";
 import { loadImage } from "./image";
 import { DemoItem } from "./Layout";

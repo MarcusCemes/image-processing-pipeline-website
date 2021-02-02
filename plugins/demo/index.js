@@ -131,32 +131,47 @@ const pipeline = [
   },
 ];
 
-// Extends the webpack config to support demo image generation
-module.exports = function (_context, _options) {
+/**
+ * @param {import("@docusaurus/types").LoadContext} _context
+ * @returns {import("@docusaurus/types").Plugin<void>}
+ */
+module.exports = function (_context) {
   return {
     name: "plugin-demo",
-    configureWebpack(config, _isServer) {
-      // Exclude the demo folder for any image loaders
 
+    /**
+     * @param {import("webpack").Configuration} config
+     * @param {boolean} _isServer
+     */
+    configureWebpack(config, _isServer) {
       config.module.rules
         .filter((rule) => /jpg/.test(String(rule.test)))
         .forEach((rule) => {
           rule.exclude = /demo/;
         });
 
-      // Add the IPP loader
-      config.module.rules.push({
-        loader: require.resolve("@ipp/webpack"),
-        test: /.(png|jpg|jpeg)$/,
-        options: {
-          devBuild: false,
-          manifest,
-          pipeline,
+      return {
+        mergeStrategy: {
+          "module.rules": "prepend",
         },
-      });
-
-      // Required for some reason by Docusaurus (alpha?)
-      return () => {};
+        module: {
+          rules: [
+            {
+              test: /\.(png|jpe?g)$/i,
+              use: [
+                {
+                  loader: require.resolve("@ipp/webpack"),
+                  options: {
+                    devBuild: false,
+                    manifest,
+                    pipeline,
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      };
     },
   };
 };

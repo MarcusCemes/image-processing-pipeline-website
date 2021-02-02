@@ -1,7 +1,7 @@
 import Link from "@docusaurus/Link";
+import styled from "@emotion/styled";
 import React from "react";
 import { FiChevronsRight } from "react-icons/fi";
-import styled from "styled-components";
 
 export const AlignedButton = styled.button`
   display: inline-flex;
