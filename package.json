@@ -10,31 +10,31 @@
     "test": "prettier --check blog docs src"
   },
   "dependencies": {
-    "@chakra-ui/react": "^1.2.1",
-    "@emotion/react": "^11.1.4",
-    "@emotion/styled": "^11.0.0",
+    "@chakra-ui/react": "^1.3.4",
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.1.5",
     "clsx": "^1.1.1",
-    "framer-motion": "^3.2.1",
+    "framer-motion": "^3.10.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "react-icons": "^4.1.0"
+    "react-icons": "^4.2.0"
   },
   "devDependencies": {
-    "@docusaurus/core": "2.0.0-alpha.70",
-    "@docusaurus/module-type-aliases": "2.0.0-alpha.70",
-    "@docusaurus/preset-classic": "2.0.0-alpha.70",
+    "@docusaurus/core": "2.0.0-alpha.71",
+    "@docusaurus/module-type-aliases": "2.0.0-alpha.71",
+    "@docusaurus/preset-classic": "2.0.0-alpha.71",
     "@ipp/compress": "^1.1.4",
     "@ipp/primitive": "^1.1.4",
     "@ipp/trace": "^1.0.2",
     "@ipp/webpack": "^1.1.5",
     "@mdx-js/react": "^1.6.22",
     "@tsconfig/docusaurus": "^1.0.2",
-    "@types/react": "^17.0.0",
+    "@types/react": "^17.0.3",
     "cross-env": "^7.0.3",
     "plugin-analytics": "file:plugins/analytics",
     "plugin-demo": "file:plugins/demo",
     "prettier": "^2.2.1",
-    "typescript": "^4.1.3"
+    "typescript": "^4.2.3"
   },
   "browserslist": {
     "production": [

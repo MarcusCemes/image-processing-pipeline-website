@@ -26,6 +26,8 @@ that go into more detail. There is a recent movement for providing better online
 may have heard of Progressive Web Apps), and I believe that images play a large role in keeping the
 experience fast and immersive.
 
+<!-- truncate -->
+
 ### A little history
 
 Image Processing Pipeline was created out of a lack of adequate solutions available on the
