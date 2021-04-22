@@ -20,16 +20,17 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
 
-      - name: Cache node_modules 📦
-        uses: actions/cache@v2
+      - name: Cache .pnpm-store 📦
+        uses: actions/cache@v1
         with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-node-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+      - name: Install pnpm 🏗
+        run: npm i -g pnpm
 
       - name: Install dependencies 👨🏻‍💻
-        run: npm ci
+        run: pnpm install
 
       - name: Run tests 👀
         run: npm test
