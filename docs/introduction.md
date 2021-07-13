@@ -1,8 +1,9 @@
 ---
-id: introduction
-title: Introduction
 slug: /
+sidebar_position: 1
 ---
+
+# Introduction
 
 Image Processing Pipeline (which will be abbreviated to IPP from here) is a multi-purpose
 platform-agnostic image processing tool. It is flexible enough to be used as a batch-style script to
@@ -18,11 +19,11 @@ the [guide](guide/prerequisites.mdx). It will take you through the steps to get 
 IPP.
 
 If you are **familiar with web-development tools and workflows**, there is a condensed
-[command line](cli/overview.md) section that aims to provide a brief setup guide for users that are
+[command line](cli/overview.mdx) section that aims to provide a brief setup guide for users that are
 experienced with the npm ecosystem of tools.
 
 If you are **integrating IPP into a front-end project**, we recommend taking a look at the official
-[webpack loader](webpack/overview.md). This allows images to be generated automatically at build
+[webpack loader](webpack/overview.mdx). This allows images to be generated automatically at build
 time, without the need to commit or pre-run the tool yourself.
 
 If you would like to **integrate IPP programmatically into your own codebase**, check out the

@@ -1,8 +1,9 @@
 ---
-id: contributing
-title: Contributing Guidelines
 sidebar_label: Contributing
+sidebar_position: 9
 ---
+
+# Contributing Guidelines
 
 Contributions are what makes the open-source community such an amazing place to learn, inspire, and
 create. Image Processing Pipeline is an open-source project released under the permissive MIT

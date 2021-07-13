@@ -1,6 +1,7 @@
 ---
 id: installation
 title: Installation
+sidebar_position: 2
 ---
 
 The official IPP CLI is installed using [npm][npm] with the `@ipp/cli` package.
@@ -18,7 +19,7 @@ Both types of installation provide the **same functionality**, but are used in d
 <!-- prettier-ignore-start -->
 :::danger Installation problems
 If the installation fails, you may need to either downgrade Node.js or install some additional
-compilers. See the [installation problems](../troubleshooting.md#Installation-problems) section in
+compilers. See the [installation problems](../getting-started/troubleshooting.mdx#Installation-problems) section in
 the troubleshooting guide.
 :::
 <!-- prettier-ignore-end -->
@@ -42,8 +43,8 @@ $ ipp -i input_folder -o output_folder
 
 <!-- prettier-ignore-start -->
 :::note
-The disadvantage of a global installation is the diffuculty of using third-party pipes, such as
-the CompressPipe. If you wish to use more pipes, it is best to set up a projetc installation and
+The disadvantage of a global installation is the difficulty of using third-party pipes, such as
+the CompressPipe. If you wish to use more pipes, it is best to set up a project installation and
 specify them as dependencies.
 :::
 <!-- prettier-ignore-end -->

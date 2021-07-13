@@ -1,35 +1,32 @@
+const lightCodeTheme = require("prism-react-renderer/themes/github");
+const darkCodeTheme = require("prism-react-renderer/themes/dracula");
+
+/** @type {import('@docusaurus/types').DocusaurusConfig} */
 module.exports = {
   title: "Image Processing Pipeline",
   tagline: "An image build orchestrator for the modern web",
   url: "https://ipp.vercel.app",
   baseUrl: "/",
   onBrokenLinks: "throw",
-  onBrokenMarkdownLinks: "throw",
+  onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
-  organizationName: "MarcusCemes", // Usually your GitHub org/user name.
-  projectName: "image-processing-pipeline", // Usually your repo name.
+  organizationName: "MarcusCemes",
+  projectName: "image-processing-pipeline",
   themeConfig: {
-    image: "img/social_preview.jpg",
     navbar: {
       title: "Image Processing Pipeline",
-      hideOnScroll: true,
       logo: {
         alt: "Project logo",
         src: "img/logo.svg",
       },
       items: [
         {
-          to: "docs/",
-          activeBasePath: "docs",
+          type: "doc",
+          docId: "introduction",
+          position: "left",
           label: "Documentation",
-          position: "left",
         },
-        {
-          to: "blog/",
-          activeBasePath: "blog",
-          label: "Blog",
-          position: "left",
-        },
+        { to: "/blog", label: "Blog", position: "left" },
         {
           href: "https://github.com/MarcusCemes/image-processing-pipeline",
           position: "right",
@@ -41,6 +38,7 @@ module.exports = {
     algolia: {
       apiKey: "912e77f3afa7a4189802586da8f1922e",
       indexName: "marcuscemes_image-processing-pipeline",
+      contextualSearch: true,
     },
     footer: {
       style: "light",
@@ -55,15 +53,15 @@ module.exports = {
           items: [
             {
               label: "Blog",
-              to: "blog",
+              to: "/blog",
             },
             {
               label: "Guide",
-              to: "docs/guide",
+              to: "/docs/guide",
             },
             {
               label: "Privacy",
-              to: "privacy",
+              to: "/privacy",
             },
           ],
         },
@@ -72,15 +70,15 @@ module.exports = {
           items: [
             {
               label: "CLI",
-              to: "docs/cli",
+              to: "/docs/cli",
             },
             {
               label: "Webpack",
-              to: "docs/webpack",
+              to: "/docs/webpack",
             },
             {
               label: "Reference",
-              to: "docs/reference/cli",
+              to: "/docs/reference/cli",
             },
           ],
         },
@@ -89,20 +87,24 @@ module.exports = {
           items: [
             {
               label: "Repository",
-              to: "https://github.com/MarcusCemes/image-processing-pipeline",
+              href: "https://github.com/MarcusCemes/image-processing-pipeline",
             },
             {
               label: "Issues",
-              to: "https://github.com/MarcusCemes/image-processing-pipeline/issues",
+              href: "https://github.com/MarcusCemes/image-processing-pipeline/issues",
             },
             {
               label: "Contributing",
-              to: "docs/contributing",
+              to: "/docs/contributing",
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Marcus Cemes - MIT License`,
+      copyright: `Copyright © ${new Date().getFullYear()} Marcus Cemes.`,
+    },
+    prism: {
+      theme: lightCodeTheme,
+      darkTheme: darkCodeTheme,
     },
   },
   plugins: ["plugin-analytics", "plugin-demo"],
@@ -115,6 +117,11 @@ module.exports = {
           editUrl: "https://github.com/MarcusCemes/image-processing-pipeline-website/edit/master/",
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
+        },
+        blog: {
+          showReadingTime: true,
+          editUrl:
+            "https://github.com/MarcusCemes/image-processing-pipeline-website/edit/master/blog/",
         },
         theme: {
           customCss: require.resolve("./src/css/global.css"),

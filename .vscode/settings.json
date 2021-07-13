@@ -1,7 +1,4 @@
 {
   "editor.formatOnSave": true,
-  "editor.rulers": [
-    100
-  ],
-  "cSpell.enabled": true
+  "editor.rulers": [100]
 }
