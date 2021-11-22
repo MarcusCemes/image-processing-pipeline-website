@@ -5,6 +5,12 @@ sidebar_position: 1
 
 # Introduction
 
+<!-- prettier-ignore-start -->
+:::caution Project status
+This project is not currently actively being developed. [Read the blog post](/blog/2021/11/22/future).
+:::
+<!-- prettier-ignore-end -->
+
 Image Processing Pipeline (which will be abbreviated to IPP from here) is a multi-purpose
 platform-agnostic image processing tool. It is flexible enough to be used as a batch-style script to
 resize a set of images, or integrated into a more complex backend system that needs to conduct

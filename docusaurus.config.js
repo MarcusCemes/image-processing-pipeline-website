@@ -13,6 +13,7 @@ module.exports = {
   organizationName: "MarcusCemes",
   projectName: "image-processing-pipeline",
   themeConfig: {
+    image: "/img/social_preview.jpg",
     navbar: {
       title: "Image Processing Pipeline",
       logo: {

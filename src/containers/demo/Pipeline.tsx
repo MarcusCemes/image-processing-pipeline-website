@@ -106,7 +106,12 @@ const SpacedIcon = styled.svg`
 const CodeContainer = styled.div`
   width: 100%;
   max-width: 40em;
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
+  & > div {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    margin-bottom: 0;
+    overflow: hidden;
+  }
 `;
 
 const Collapser: React.FC<Collapsed & CollapseDispatch> = ({ collapsed, setCollapsed }) => (

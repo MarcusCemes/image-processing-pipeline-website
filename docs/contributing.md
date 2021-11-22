@@ -5,6 +5,12 @@ sidebar_position: 9
 
 # Contributing Guidelines
 
+<!-- prettier-ignore-start -->
+:::caution Project status
+This project is not currently actively being developed.
+:::
+<!-- prettier-ignore-end -->
+
 Contributions are what makes the open-source community such an amazing place to learn, inspire, and
 create. Image Processing Pipeline is an open-source project released under the permissive MIT
 license. Any contributions you make will benefit everybody else and are greatly appreciated.
