@@ -32,6 +32,7 @@ If you are **integrating IPP into a front-end project**, we recommend taking a l
 [webpack loader](webpack/overview.mdx). This allows images to be generated automatically at build
 time, without the need to commit or pre-run the tool yourself.
 
-If you would like to **integrate IPP programmatically into your own codebase**, check out the
-[advanced usage](advanced/overview.mdx) section that goes into more detail into the internals of IPP
-and how you can integrate the functions yourself.
+If you would like to **integrate IPP programmatically into your own codebase** (for processing
+images dynamically server-side, for example) check out the [advanced usage](advanced/overview.mdx)
+section that goes into more detail into the internals of IPP and how you can integrate the functions
+yourself.

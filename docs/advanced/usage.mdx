@@ -7,6 +7,9 @@ sidebar_position: 3
 import Tabs from "@theme/Tabs";
 import TabItem from "@theme/TabItem";
 
+The core package exposes an asynchronous function `executePipeline()` that lets you process a
+given pipeline schema on an image buffer. It returns an array of saved formats.
+
 <Tabs
   groupId="typescript"
   defaultValue="ts"
@@ -17,32 +20,46 @@ import TabItem from "@theme/TabItem";
 }>
 <TabItem value="js">
 
-```ts title="adapter.js"
+```js title="function.js"
 import { executePipeline } from "@ipp/core";
 
-const concurrency = 4;
+async function processImage(job) {
+  const pipeline = [{
+    pipe: "resize",
+    options: {
+      resizeOptions: {
+        width: 1280
+      }
+    }
+  }];
 
-const pipeline = { ... };
-const image = ...;
-const additionalMetadata = { ... };
-
-const result = await processPipeline(pipeline, image, initialMetadata, concurrency);
+  const source = await downloadFromBucket(job);
+  const result = await executePipeline(pipeline, source);
+  await uploadToBucket(job, result.formats[0].data.buffer);
+}
 ```
 
 </TabItem>
 <TabItem value="ts">
 
-```ts title="adapter.ts"
+```ts title="function.ts"
 import { executePipeline } from "@ipp/core";
 import { Metadata, Pipeline } fro "@ipp/common";
 
-const concurrency = 4;
+async function processImage(job: Job) {
+  const pipeline: Pipeline = [{
+    pipe: "resize",
+    options: {
+      resizeOptions: {
+        width: 1280
+      }
+    }
+  }];
 
-const pipeline: Pipeline = { ... };
-const image: Buffer = ...;
-const additionalMetadata: Metadata = { ... };
-
-const result = await processPipeline(pipeline, image, initialMetadata, concurrency);
+  const source: Buffer = await downloadFromBucket(job);
+  const result = await executePipeline(pipeline, source);
+  await uploadToBucket(job, result.formats[0].data.buffer);
+}
 ```
 
 </TabItem>
