@@ -37,8 +37,8 @@ module.exports = {
       ],
     },
     algolia: {
-      appId: "BH4D9OD16A",
-      apiKey: "912e77f3afa7a4189802586da8f1922e",
+      appId: "209V3XAFGT",
+      apiKey: "e4111e608186a03df038b6e15ff74c30",
       indexName: "marcuscemes_image-processing-pipeline",
       contextualSearch: true,
     },
