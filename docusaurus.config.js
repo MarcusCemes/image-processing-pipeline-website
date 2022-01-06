@@ -40,7 +40,7 @@ module.exports = {
       appId: "209V3XAFGT",
       apiKey: "7c422f0e76ad401b04bd8eba0a33a0d6",
       indexName: "marcuscemes_image-processing-pipeline",
-      contextualSearch: true,
+      contextualSearch: false, // breaks search for non-versioned sites?
     },
     footer: {
       style: "light",
