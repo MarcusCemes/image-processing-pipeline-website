@@ -16,6 +16,7 @@ module.exports = {
     image: "/img/social_preview.jpg",
     navbar: {
       title: "Image Processing Pipeline",
+      hideOnScroll: true,
       logo: {
         alt: "Project logo",
         src: "img/logo.svg",

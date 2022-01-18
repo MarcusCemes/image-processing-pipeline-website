@@ -1,5 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Quicksand&display=swap");
-
 .hero {
   position: relative;
   padding: 15vh 0 10vh;
@@ -8,23 +6,19 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  font-family: Gordita;
 }
 
 .title {
   margin-bottom: 0.2em;
   font-size: 4.5em;
   user-select: none;
-  font-family: "Quicksand", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .subtitle {
   font-size: 1.5em;
   user-select: none;
-  font-family: "Quicksand", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
-    Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-    "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .buttons {

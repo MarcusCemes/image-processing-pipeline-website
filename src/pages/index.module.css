@@ -1,5 +1,7 @@
 .main {
   margin-bottom: 4em;
+  font-family: Gordita;
+  line-height: 1.75rem;
 }
 
 .descriptionWrapper {
@@ -11,7 +13,7 @@
 }
 .description {
   position: relative;
-  max-width: 40em;
+  max-width: 45em;
   opacity: 0.6;
   text-align: center;
 }
