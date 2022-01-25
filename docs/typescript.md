@@ -1,8 +1,8 @@
-# Typescript
+# TypeScript
 
 Image Processing Pipeline is written in [TypeScript][typescript], a typed super-set of JavaScript that has slowly been embraced by the ecosystem, and ships with first-class type declaration files.
 
-If you use TypeScript, you can integrate the library and benefit from the increased type safety. If you prefer to work with vanilla JavaScript, you can still benefit from automatic type completion and hints by using a modern editor such as [VS Code][vscode].
+If you use TypeScript, you can integrate the library and benefit from the increased type safety. If you prefer to work with vanilla JavaScript, you can still benefit from automatic type completion and hints by using a modern editor such as [Visual Studio Code][vscode].
 
 ## Types in this documentation
 
