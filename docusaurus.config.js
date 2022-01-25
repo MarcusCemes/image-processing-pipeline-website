@@ -73,15 +73,15 @@ module.exports = {
           items: [
             {
               label: "CLI",
-              to: "/docs/cli",
+              to: "/docs/integrations/cli",
             },
             {
               label: "Webpack",
-              to: "/docs/webpack",
+              to: "/docs/integrations/webpack",
             },
             {
-              label: "Reference",
-              to: "/docs/reference/cli",
+              label: "Programmatic",
+              to: "/docs/integrations/programmatic",
             },
           ],
         },
@@ -95,10 +95,6 @@ module.exports = {
             {
               label: "Issues",
               href: "https://github.com/MarcusCemes/image-processing-pipeline/issues",
-            },
-            {
-              label: "Contributing",
-              to: "/docs/contributing",
             },
           ],
         },
@@ -117,7 +113,8 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve("./sidebars.js"),
-          editUrl: "https://github.com/MarcusCemes/image-processing-pipeline-website/edit/master/",
+          editUrl:
+            "https://github.com/MarcusCemes/image-processing-pipeline-website/edit/master/",
           showLastUpdateTime: true,
           showLastUpdateAuthor: true,
         },
