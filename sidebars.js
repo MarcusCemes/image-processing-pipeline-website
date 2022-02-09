@@ -22,7 +22,7 @@ module.exports = {
         type: "doc",
         id: "guide/introduction",
       },
-      items: ["guide/next"],
+      items: ["guide/installation", "guide/usage", "guide/next"],
     },
     {
       type: "category",
