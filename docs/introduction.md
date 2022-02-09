@@ -11,6 +11,14 @@ This project is not currently actively being developed. [Read the blog post](/bl
 :::
 <!-- prettier-ignore-end -->
 
+:::info new documentation
+
+The docs are being rewritten for better structure and easier navigation. They are still largely
+incomplete, but may provide more up-to-date information on a particular subject. You can visit the
+[new docs here](https://ipp-next.vercel.app/docs).
+
+:::
+
 Image Processing Pipeline (which will be abbreviated to IPP from here) is a multi-purpose
 platform-agnostic image processing tool. It is flexible enough to be used as a batch-style script to
 resize a set of images, or integrated into a more complex backend system that needs to conduct
