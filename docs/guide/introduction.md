@@ -18,7 +18,7 @@ The CLI is the easiest way to get started with IPP, however, there are also load
 
 Image Processing Pipeline uses [Node.js](https://nodejs.org/). If you are a web developer then you're probably already familiar with the runtime and bundled packaged manager npm. If not, it's very easy to install (and easy to remove once you're finished) and gives you access to a large number of web development tools.
 
-If you already have Node.js, you may continue to the [next page](./installation).
+If you already have Node.js, you may continue to the [next page](./installation.md).
 
 Installing Node.js is as simple as a few clicks and it comes with npm (Node Package Manager), the easiest way to add IPP to your system or your project.
 
