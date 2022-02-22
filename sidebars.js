@@ -47,7 +47,11 @@ module.exports = {
         title: "Cookbook",
         slug: "/cookbook",
       },
-      items: ["cookbook/frontend", "cookbook/serverless"],
+      items: [
+        "cookbook/frontend",
+        "cookbook/serverless",
+        "cookbook/creating-a-pipe",
+      ],
     },
     {
       type: "category",

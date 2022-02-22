@@ -90,4 +90,4 @@ This is especially good for larger domains with a lot of separate services that 
 - Those proprietary solutions also offer CDN image caching
 
 [libvips]: https://github.com/libvips/libvips
-[sharp]: https://sharp.pixelplumbing.com/
+[sharp]: https://github.com/lovell/sharp
