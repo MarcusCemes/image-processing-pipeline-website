@@ -4,7 +4,9 @@ import useThemeContext from "@theme/hooks/useThemeContext";
 import React, { PropsWithChildren, ReactElement, useLayoutEffect } from "react";
 
 /** Custom layout extensions */
-export default function LayoutProviders({ children }: PropsWithChildren<{}>): ReactElement {
+export default function LayoutProviders({
+  children,
+}: PropsWithChildren<{}>): ReactElement {
   return (
     <OriginalLayoutProviders>
       <ThemeSync />

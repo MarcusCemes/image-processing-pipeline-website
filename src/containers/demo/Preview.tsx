@@ -116,7 +116,9 @@ const ImageInfo: React.FC<{ preview?: PreviewData }> = ({ preview }) => {
     };
   }, [preview]);
 
-  const reduction = (size && originalSize && Math.floor((1 - size / originalSize) * 100)) || null;
+  const reduction =
+    (size && originalSize && Math.floor((1 - size / originalSize) * 100)) ||
+    null;
   const formattedReduction = (reduction && `${reduction}% smaller`) || null;
 
   return (

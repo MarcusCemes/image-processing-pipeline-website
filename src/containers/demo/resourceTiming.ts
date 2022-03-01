@@ -40,6 +40,8 @@ function round(number: number, decimals = 0): number {
 
 function isResourceTiming(x: unknown): x is PerformanceResourceTiming {
   return (
-    typeof x === "object" && x !== null && (x as PerformanceResourceTiming).entryType === "resource"
+    typeof x === "object" &&
+    x !== null &&
+    (x as PerformanceResourceTiming).entryType === "resource"
   );
 }

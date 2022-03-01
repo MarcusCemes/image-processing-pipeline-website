@@ -50,8 +50,8 @@ const Header: React.FC = () => (
   <>
     <Title>Demo</Title>
     <p>
-      Play around with the buttons below to see some examples of generated images. Each image is
-      from a high-quality source generously provided by{" "}
+      Play around with the buttons below to see some examples of generated
+      images. Each image is from a high-quality source generously provided by{" "}
       <a target="_blank" href="https://unsplash.com/">
         Unsplash
       </a>
@@ -62,21 +62,32 @@ const Header: React.FC = () => (
 
 const Footer: React.FC = () => (
   <p>
-    An ideal pattern would be to <strong>embed a tiny SVG preview to act as a placeholder</strong>{" "}
-    until the higher-quality device-optimised image has been loaded. The preview can then be{" "}
-    <strong>faded out</strong> and replaced. WebP is a superior web image codec, but is not
-    supported by all browsers. That is why a fallback JPEG is also generated.
+    An ideal pattern would be to{" "}
+    <strong>embed a tiny SVG preview to act as a placeholder</strong> until the
+    higher-quality device-optimised image has been loaded. The preview can then
+    be <strong>faded out</strong> and replaced. WebP is a superior web image
+    codec, but is not supported by all browsers. That is why a fallback JPEG is
+    also generated.
   </p>
 );
 
 const DropdownButton: React.FC<{
   disabled?: boolean;
-  items: Array<{ text: string; key: string; onClick: () => void; selected?: boolean }>;
+  items: Array<{
+    text: string;
+    key: string;
+    onClick: () => void;
+    selected?: boolean;
+  }>;
   primary?: boolean;
 }> = ({ children, disabled, items, primary = false }) => (
   <div className={clsx("dropdown", { "dropdown--hoverable": !disabled })}>
     <Button
-      className={clsx("button", primary ? "button--primary" : "button--secondary", { disabled })}
+      className={clsx(
+        "button",
+        primary ? "button--primary" : "button--secondary",
+        { disabled }
+      )}
       data-toggle="dropdown"
     >
       {children}
@@ -86,7 +97,10 @@ const DropdownButton: React.FC<{
       {items.map((item) => (
         <li key={item.key}>
           <DropdownItem
-            className={clsx("dropdown__link", item.selected && "dropdown__link--active")}
+            className={clsx(
+              "dropdown__link",
+              item.selected && "dropdown__link--active"
+            )}
             onClick={item.onClick}
           >
             {item.text}
@@ -128,7 +142,10 @@ export const Selector: React.FC<{
           disabled={!selectedImage}
           items={
             selectedImage?.data.f?.map((format) => ({
-              text: format.s === true || format.s === "true" ? "Original" : (format.s as string),
+              text:
+                format.s === true || format.s === "true"
+                  ? "Original"
+                  : (format.s as string),
               key: format.x as string,
               onClick: () =>
                 setPreview({
@@ -141,9 +158,14 @@ export const Selector: React.FC<{
               selected: preview?.src === format.p,
             })) || []
           }
-          primary={selectedImage && (!preview || !findPreviewName(selectedImage, preview.src))}
+          primary={
+            selectedImage &&
+            (!preview || !findPreviewName(selectedImage, preview.src))
+          }
         >
-          {(preview && selectedImage && findPreviewName(selectedImage, preview.src)) ||
+          {(preview &&
+            selectedImage &&
+            findPreviewName(selectedImage, preview.src)) ||
             "Select format"}
         </DropdownButton>
       </ButtonWrapper>

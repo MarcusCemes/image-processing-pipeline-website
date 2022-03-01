@@ -6,7 +6,7 @@ It is a wrapper around the core library, with some CLI-specific utilities, confi
 
 ## Configuration loading
 
-The CLI uses the [cosmiconfig](TODO) library to search for and parse a configuration file. Valid configuration files include:
+The CLI uses the [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) library to search for and parse a configuration file. Valid configuration files include:
 
 - `.ipprc`
 - `.ipprc.yaml` or `.ipprc.json`
@@ -17,7 +17,7 @@ The CLI uses the [cosmiconfig](TODO) library to search for and parse a configura
 
 The CLI will try to process as many jobs in parallel as there are threads on your system. This is achieved by increasing the UV threadpool size that is used to park syncronous jobs, such as invoking libvips from the Sharp library.
 
-Most pipes make use of native code somehow, either through a C interface or by starting a process and reading directly from stdin and stdout. Pipes that are written in Javascript that execute using the native Node.js runtime will not benefit from parallelism unless they explicitly create a new thread for the computationaly intensive work (see the [threads API](TODO)).
+Most pipes make use of native code somehow, either through a C interface or by starting a process and reading directly from stdin and stdout. Pipes that are written in Javascript that execute using the native Node.js runtime will not benefit from parallelism unless they explicitly create a new thread for the computationaly intensive work (see the [worker threads API](https://nodejs.org/api/worker_threads.html)).
 
 ## Manifest generation
 

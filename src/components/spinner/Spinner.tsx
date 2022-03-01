@@ -21,7 +21,9 @@ export const Spinner: React.FC = styled(ImSpinner9)`
   animation: ${spin} 1s linear 0s infinite;
 `;
 
-export const DelayedSpinner: React.FC<{ timeout?: number }> = ({ timeout = 1000 }) => {
+export const DelayedSpinner: React.FC<{ timeout?: number }> = ({
+  timeout = 1000,
+}) => {
   const [active, setActive] = useState(false);
 
   useEffect(() => {

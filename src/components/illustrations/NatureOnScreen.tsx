@@ -1,7 +1,9 @@
 import React from "react";
 import styles from "./styles.module.css";
 
-export const NatureOnScreen: React.FC<JSX.IntrinsicElements["svg"]> = (props) => (
+export const NatureOnScreen: React.FC<JSX.IntrinsicElements["svg"]> = (
+  props
+) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="938.192"
@@ -154,7 +156,12 @@ export const NatureOnScreen: React.FC<JSX.IntrinsicElements["svg"]> = (props) =>
       ry="15.878"
       transform="rotate(-42.766 640.81 653.95)"
     ></ellipse>
-    <circle cx="695.701" cy="390.804" r="22.828" className={styles.fillCurrent}></circle>
+    <circle
+      cx="695.701"
+      cy="390.804"
+      r="22.828"
+      className={styles.fillCurrent}
+    ></circle>
     <path
       fill="#3f3d56"
       d="M864.94 605.754a120.265 120.265 0 01-28.33-17.975c-17.275-14.936-29.82-36.372-30.753-59.539-.896-22.233 8.525-43.134 18.49-62.454q1.881-3.646 3.8-7.271c.487-.923 1.996-.303 1.507.626-10.339 19.62-21.186 40.354-22.167 62.978-1.034 23.847 10.617 46.578 27.955 62.444a117.266 117.266 0 0030.034 19.643"

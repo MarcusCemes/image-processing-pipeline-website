@@ -11,7 +11,11 @@ export const Demo: React.FC = () => {
   return (
     <>
       <DemoContainer>
-        <Selector images={demoImages} preview={preview} setPreview={setPreview} />
+        <Selector
+          images={demoImages}
+          preview={preview}
+          setPreview={setPreview}
+        />
         <Preview preview={preview} />
       </DemoContainer>
       <Pipeline />

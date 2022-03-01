@@ -14,106 +14,606 @@ export const FileAnalysis: React.FC<JSX.IntrinsicElements["svg"]> = (props) => (
       fill="#3f3d56"
       d="M782.009 634.123L524.27 634.123 524.27 632.017 782.39 632.017 782.009 634.123z"
     ></path>
-    <circle cx="6.813" cy="6.814" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="41.302" cy="6.814" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="75.791" cy="6.814" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="110.28" cy="6.814" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="144.769" cy="6.814" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="179.258" cy="6.814" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="213.747" cy="6.814" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="248.236" cy="6.814" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="282.725" cy="6.814" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="317.214" cy="6.814" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="6.813" cy="41.736" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="41.302" cy="41.736" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="75.791" cy="41.736" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="110.28" cy="41.736" r="6.813" className={styles.fillCurrent}></circle>
-    <circle cx="144.769" cy="41.736" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="179.258" cy="41.736" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="213.747" cy="41.736" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="248.236" cy="41.736" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="282.725" cy="41.736" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="317.214" cy="41.736" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="6.813" cy="76.658" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="41.302" cy="76.658" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="75.791" cy="76.658" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="110.28" cy="76.658" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="144.769" cy="76.658" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="179.258" cy="76.658" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="213.747" cy="76.658" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="248.236" cy="76.658" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="282.725" cy="76.658" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="317.214" cy="76.658" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="6.813" cy="111.58" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="41.302" cy="111.58" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="75.791" cy="111.58" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="110.28" cy="111.58" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="144.769" cy="111.58" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="179.258" cy="111.58" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="213.747" cy="111.58" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="248.236" cy="111.58" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="282.725" cy="111.58" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="317.214" cy="111.58" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="6.813" cy="146.502" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="41.302" cy="146.502" r="6.813" className={styles.fillCurrent}></circle>
-    <circle cx="75.791" cy="146.502" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="110.28" cy="146.502" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="144.769" cy="146.502" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="179.258" cy="146.502" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="213.747" cy="146.502" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="248.236" cy="146.502" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="282.725" cy="146.502" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="317.214" cy="146.502" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="6.813" cy="181.424" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="41.302" cy="181.424" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="75.791" cy="181.424" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="110.28" cy="181.424" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="144.769" cy="181.424" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="179.258" cy="181.424" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="213.747" cy="181.424" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="248.236" cy="181.424" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="282.725" cy="181.424" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="317.214" cy="181.424" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="6.813" cy="216.346" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="41.302" cy="216.346" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="75.791" cy="216.346" r="6.813" className={styles.fillCurrent}></circle>
-    <circle cx="110.28" cy="216.346" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="144.769" cy="216.346" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="179.258" cy="216.346" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="213.747" cy="216.346" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="248.236" cy="216.346" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="282.725" cy="216.346" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="317.214" cy="216.346" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="6.813" cy="251.268" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="41.302" cy="251.268" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="75.791" cy="251.268" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="110.28" cy="251.268" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="144.769" cy="251.268" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="179.258" cy="251.268" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="213.747" cy="251.268" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="248.236" cy="251.268" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="282.725" cy="251.268" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="317.214" cy="251.268" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="6.813" cy="286.19" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="41.302" cy="286.19" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="75.791" cy="286.19" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="110.28" cy="286.19" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="144.769" cy="286.19" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="179.258" cy="286.19" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="213.747" cy="286.19" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="248.236" cy="286.19" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="282.725" cy="286.19" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="317.214" cy="286.19" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="6.813" cy="321.112" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="41.302" cy="321.112" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="75.791" cy="321.112" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="110.28" cy="321.112" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="144.769" cy="321.112" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="179.258" cy="321.112" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="213.747" cy="321.112" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="248.236" cy="321.112" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="282.725" cy="321.112" r="6.813" className={styles.fille6e6e6}></circle>
-    <circle cx="317.214" cy="321.112" r="6.813" className={styles.fille6e6e6}></circle>
+    <circle
+      cx="6.813"
+      cy="6.814"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="41.302"
+      cy="6.814"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="75.791"
+      cy="6.814"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="110.28"
+      cy="6.814"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="144.769"
+      cy="6.814"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="179.258"
+      cy="6.814"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="213.747"
+      cy="6.814"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="248.236"
+      cy="6.814"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="282.725"
+      cy="6.814"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="317.214"
+      cy="6.814"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="6.813"
+      cy="41.736"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="41.302"
+      cy="41.736"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="75.791"
+      cy="41.736"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="110.28"
+      cy="41.736"
+      r="6.813"
+      className={styles.fillCurrent}
+    ></circle>
+    <circle
+      cx="144.769"
+      cy="41.736"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="179.258"
+      cy="41.736"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="213.747"
+      cy="41.736"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="248.236"
+      cy="41.736"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="282.725"
+      cy="41.736"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="317.214"
+      cy="41.736"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="6.813"
+      cy="76.658"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="41.302"
+      cy="76.658"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="75.791"
+      cy="76.658"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="110.28"
+      cy="76.658"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="144.769"
+      cy="76.658"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="179.258"
+      cy="76.658"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="213.747"
+      cy="76.658"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="248.236"
+      cy="76.658"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="282.725"
+      cy="76.658"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="317.214"
+      cy="76.658"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="6.813"
+      cy="111.58"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="41.302"
+      cy="111.58"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="75.791"
+      cy="111.58"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="110.28"
+      cy="111.58"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="144.769"
+      cy="111.58"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="179.258"
+      cy="111.58"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="213.747"
+      cy="111.58"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="248.236"
+      cy="111.58"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="282.725"
+      cy="111.58"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="317.214"
+      cy="111.58"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="6.813"
+      cy="146.502"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="41.302"
+      cy="146.502"
+      r="6.813"
+      className={styles.fillCurrent}
+    ></circle>
+    <circle
+      cx="75.791"
+      cy="146.502"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="110.28"
+      cy="146.502"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="144.769"
+      cy="146.502"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="179.258"
+      cy="146.502"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="213.747"
+      cy="146.502"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="248.236"
+      cy="146.502"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="282.725"
+      cy="146.502"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="317.214"
+      cy="146.502"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="6.813"
+      cy="181.424"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="41.302"
+      cy="181.424"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="75.791"
+      cy="181.424"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="110.28"
+      cy="181.424"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="144.769"
+      cy="181.424"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="179.258"
+      cy="181.424"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="213.747"
+      cy="181.424"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="248.236"
+      cy="181.424"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="282.725"
+      cy="181.424"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="317.214"
+      cy="181.424"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="6.813"
+      cy="216.346"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="41.302"
+      cy="216.346"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="75.791"
+      cy="216.346"
+      r="6.813"
+      className={styles.fillCurrent}
+    ></circle>
+    <circle
+      cx="110.28"
+      cy="216.346"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="144.769"
+      cy="216.346"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="179.258"
+      cy="216.346"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="213.747"
+      cy="216.346"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="248.236"
+      cy="216.346"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="282.725"
+      cy="216.346"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="317.214"
+      cy="216.346"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="6.813"
+      cy="251.268"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="41.302"
+      cy="251.268"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="75.791"
+      cy="251.268"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="110.28"
+      cy="251.268"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="144.769"
+      cy="251.268"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="179.258"
+      cy="251.268"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="213.747"
+      cy="251.268"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="248.236"
+      cy="251.268"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="282.725"
+      cy="251.268"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="317.214"
+      cy="251.268"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="6.813"
+      cy="286.19"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="41.302"
+      cy="286.19"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="75.791"
+      cy="286.19"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="110.28"
+      cy="286.19"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="144.769"
+      cy="286.19"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="179.258"
+      cy="286.19"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="213.747"
+      cy="286.19"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="248.236"
+      cy="286.19"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="282.725"
+      cy="286.19"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="317.214"
+      cy="286.19"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="6.813"
+      cy="321.112"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="41.302"
+      cy="321.112"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="75.791"
+      cy="321.112"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="110.28"
+      cy="321.112"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="144.769"
+      cy="321.112"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="179.258"
+      cy="321.112"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="213.747"
+      cy="321.112"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="248.236"
+      cy="321.112"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="282.725"
+      cy="321.112"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
+    <circle
+      cx="317.214"
+      cy="321.112"
+      r="6.813"
+      className={styles.fille6e6e6}
+    ></circle>
     <path
       className={styles.fille6e6e6}
       d="M609.21 193.83a8.614 8.614 0 018.613 8.614v344.56a8.614 8.614 0 01-8.614 8.614H361.988a8.614 8.614 0 01-8.614-8.614v-344.56a8.614 8.614 0 018.614-8.614h247.221"
@@ -153,7 +653,12 @@ export const FileAnalysis: React.FC<JSX.IntrinsicElements["svg"]> = (props) => (
       d="M708.153 194.18a15.29 15.29 0 1115.29-15.292 15.308 15.308 0 01-15.29 15.291zm0-29.126a13.835 13.835 0 1013.834 13.834 13.85 13.85 0 00-13.834-13.834z"
       transform="translate(-208.805 -132.939)"
     ></path>
-    <circle cx="499.348" cy="45.95" r="5.825" className={styles.fillCurrent}></circle>
+    <circle
+      cx="499.348"
+      cy="45.95"
+      r="5.825"
+      className={styles.fillCurrent}
+    ></circle>
     <path
       className={styles.fill3f3d56}
       d="M272.477 356.941L273.884 357.317 242.937 472.845 64.712 472.504 64.715 471.047 241.82 471.387 272.477 356.941z"
@@ -163,7 +668,12 @@ export const FileAnalysis: React.FC<JSX.IntrinsicElements["svg"]> = (props) => (
       d="M258.985 589.395a15.29 15.29 0 11-15.32 15.262 15.308 15.308 0 0115.32-15.262zm-.056 29.126a13.835 13.835 0 10-13.808-13.861 13.85 13.85 0 0013.808 13.86z"
       transform="translate(-208.805 -132.939)"
     ></path>
-    <circle cx="50.15" cy="471.748" r="5.825" className={styles.fillCurrent}></circle>
+    <circle
+      cx="50.15"
+      cy="471.748"
+      r="5.825"
+      className={styles.fillCurrent}
+    ></circle>
     <path
       fill="#ffb8b8"
       d="M616.828 600.594L606.551 600.594 608.386 543.702 635.548 545.17 616.828 600.594z"
@@ -219,7 +729,13 @@ export const FileAnalysis: React.FC<JSX.IntrinsicElements["svg"]> = (props) => (
       d="M875.235 295.893c-7.876-6.534-30.467 1.77-31.924 6.163-10.651 1.451-18.715 7.665-18.715 18.714 6.332 2.595 13.534 2.275 21.319 0 12.41 10.114 13.26 22.827 5.713 37.43l9.285.185 11.51-16.82.55 17.062 21.283-.427v-24.451a51.12 51.12 0 00-5.458-23.42c-3.317-6.444-8.464-10.206-13.563-14.436z"
       transform="translate(-208.805 -132.939)"
     ></path>
-    <ellipse cx="646.611" cy="200.241" fill="#ffb8b8" rx="4.223" ry="5.912"></ellipse>
+    <ellipse
+      cx="646.611"
+      cy="200.241"
+      fill="#ffb8b8"
+      rx="4.223"
+      ry="5.912"
+    ></ellipse>
     <path
       className={styles.fillCurrent}
       d="M823.113 559.928a1.483 1.483 0 011.483 1.483v59.32a1.483 1.483 0 01-1.483 1.483h-42.561a1.483 1.483 0 01-1.483-1.483v-59.32a1.483 1.483 0 011.483-1.483h42.561"

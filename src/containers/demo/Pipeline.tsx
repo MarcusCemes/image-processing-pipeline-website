@@ -108,13 +108,17 @@ const CodeContainer = styled.div`
   max-width: 40em;
 
   & > div {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+      0 10px 10px -5px rgba(0, 0, 0, 0.04);
     margin-bottom: 0;
     overflow: hidden;
   }
 `;
 
-const Collapser: React.FC<Collapsed & CollapseDispatch> = ({ collapsed, setCollapsed }) => (
+const Collapser: React.FC<Collapsed & CollapseDispatch> = ({
+  collapsed,
+  setCollapsed,
+}) => (
   <ControlContainer>
     <Control collapsed={collapsed} onClick={() => setCollapsed(!collapsed)}>
       {collapsed ? "Show" : "Hide"} the pipeline configuration

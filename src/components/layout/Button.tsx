@@ -23,11 +23,9 @@ const DisplacedIcon = styled(FiChevronsRight)`
   margin-left: 0.2em;
 `;
 
-export const ButtonLink: React.FC<{ to: string } & JSX.IntrinsicElements["button"]> = ({
-  children,
-  to,
-  ...rest
-}) => (
+export const ButtonLink: React.FC<
+  { to: string } & JSX.IntrinsicElements["button"]
+> = ({ children, to, ...rest }) => (
   <LinkWithoutDecoration to={to}>
     <AlignedButton {...(rest as any)}>
       {children} <DisplacedIcon />

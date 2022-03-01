@@ -4,7 +4,11 @@ import React from "react";
 import { FiChevronsRight } from "react-icons/fi";
 import styles from "./Hero.module.css";
 
-const Button: React.FC<{ primary?: boolean; href: string }> = ({ children, primary, href }) => (
+const Button: React.FC<{ primary?: boolean; href: string }> = ({
+  children,
+  primary,
+  href,
+}) => (
   <Link to={href}>
     <button
       className={clsx(
@@ -18,7 +22,10 @@ const Button: React.FC<{ primary?: boolean; href: string }> = ({ children, prima
   </Link>
 );
 
-export const Hero: React.FC<{ title: string; subtitle: string }> = ({ title, subtitle }) => (
+export const Hero: React.FC<{ title: string; subtitle: string }> = ({
+  title,
+  subtitle,
+}) => (
   <div className={styles.hero}>
     <span className={styles.title}>{title}</span>
     <span className={styles.subtitle}>{subtitle}</span>

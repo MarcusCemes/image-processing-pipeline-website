@@ -42,7 +42,8 @@ html[data-theme="dark"] .header-github-link:before {
 
 @font-face {
   font-family: "Gordita";
-  src: url("../assets/fonts/Gordita/Gordita-Regular.eot?#iefix") format("embedded-opentype"),
+  src: url("../assets/fonts/Gordita/Gordita-Regular.eot?#iefix")
+      format("embedded-opentype"),
     url("../assets/fonts/Gordita/Gordita-Regular.woff") format("woff"),
     url("../assets/fonts/Gordita/Gordita-Regular.ttf") format("truetype");
   font-style: normal;
@@ -50,7 +51,8 @@ html[data-theme="dark"] .header-github-link:before {
 }
 @font-face {
   font-family: "Gordita";
-  src: url("../assets/fonts/Gordita/Gordita-Thin.eot?#iefix") format("embedded-opentype"),
+  src: url("../assets/fonts/Gordita/Gordita-Thin.eot?#iefix")
+      format("embedded-opentype"),
     url("../assets/fonts/Gordita/Gordita-Thin.woff") format("woff"),
     url("../assets/fonts/Gordita/Gordita-Thin.ttf") format("truetype");
   font-weight: 100;
@@ -59,7 +61,8 @@ html[data-theme="dark"] .header-github-link:before {
 }
 @font-face {
   font-family: "Gordita";
-  src: url("../assets/fonts/Gordita/Gordita-Medium.eot?#iefix") format("embedded-opentype"),
+  src: url("../assets/fonts/Gordita/Gordita-Medium.eot?#iefix")
+      format("embedded-opentype"),
     url("../assets/fonts/Gordita/Gordita-Medium.woff") format("woff"),
     url("../assets/fonts/Gordita/Gordita-Medium.ttf") format("truetype");
   font-weight: 600;
@@ -68,7 +71,8 @@ html[data-theme="dark"] .header-github-link:before {
 }
 @font-face {
   font-family: "Gordita";
-  src: url("../assets/fonts/Gordita/Gordita-Bold.eot?#iefix") format("embedded-opentype"),
+  src: url("../assets/fonts/Gordita/Gordita-Bold.eot?#iefix")
+      format("embedded-opentype"),
     url("../assets/fonts/Gordita/Gordita-Bold.woff") format("woff"),
     url("../assets/fonts/Gordita/Gordita-Bold.ttf") format("truetype");
   font-weight: 700;

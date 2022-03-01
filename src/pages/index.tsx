@@ -28,8 +28,9 @@ const features: Feature[] = [
     image: OnlineConnection,
     description: (
       <>
-        Designed to by usable by anyone. It's modularity makes it possible to be used as a simple
-        command-line tool or with deeper integration with an existing build process.
+        Designed to by usable by anyone. It's modularity makes it possible to be
+        used as a simple command-line tool or with deeper integration with an
+        existing build process.
       </>
     ),
   },
@@ -42,8 +43,8 @@ const features: Feature[] = [
         <a target="_blank" href="https://libvips.github.io/libvips/">
           libvips
         </a>{" "}
-        to get that extra edge. A YAML/JSON pipeline lets you piece together pipes to customise the
-        process.
+        to get that extra edge. A YAML/JSON pipeline lets you piece together
+        pipes to customise the process.
       </>
     ),
   },
@@ -102,7 +103,11 @@ const MotivationButton = styled(ButtonLink)`
 // Separated into individual components due to SSR class problems
 function PlatformAgnostic() {
   return (
-    <Tooltip aria-label="explanation" label="It works on Windows, macOS and Linux" placement="top">
+    <Tooltip
+      aria-label="explanation"
+      label="It works on Windows, macOS and Linux"
+      placement="top"
+    >
       <span className={styles.helpBold}>platform agnostic</span>
     </Tooltip>
   );
@@ -110,7 +115,11 @@ function PlatformAgnostic() {
 
 function ModularCollection() {
   return (
-    <Tooltip aria-label="explanation" label="Only import what you need" placement="top">
+    <Tooltip
+      aria-label="explanation"
+      label="Only import what you need"
+      placement="top"
+    >
       <span className={styles.helpUnderlined}>modular collection</span>
     </Tooltip>
   );
@@ -118,7 +127,10 @@ function ModularCollection() {
 
 function ConfigurablePipeline() {
   return (
-    <Tooltip aria-label="explanation" label="A declarative YAML file, no code needed!">
+    <Tooltip
+      aria-label="explanation"
+      label="A declarative YAML file, no code needed!"
+    >
       <span className={styles.helpUnderlined}>configurable pipeline</span>
     </Tooltip>
   );
@@ -128,8 +140,9 @@ function Description() {
   return (
     <div className={styles.descriptionWrapper}>
       <div className={styles.description}>
-        Image Processing Pipeline is a <PlatformAgnostic /> <ModularCollection /> of packages that
-        glues together some of the best image libraries using an easily <ConfigurablePipeline />.
+        Image Processing Pipeline is a <PlatformAgnostic />{" "}
+        <ModularCollection /> of packages that glues together some of the best
+        image libraries using an easily <ConfigurablePipeline />.
       </div>
     </div>
   );
@@ -142,37 +155,48 @@ function About() {
       <DoubleColumn>
         <p>
           Image Processing Pipeline is a{" "}
-          <strong>harmonious collection of packages that automate the image build process</strong>.
-          Users can define a <i>processing pipeline</i> in a text format that tells IPP what to do
-          with each source image, such as resizing the image, compressing the image or creating
-          different responsive variants. It is fast, non-destructive and focuses on quality.
+          <strong>
+            harmonious collection of packages that automate the image build
+            process
+          </strong>
+          . Users can define a <i>processing pipeline</i> in a text format that
+          tells IPP what to do with each source image, such as resizing the
+          image, compressing the image or creating different responsive
+          variants. It is fast, non-destructive and focuses on quality.
         </p>
 
         <p>
           IPP does not implement any image processing algorithms, it is merely a{" "}
-          <strong>wrapper around existing image libraries</strong>, such as libvips or Michael
-          Fogleman's primitive SVG algorithm, written in Go (which is amazing, and yet has not seen
-          much of the light of day). It is{" "}
+          <strong>wrapper around existing image libraries</strong>, such as
+          libvips or Michael Fogleman's primitive SVG algorithm, written in Go
+          (which is amazing, and yet has not seen much of the light of day). It
+          is{" "}
           <strong>
-            written in TypeScript (a statically typed superset of JavaScript) and runs on Node.js
+            written in TypeScript (a statically typed superset of JavaScript)
+            and runs on Node.js
           </strong>
-          , the de-facto dominant platform for web-development related tools. It is therefore
-          cross-platform and, most importantly, framework agnostic, meaning you can use this in any
-          project you like. There are two official interfaces for IPP, the command-line tool and the
-          webpack loader, however, you can easily create your own adapter for whatever build process
-          you would like to use.
+          , the de-facto dominant platform for web-development related tools. It
+          is therefore cross-platform and, most importantly, framework agnostic,
+          meaning you can use this in any project you like. There are two
+          official interfaces for IPP, the command-line tool and the webpack
+          loader, however, you can easily create your own adapter for whatever
+          build process you would like to use.
         </p>
 
         <p>
-          IPP was created out of a lack of other solutions. It was meant to be an optimal
-          no-comprises solution to image optimisation for the modern web. It is therefore designed
-          in a particular way, and some of the higher-level modules are more opinionated, such as
-          the manifest format. If this is not your style, you can use only the core functions and
-          design your own export formats.
+          IPP was created out of a lack of other solutions. It was meant to be
+          an optimal no-comprises solution to image optimisation for the modern
+          web. It is therefore designed in a particular way, and some of the
+          higher-level modules are more opinionated, such as the manifest
+          format. If this is not your style, you can use only the core functions
+          and design your own export formats.
         </p>
 
         <p style={{ display: "flex", justifyContent: "center" }}>
-          <MotivationButton to="/blog/2020/09/12/motivation" className="button button--secondary">
+          <MotivationButton
+            to="/blog/2020/09/12/motivation"
+            className="button button--secondary"
+          >
             Read more about the motivation
           </MotivationButton>
         </p>
@@ -190,28 +214,30 @@ function How() {
           <GrTree className={styles.titleIcon} /> Pipeline
         </h3>
         <p>
-          At the heart is a user-defined pipeline. A <strong>pipeline</strong> is a collection of{" "}
-          <strong>pipes</strong> that can be assembled in any tree-like pattern, along with any
-          additional options and an optional <strong>save key</strong> that will mark the pipe's
-          output for export.
+          At the heart is a user-defined pipeline. A <strong>pipeline</strong>{" "}
+          is a collection of <strong>pipes</strong> that can be assembled in any
+          tree-like pattern, along with any additional options and an optional{" "}
+          <strong>save key</strong> that will mark the pipe's output for export.
         </p>
 
         <h3 className={styles.titleWithIcon}>
           <GiWarpPipe className={styles.titleIcon} /> Pipe
         </h3>
         <p>
-          Pipes are <strong>simple asynchronous functions</strong> that take a source image and
-          output any number of <strong>formats</strong>. Pipes can apply any transformation to the
-          source image, such as resizing, compressing or converting the image.
+          Pipes are <strong>simple asynchronous functions</strong> that take a
+          source image and output any number of <strong>formats</strong>. Pipes
+          can apply any transformation to the source image, such as resizing,
+          compressing or converting the image.
         </p>
 
         <h3 className={styles.titleWithIcon}>
           <AiOutlineFileText className={styles.titleIcon} /> Metadata
         </h3>
         <p>
-          Every image is accompanied by a <strong>metadata</strong> object, which is a collection of
-          key-value pairs that describe the image. Pipes may modify an image's metadata object,
-          which can later be used to customise the output filename or to create an image{" "}
+          Every image is accompanied by a <strong>metadata</strong> object,
+          which is a collection of key-value pairs that describe the image.
+          Pipes may modify an image's metadata object, which can later be used
+          to customise the output filename or to create an image{" "}
           <strong>manifest</strong> file.
         </p>
       </div>
@@ -222,7 +248,9 @@ function How() {
 function Feature({ image: Image, title, description }: Feature) {
   return (
     <div className={clsx("col col--4", styles.feature)}>
-      <div className="text--center">{<Image className={styles.featureImage} />}</div>
+      <div className="text--center">
+        {<Image className={styles.featureImage} />}
+      </div>
       <h3>{title}</h3>
       <p>{description}</p>
     </div>

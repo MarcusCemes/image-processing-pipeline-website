@@ -2,7 +2,9 @@ import { ChakraProvider, theme } from "@chakra-ui/react";
 import OriginalRoot from "@theme-original/Root";
 import React, { PropsWithChildren, ReactElement } from "react";
 
-export default function Root({ children }: PropsWithChildren<{}>): ReactElement {
+export default function Root({
+  children,
+}: PropsWithChildren<{}>): ReactElement {
   return (
     <OriginalRoot>
       <Providers>{children}</Providers>

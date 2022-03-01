@@ -42,12 +42,11 @@ export const Overlay: React.FC<{ active?: boolean; zIndex?: number }> = ({
   </AnimatePresence>
 );
 
-export const DelayedOverlay: React.FC<{ active?: boolean; timeout?: number; zIndex?: number }> = ({
-  active,
-  children,
-  timeout = 400,
-  zIndex,
-}) => {
+export const DelayedOverlay: React.FC<{
+  active?: boolean;
+  timeout?: number;
+  zIndex?: number;
+}> = ({ active, children, timeout = 400, zIndex }) => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
