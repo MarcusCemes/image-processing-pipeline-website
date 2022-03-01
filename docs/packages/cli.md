@@ -2,22 +2,69 @@
 
 This package provides the `ipp` command that can be used to run IPP from the terminal. It makes it easy to batch process a large number of images using a single pipeline configuration.
 
-It is a wrapper around the core library, with some CLI-specific utilities, configuration parsing and manifest file generation. Additionally, it attempts to increase the number of UV threads available to the Node.js runtime to make full use of multicore CPUs.
+For a higher-level overview to the CLI package, see the [CLI integration page](../integrations/cli.md).
 
-## Configuration loading
+## Flags
+
+These allow you to pass parameters to the CLI tool.
+
+|    Flag    | Shorthand | Type    | Description                             |
+| :--------: | :-------: | ------- | --------------------------------------- |
+| `--input`  |   `-i`    | string  | The path to the input directory         |
+| `--output` |   `-o`    | string  | The path to the output directory        |
+| `--config` |   `-c`    | string  | The path to a configuration file        |
+|  `--text`  |           | boolean | Disable dynamic coloured output         |
+|  `--help`  |           | boolean | Print a help screen showing these flags |
+
+## Configuration
 
 The CLI uses the [cosmiconfig](https://github.com/davidtheclark/cosmiconfig) library to search for and parse a configuration file. Valid configuration files include:
 
 - `.ipprc`
 - `.ipprc.yaml` or `.ipprc.json`
 - `.ipprc.js` (CommonJS)
-- a `ipp` field in your package.json
+- an `ipp` field in your `package.json` file
 
-## Parallel processing
+:::note
+The path to the configuration file can be overriden with the `--config` flag.
+:::
 
-The CLI will try to process as many jobs in parallel as there are threads on your system. This is achieved by increasing the UV threadpool size that is used to park syncronous jobs, such as invoking libvips from the Sharp library.
+The configuration file can either be in JSON or YAML format. There is also a JSON Schema definition filed available at [https://ipp.vercel.app/schema/config.json](https://ipp.vercel.app/schema/config.json) for editors that support it such as VSCode.
 
-Most pipes make use of native code somehow, either through a C interface or by starting a process and reading directly from stdin and stdout. Pipes that are written in Javascript that execute using the native Node.js runtime will not benefit from parallelism unless they explicitly create a new thread for the computationaly intensive work (see the [worker threads API](https://nodejs.org/api/worker_threads.html)).
+The supported configuration variables are as follows:
+
+|     Key     |        Type        | Description                                                                  |
+| :---------: | :----------------: | ---------------------------------------------------------------------------- |
+|    input    | string \| string[] | The input directory path(s) _(required)_                                     |
+|   output    |       string       | The output directory path _(required)_                                       |
+|  pipeline   |      Pipeline      | The processing pipeline schema _(required)_                                  |
+| concurrency |       number       | The number of parallel jobs to run                                           |
+|    clean    |      boolean       | Remove all files and folders in the output directory before starting         |
+|    flat     |      boolean       | Flatten the input directory tree, instead of respecting the folder hierarchy |
+|  manifest   |  ManifestMapping   | Enable and configure manifest generation                                     |
+
+```ts title="Typescript interface for the configuration schema"
+interface Config {
+  input: string | string[];
+  output: string;
+  pipeline: Pipeline;
+
+  concurrency?: number;
+  clean?: boolean;
+  flat?: boolean;
+  manifest?: ManifestMappings;
+}
+```
+
+:::tip
+The `input` and `output` configuration variables can be overridden with their respective CLI flags.
+:::
+
+## Parallelism
+
+The CLI will try to process as many jobs in parallel as there are threads on your system. This is achieved by increasing the UV threadpool size that is used to park synchronous jobs, such as invoking libvips from the Sharp library.
+
+Most pipes make use of native code somehow, either through a C interface or by starting a process and reading directly from stdin and stdout. Pipes that are written in Javascript that execute using the native Node.js runtime will not benefit from parallelism unless they explicitly create a new thread for the computationally intensive work (see the [worker threads API](https://nodejs.org/api/worker_threads.html)).
 
 ## Manifest generation
 
