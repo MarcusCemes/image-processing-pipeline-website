@@ -3,32 +3,42 @@
   "$id": "https://ipp.vercel.app/schema/pipeline.json",
   "title": "Pipeline",
   "description": "The Pipeline object used by the Image Processing Pipeline",
-
   "type": "array",
   "items": {
     "title": "Pipeline Branch",
     "description": "A single parallel processing branch of a Pipeline object",
     "type": "object",
-    "required": ["pipe"],
+    "required": [
+      "pipe"
+    ],
     "additionalProperties": false,
     "properties": {
       "pipe": {
         "oneOf": [
           {
             "type": "string",
-            "examples": ["resize", "convert"]
+            "examples": [
+              "resize",
+              "convert"
+            ]
           },
           {
             "type": "object",
-            "required": ["resolve"],
+            "required": [
+              "resolve"
+            ],
             "properties": {
               "resolve": {
                 "type": "string",
-                "examples": ["@ipp/primitive"]
+                "examples": [
+                  "@ipp/primitive"
+                ]
               },
               "module": {
                 "type": "string",
-                "examples": ["default"]
+                "examples": [
+                  "default"
+                ]
               }
             }
           }
@@ -38,12 +48,35 @@
         "type": "object",
         "additionalProperties": true
       },
+      "test": {
+        "oneOf": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "boolean"
+          },
+          {
+            "type": "string",
+            "format": "regex"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "format": "regex"
+            }
+          }
+        ]
+      },
       "save": {
         "oneOf": [
           {
             "type": "string"
           },
-          { "type": "boolean" }
+          {
+            "type": "boolean"
+          }
         ]
       },
       "then": {
