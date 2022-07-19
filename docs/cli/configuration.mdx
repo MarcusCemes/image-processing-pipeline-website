@@ -13,7 +13,7 @@ Image Processing Pipeline may be configured by using any of the file naming sche
 [cosmiconfig][cosmiconfig].
 
 A custom configuration file may also be specified using the `--config` flag, which will override the
-default searching behavior and instead exclusively attempt to use the provided config path.
+default searching behaviour and instead exclusively attempt to use the provided config path.
 
 The loaded configuration will be validated using a JSON schema to check for inconsistencies and warn
 you of any problems.
@@ -21,7 +21,7 @@ you of any problems.
 ## Searching
 
 If no configuration is explicitly specified via the `--config` flag, IPP will attempt to search the
-current working directory and parent directories for a recognized configuration file. Any file
+current working directory and parent directories for a recognised configuration file. Any file
 supported by [cosmiconfig][cosmiconfig] will be correctly understood by IPP.
 
 For example, you may define one of the following files (in order of priority):
@@ -37,7 +37,7 @@ IPP eventually converts configurations to JS, but understands several base forma
 differences, with more abstraction towards the top of the list.
 
 - **YAML** is the most human-friendly and compact **(recommended for most users)**
-- **JSON** is a widely recognized universal format, similar to JS
+- **JSON** is a widely recognised universal format, similar to JS
 - **JS** allows for dynamic configs and lambda pipe functions
 
 ### Programmatic invocation
@@ -46,7 +46,7 @@ Calling the CLI's `startCLI()` function programmatically **bypasses any configur
 validation**. Instead, the configuration is passed as a function parameter.
 
 Due to the dynamic nature of JavaScript, it is your responsibility to ensure that the configuration
-is correct, an incorrect configuration could cause undetermined execution behavior.
+is correct, an incorrect configuration could cause undetermined execution behaviour.
 
 If you are using TypeScript, you can rest easy knowing that the function is strongly typed,
 providing the same level of safety against faulty configuration, if not better.
@@ -54,7 +54,7 @@ providing the same level of safety against faulty configuration, if not better.
 ## Validation
 
 Upon loading a configuration, it is converted to JavaScript and validated against [this JSON
-schema][config-schema]. This strict behavior ensures that there are no misspelt property names or
+schema][config-schema]. This strict behaviour ensures that there are no misspelt property names or
 deprecated keys.
 
 <!-- prettier-ignore-start -->
@@ -282,7 +282,7 @@ beat the reference codec encoder.
 
 ## API reference
 
-To get a more standardized and always up-to-date API reference, check out the configuration [JSON
+To get a more standardised and always up-to-date API reference, check out the configuration [JSON
 schema][config-schema] or [TypeScript interfaces][config-typings].
 
 <Tabs
@@ -296,16 +296,19 @@ schema][config-schema] or [TypeScript interfaces][config-typings].
 <TabItem value="table">
 <FormatTable centre fullWidth label="The Configuration object" top="2em">
 
-| key         | type                          | description                                                      |
-| :---------- | :---------------------------- | :--------------------------------------------------------------- |
-| input       | string _or_ array             | The path to an image, or a folder containing images _(required)_ |
-| output      | string                        | The path to the directory to output images to _(required)_       |
-| pipeline    | array                         | See the [pipeline](#pipeline) _(required)_                       |
-| concurrency | number                        | Allows for more fine-grain control of the program options        |
-| clean       | boolean                       | Delete the output directory before processing (dangerous!)       |
-| flat        | boolean                       | Whether to flatten the output directory structure                |
-| manifest    | object                        | See the [manifest](#manifest)                                    |
-| errorFile   | string, boolean _or_ function | Disable `false`, change path `string` or use a callback function |
+<!-- prettier-ignore-start -->
+| key            | type                 | description |
+| :------------- | :------------------- | :---------------------------------------------------------------------------------------------------- |
+| input          | string _or_ array    | The path to an image, or a folder containing images _(required)_ |
+| output         | string               | The path to the directory to output images to _(required)_ |
+| pipeline       | array                | See the [pipeline](#pipeline) _(required)_ |
+| concurrency    | number               | Allows for more fine-grain control of the program options |
+| clean          | boolean              | Delete the output directory before processing (dangerous!) |
+| flat           | boolean              | Whether to flatten the output directory structure |
+| manifest       | object               | See the [manifest](#manifest) |
+| suppressErrors | boolean              | Disable error output |
+| errorOutput    | string _or_ function | Specify a different filename for errors, or provide a callback function to handle the error yourself. |
+<!-- prettier-ignore-end -->
 
 </FormatTable>
 </TabItem>
@@ -326,13 +329,13 @@ interface Config {
 
 <!-- prettier-ignore-start -->
 :::note
-`concurrency` is not actually required as it is populated by the initialization script by default.
+`concurrency` is not actually required as it is populated by the initialisation script by default.
 :::
 <!-- prettier-ignore-end -->
 
 <!-- prettier-ignore-start -->
 :::danger
-When the `clean` option is enabled, the path specified as the output folder will be unrecoverable
+When the `clean` option is enabled, the path specified as the output folder will be irrecoverably
 deleted with no additional checks in place. Use with care.
 :::
 <!-- prettier-ignore-end -->

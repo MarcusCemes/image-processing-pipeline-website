@@ -3,11 +3,7 @@
   "$id": "https://ipp.vercel.app/schema/config.json",
   "title": "IPP Config",
   "type": "object",
-  "required": [
-    "input",
-    "output",
-    "pipeline"
-  ],
+  "required": ["input", "output", "pipeline"],
   "properties": {
     "input": {
       "oneOf": [
@@ -59,15 +55,11 @@
         }
       }
     },
-    "errorFile": {
-      "oneOf": [
-        {
-          "type": "string"
-        },
-        {
-          "type": "boolean"
-        }
-      ]
+    "suppressErrors": {
+      "type": "boolean"
+    },
+    "errorOutput": {
+      "type": "string"
     }
   }
 }
