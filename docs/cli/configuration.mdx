@@ -300,6 +300,7 @@ schema][config-schema] or [TypeScript interfaces][config-typings].
 | key            | type                 | description |
 | :------------- | :------------------- | :---------------------------------------------------------------------------------------------------- |
 | input          | string _or_ array    | The path to an image, or a folder containing images _(required)_ |
+| inputFilter    | RegExp, function _or_ array    | Filter input files to exclude them from processing |
 | output         | string               | The path to the directory to output images to _(required)_ |
 | pipeline       | array                | See the [pipeline](#pipeline) _(required)_ |
 | concurrency    | number               | Allows for more fine-grain control of the program options |
@@ -317,6 +318,7 @@ schema][config-schema] or [TypeScript interfaces][config-typings].
 ```typescript title="Config interface"
 interface Config {
   input: string | string[];
+  inputFilter: RegExp | (file => boolean) | (RegExp | (file => boolean))[];
   output: string;
   pipeline: Pipeline;
 

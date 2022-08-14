@@ -18,6 +18,21 @@
         }
       ]
     },
+    "inputFilter": {
+      "oneOf": [
+        {
+          "type": "string",
+          "format": "regex"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "regex"
+          }
+        }
+      ]
+    },
     "output": {
       "type": "string"
     },
