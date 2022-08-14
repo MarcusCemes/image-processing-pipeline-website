@@ -300,6 +300,7 @@ schema][config-schema] or [TypeScript interfaces][config-typings].
 | key            | type                 | description |
 | :------------- | :------------------- | :---------------------------------------------------------------------------------------------------- |
 | input          | string _or_ array    | The path to an image, or a folder containing images _(required)_ |
+| inputFilter    | RegExp, function _or_ array    | Filter input files to exclude them from processing |
 | output         | string               | The path to the directory to output images to _(required)_ |
 | pipeline       | array                | See the [pipeline](#pipeline) _(required)_ |
 | concurrency    | number               | Allows for more fine-grain control of the program options |
@@ -317,6 +318,7 @@ schema][config-schema] or [TypeScript interfaces][config-typings].
 ```typescript title="Config interface"
 interface Config {
   input: string | string[];
+  inputFilter: RegExp | (file => boolean) | (RegExp | (file => boolean))[];
   output: string;
   pipeline: Pipeline;
 
@@ -422,12 +424,13 @@ more about the [architecture](../concept/architecture.mdx).
 <TabItem value="table">
 <FormatTable centre fullWidth label="The Pipe object" top="2em">
 
-| key     | type                             | description                                   |
-| :------ | :------------------------------- | :-------------------------------------------- |
-| pipe    | string _or_ object _or_ function | Per-image exported metadata keys _(required)_ |
-| options | object                           | Per-format exported metadata keys             |
-| save    | string _or_ `true`               | Per-format exported metadata keys             |
-| then    | object                           | Per-format exported metadata keys             |
+| key     | type                                          | description                                     |
+| :------ | :-------------------------------------------- | :---------------------------------------------- |
+| pipe    | string _or_ object _or_ function              | name or object of pipe _(required)_             |
+| options | object                                        | pipe specific options                           |
+| test    | boolean _or_ string _or_ RegExp _or_ function | if truthy, executes the pipe for the given file |
+| save    | string _or_ `true`                            | save the file to output                         |
+| then    | object                                        | execute pipe(s) after this one                  |
 
 </FormatTable>
 </TabItem>
@@ -437,6 +440,7 @@ more about the [architecture](../concept/architecture.mdx).
 interface PipelineBranch<O = any> {
   pipe: string | { resolve: string; module?: string } | Pipe;
   options?: O;
+  test?: PipelineTest;
   save?: PrimitiveValue;
   then?: Pipeline;
 }
@@ -463,6 +467,158 @@ It is not possible to define JavaScript functions in YAML or JSON configuration 
 must use a JavaScript configuration file.
 :::
 <!-- prettier-ignore-end -->
+
+### The test property
+
+This property tests each file paths and the file will be processed if it returns truthy. It can be:
+
+- keep **undefined** (default) or use **true** to skip testing and always proceed
+- a **string** to check for explicit file name
+- a **RegExp** to do a regex test against the file name
+- a **function** callback (advanced usage) to do custom testing
+
+Also a combination of multiple **RegExp** and **function** is possible.
+
+#### Examples
+
+JavaScript / Typescript configuration is recommended to allow more advanced behavior.
+
+Use test to only process one file:
+
+<Tabs
+  groupId="example_pipe_test_str"
+  defaultValue="yaml"
+  values={[
+    {label: 'YAML', value: 'yaml'},
+    {label: 'JSON', value: 'json'},
+    {label: 'TypeScript', value: 'typescript'},
+  ]
+}>
+<TabItem value="yaml">
+
+```yaml
+pipeline:
+  - pipe: "passthrough"
+    test: "relative/dir/file.png"
+```
+
+</TabItem>
+<TabItem value="json">
+
+```json
+{
+  "pipeline": [
+    {
+      "pipe": "passthrough",
+      "test": "relative/dir/file.png"
+    },
+  ]
+}
+```
+
+</TabItem>
+<TabItem value="typescript">
+
+```typescript
+const pipe = {
+  pipe: "passthrough",
+  test: "relative/dir/file.png", // only process file.png
+};
+```
+
+</TabItem>
+</Tabs>
+
+Use test with callback to process only png files:
+
+<Tabs
+  groupId="example_pipe_test_callback"
+  defaultValue="typescript"
+  values={[
+    {label: 'TypeScript', value: 'typescript'},
+  ]
+}>
+<TabItem value="typescript">
+
+```typescript
+const pipe = {
+  pipe: "passthrough",
+  test: (filepath: string, _metadata: Metadata) => filepath.endsWith(".png"), // process png only
+};
+```
+
+</TabItem>
+</Tabs>
+
+Use test with RegExp to process only png files:
+
+<Tabs
+  groupId="example_pipe_test_regexp"
+  defaultValue="yaml"
+  values={[
+    {label: 'YAML', value: 'yaml'},
+    {label: 'JSON', value: 'json'},
+    {label: 'TypeScript', value: 'typescript'},
+  ]
+}>
+<TabItem value="yaml">
+
+```yaml
+pipeline:
+  - pipe: "passthrough"
+    test: /\.png$/
+```
+
+</TabItem>
+<TabItem value="json">
+
+```json
+{
+  "pipeline": [
+    {
+      "pipe": "passthrough",
+      "test": "/\.png$/"
+    },
+  ]
+}
+```
+
+</TabItem>
+<TabItem value="typescript">
+
+```typescript
+const pipe = {
+  pipe: "passthrough",
+  test: /\.png$/, // process png only
+};
+```
+
+</TabItem>
+</Tabs>
+
+Use test with multiple rules (all must be truthy):
+
+<Tabs
+  groupId="example_pipe_test_regexp_callback"
+  defaultValue="typescript"
+  values={[
+    {label: 'TypeScript', value: 'typescript'},
+  ]
+}>
+
+<TabItem value="typescript">
+
+```typescript
+const pipe = {
+  pipe: "passthrough",
+  // only process png files with a width >= 128 px
+  test: [/\.png$/, (_filepath: string, metadata: Metadata) => metadata.source.width >= 128],
+};
+```
+
+</TabItem>
+</Tabs>
+
 
 ## Saving images
 
